@@ -13,11 +13,12 @@ using namespace dank;
 
 class MainApp : public Application {
 private:
-
+	float r = 0, g = 0 , b = 0;
 public:
 	MainApp(ANativeActivity* activity, void* savedState, size_t savedStateSize)
 		: Application(activity, savedState, savedStateSize) {
 		Application::Set(this);
+		Start();
 	}
 
 	~MainApp() {
@@ -25,7 +26,19 @@ public:
 	}
 
 	void Render() override {
-		glClearColor(0.3, 0.4, 0.7, 1.0);
+		if (r > 1.0)
+			r = 0;
+		if (g > 1.0) {
+			r += 0.01f;
+			g = 0;
+		}
+		if (b > 1.0) {
+			g += 0.01f;
+			b = 0;
+		}
+		b += 0.01f;
+
+		glClearColor(r, g, b, 1.0f);
 	}
 
 	void Update() override {

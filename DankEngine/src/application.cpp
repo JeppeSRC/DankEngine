@@ -13,7 +13,6 @@ namespace dank {
 
 	Application::Application(ANativeActivity* activity, void* savedState, size_t savedStateSize) {
 		NativeApp::Intialize(activity);
-		NativeApp::app->Start(app_main);
 	}
 
 
@@ -47,6 +46,7 @@ namespace dank {
 
 	void Application::OnStart(ANativeActivity* activity) {
 		write_cmd(CMD_ON_START);
+		
 	}
 
 	void Application::OnStop(ANativeActivity* activity) {
@@ -69,6 +69,10 @@ namespace dank {
 
 	void Application::OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
 
+	}
+
+	void Application::Start() {
+		NativeApp::app->Start(app_main); 
 	}
 
 	void* app_main(void*) {
@@ -103,6 +107,7 @@ namespace dank {
 
 		glDisable(GL_DEPTH_TEST);
 
+		eglSwapInterval(app->display, 0);
 		while (app->status) {
 			glClear(GL_COLOR_BUFFER_BIT);
 
@@ -112,8 +117,6 @@ namespace dank {
 
 			Application::Get()->Update();
 			Application::Get()->Render();
-
-			glClearColor(0.3, 0.4, 0.7, 1.0);
 
 
 			eglSwapBuffers(app->display, app->surface);
