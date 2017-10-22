@@ -64,11 +64,12 @@ namespace dank {
 	}
 	
 	void Application::OnInputQueueCreated(ANativeActivity* activity, AInputQueue* queue) {
-
+		NativeApp::app->inputQueue = queue;
+		write_cmd(CMD_INPUT_CREATED);
 	}
 
 	void Application::OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
-
+		write_cmd(CMD_INPUT_DESTROYED);
 	}
 
 	void Application::Start() {
@@ -95,7 +96,11 @@ namespace dank {
 	}
 
 	int OnGameInput(AInputEvent* event) {
-
+		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
+			float x = AMotionEvent_getX(event, 0);
+			float y = AMotionEvent_getY(event, 0);
+			LOGD("X: %f Y: %f", x, y);
+		}
 	}
 
 	void game_main() {
@@ -103,7 +108,7 @@ namespace dank {
 
 		int ident;
 		int events;
-		CMD_CALLBACK process_cmd;
+		CMD_CALLBACK process_cmd = nullptr;
 
 		glDisable(GL_DEPTH_TEST);
 
@@ -112,7 +117,7 @@ namespace dank {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			while ((ident = ALooper_pollAll(app->status == 2 ? -1 : 0, nullptr, &events, (void**)&process_cmd)) >= 0) {
-				if (ident == LOOPER_ID_CMD) process_cmd();
+				if (process_cmd) process_cmd();
 			}
 
 			Application::Get()->Update();

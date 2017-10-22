@@ -213,6 +213,16 @@ namespace dank {
 	}
 
 	void process_input() {
+		NativeApp* app = NativeApp::app;
+		AInputEvent* event = nullptr;
+		while (AInputQueue_getEvent(app->inputQueue, &event) >= 0) {
+			if (AInputQueue_preDispatchEvent(app->inputQueue, event)) continue;
+
+			int h = 0;
+			if (app->OnInput) h = app->OnInput(event);
+			AInputQueue_finishEvent(app->inputQueue, event, h);
+		}
+
 	}
 
 	int read_cmd() {

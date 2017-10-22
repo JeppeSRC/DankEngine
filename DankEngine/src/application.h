@@ -11,6 +11,8 @@
 #include <GLES3/gl3ext.h>
 #include <GLES3/gl3platform.h>
 
+#include <android/sensor.h>
+
 #include "core/nativeapp.h"
 #include "utils/utils.h"
 
