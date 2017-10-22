@@ -23,6 +23,7 @@
 #include "utils/list.h"
 #include "utils/log.h"
 #include "utils/string.h"
+#include "utils/asset/fileutils.h"
 
 namespace dank {
 
@@ -35,7 +36,11 @@ namespace dank {
 		ANativeActivity* activity;
 
 	public:
-		Application() {}
+		Application(ANativeActivity* activity) {
+			NativeApp::Initialise(activity);
+			FileUtils::assetManager = activity->assetManager;
+		}
+
 		virtual ~Application();
 
 		virtual void OnDestroy(ANativeActivity* activity);

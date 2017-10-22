@@ -14,28 +14,16 @@ using namespace dank;
 class MainApp : public Application {
 private:
 	float r = 0, g = 0 , b = 0;
-	const char* vert =
-		"#version 100\n"
-		"attribute vec3 position;\n"
-		"void main() {\n"
-		"gl_Position = vec4(position, 1);"
-		"}\n"
-		"\n";
-
-	const char* frag =
-		"#version 100\n"
-		"void main() {\n"
-		"gl_FragColor = vec4(1, 1, 1, 1);\n"
-		"}\n"
-		"\n";
 
 	Shader* shader;
 
 	VertexBuffer* vbo;
 	IndexBuffer* ibo;
-
+	const char* vert, *frag;
 public:
-	MainApp() {
+	MainApp(ANativeActivity* activity) 
+		: Application(activity) {
+		Application::Set(this);
 	}
 
 	~MainApp() {
@@ -43,6 +31,11 @@ public:
 	}
 
 	void Init() override {
+		String vertex = FileUtils::ReadTextFile("shader.vert");
+		vert = vertex.str;
+		String fragment = FileUtils::ReadTextFile("shader.frag");
+		frag = fragment.str;
+
 		shader = new Shader(vert, frag);
 		shader->Bind();
 
@@ -99,8 +92,8 @@ static void OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* wi
 static void OnDestroy(ANativeActivity* activity) { app->OnDestroy(activity); delete app; }
 
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize) {
-	app = new MainApp();
-	NativeApp::Intialize(activity);
+	app = new MainApp(activity);
+	
 	activity->callbacks->onConfigurationChanged = OnConfigurationChanged;
 	activity->callbacks->onDestroy = OnDestroy;
 	activity->callbacks->onInputQueueCreated = OnInputQueueCreated;
@@ -114,6 +107,5 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 	activity->callbacks->onStop = OnStop;
 	activity->callbacks->onWindowFocusChanged = OnWindowFocusChanged;
 
-	Application::Set(app);
 	app->Start();
 }

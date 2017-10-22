@@ -9,7 +9,7 @@ namespace dank {
 
 	NativeApp* NativeApp::app = nullptr;
 
-	bool NativeApp::Intialize(ANativeActivity* activity) {
+	bool NativeApp::Initialise(ANativeActivity* activity) {
 		LOGD("Creating NativeApp");
 		NativeApp::app = new NativeApp(activity);
 		return true;

@@ -51,7 +51,7 @@ namespace dank {
 	public:
 		static NativeApp* app;
 
-		static bool Intialize(ANativeActivity* activity);
+		static bool Initialise(ANativeActivity* activity);
 		static void Destroy();
 
 		static float GetAspectRatio() { return (float)app->surface_width / app->surface_height; }

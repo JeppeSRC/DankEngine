@@ -11,6 +11,7 @@
     <ClInclude Include="src\graphics\vertexbuffer.h" />
     <ClInclude Include="src\graphics\indexbuffer.h" />
     <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\utils\asset\fileutils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -20,5 +21,6 @@
     <ClCompile Include="src\graphics\vertexbuffer.cpp" />
     <ClCompile Include="src\graphics\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\utils\asset\fileutils.cpp" />
   </ItemGroup>
 </Project>

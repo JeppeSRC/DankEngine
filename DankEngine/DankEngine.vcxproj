@@ -40,6 +40,7 @@
     <ClInclude Include="src\graphics\indexbuffer.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\vertexbuffer.h" />
+    <ClInclude Include="src\utils\asset\fileutils.h" />
     <ClInclude Include="src\utils\list.h" />
     <ClInclude Include="src\utils\log.h" />
     <ClInclude Include="src\utils\map.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="src\graphics\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\vertexbuffer.cpp" />
+    <ClCompile Include="src\utils\asset\fileutils.cpp" />
     <ClCompile Include="src\utils\string.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>
