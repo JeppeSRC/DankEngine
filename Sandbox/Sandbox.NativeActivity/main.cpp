@@ -20,6 +20,7 @@ private:
 	VertexBuffer* vbo;
 	IndexBuffer* ibo;
 	const char* vert, *frag;
+	mat4 modelMatrix;
 public:
 	MainApp(ANativeActivity* activity) 
 		: Application(activity) {

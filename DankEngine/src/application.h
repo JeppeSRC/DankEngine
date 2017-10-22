@@ -19,6 +19,8 @@
 #include "graphics/vertexbuffer.h"
 #include "graphics/shader.h"
 
+#include "maths/math.h"
+
 #include "utils/utils.h"
 #include "utils/list.h"
 #include "utils/log.h"

@@ -187,7 +187,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3</LibraryDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -211,7 +211,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3</LibraryDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -235,7 +235,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3</LibraryDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -259,7 +259,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3</LibraryDependencies>
+      <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">

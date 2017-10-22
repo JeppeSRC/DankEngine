@@ -108,8 +108,24 @@ namespace dank {
 
 		return loc;
 	}
+	
+	void Shader::SetInt(const char* const name, int v) {
+		SetInt(GetUniformLocation(name), v);
+	}
 
-	void Shader::SetFloat(const char* name, float v) {
+	void Shader::SetInt(unsigned int location, int v) {
+		glUniform1i(location, v);
+	}
+
+	void Shader::SetIntArray(const char* const name, int count, int* values) {
+		SetIntArray(GetUniformLocation(name), count, values);
+	}
+
+	void Shader::SetIntArray(unsigned int location, int count, int* values) {
+		glUniform1iv(location, count, values);
+	}
+
+	void Shader::SetFloat(const char* const name, float v) {
 		SetFloat(GetUniformLocation(name), v);
 	}
 
@@ -117,7 +133,7 @@ namespace dank {
 		glUniform1f(location, v);
 	}
 
-	void Shader::SetVec2(const char* name, float x, float y) {
+	void Shader::SetVec2(const char* const name, float x, float y) {
 		SetVec2(GetUniformLocation(name), x, y);
 	}
 
@@ -125,7 +141,7 @@ namespace dank {
 		glUniform2f(location, x, y);
 	}
 
-	void Shader::SetVec3(const char* name, float x, float y, float z) {
+	void Shader::SetVec3(const char* const name, float x, float y, float z) {
 		SetVec3(GetUniformLocation(name), x, y, z);
 	}
 
@@ -133,7 +149,7 @@ namespace dank {
 		glUniform3f(location, x, y, z);
 	}
 
-	void Shader::SetVec4(const char* name, float x, float y, float z, float w) {
+	void Shader::SetVec4(const char* const name, float x, float y, float z, float w) {
 		SetVec4(GetUniformLocation(name), x, y, z, w);
 	}
 
@@ -141,11 +157,12 @@ namespace dank {
 		glUniform4f(location, x, y, z, w);
 	}
 
-	void Shader::SetMat4(const char* name, float* data) {
+	void Shader::SetMat4(const char* const name, const float* const data) {
 		SetMat4(GetUniformLocation(name), data);
 	}
 
-	void Shader::SetMat4(unsigned int location, float* data) const {
+	void Shader::SetMat4(unsigned int location, const float* const  data) const {
 		glUniformMatrix4fv(location, 1, false, data);
 	}
+
 }
