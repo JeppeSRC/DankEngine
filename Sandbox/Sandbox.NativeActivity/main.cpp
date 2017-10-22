@@ -1,4 +1,13 @@
 #include <application.h>
+#include <GLES/gl.h>
+#include <GLES/glext.h>
+#include <GLES/glplatform.h>
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#include <GLES2/gl2platform.h>
+#include <GLES3/gl3.h>
+#include <GLES3/gl3ext.h>
+#include <GLES3/gl3platform.h>
 
 using namespace dank;
 
@@ -8,14 +17,20 @@ private:
 public:
 	MainApp(ANativeActivity* activity, void* savedState, size_t savedStateSize)
 		: Application(activity, savedState, savedStateSize) {
-
+		Application::Set(this);
 	}
 
 	~MainApp() {
 
 	}
 
+	void Render() override {
+		glClearColor(0.3, 0.4, 0.7, 1.0);
+	}
 
+	void Update() override {
+
+	}
 };
 
 static MainApp *app = nullptr;

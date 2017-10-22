@@ -2,8 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="src\application.h" />
+    <ClInclude Include="src\core\nativeapp.h" />
+    <ClInclude Include="src\utils\log.h" />
+    <ClInclude Include="src\utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\core\nativeapp.cpp" />
+    <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>
 </Project>
