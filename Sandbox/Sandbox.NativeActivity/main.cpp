@@ -14,32 +14,62 @@ using namespace dank;
 class MainApp : public Application {
 private:
 	float r = 0, g = 0 , b = 0;
+	const char* vert =
+		"#version 100\n"
+		"attribute vec3 position;\n"
+		"void main() {\n"
+		"gl_Position = vec4(position, 1);"
+		"}\n"
+		"\n";
+
+	const char* frag =
+		"#version 100\n"
+		"void main() {\n"
+		"gl_FragColor = vec4(1, 1, 1, 1);\n"
+		"}\n"
+		"\n";
+
+	Shader* shader;
+
+	VertexBuffer* vbo;
+	IndexBuffer* ibo;
+
 public:
-	MainApp(ANativeActivity* activity, void* savedState, size_t savedStateSize)
-		: Application(activity, savedState, savedStateSize) {
-		Application::Set(this);
-		Start();
+	MainApp() {
 	}
 
 	~MainApp() {
+		delete vbo, ibo, shader;
+	}
 
+	void Init() override {
+		shader = new Shader(vert, frag);
+		shader->Bind();
+
+		float vertices[]{
+			0, 1, 0,
+			1, -1, 0,
+			-1, -1, 0
+		};
+
+		unsigned short indices[]{ 0, 1, 2 };
+
+		vbo = new VertexBuffer(vertices, sizeof(vertices));
+		ibo = new IndexBuffer(indices, 3);
+
+		unsigned int position = shader->GetAttributeLocation("position");
+
+		vbo->Bind();
+		ibo->Bind();
+		GL(glEnableVertexAttribArray(position));
+		GL(glVertexAttribPointer(position, 3, GL_FLOAT, false, 3 * sizeof(float), 0));
+		glClearColor(0.3, 0.4, 0.7, 1.0);
 	}
 
 	void Render() override {
-		if (r > 1.0)
-			r = 0;
-		if (g > 1.0) {
-			r += 0.01f;
-			g = 0;
-		}
-		if (b > 1.0) {
-			g += 0.01f;
-			b = 0;
-		}
-		b += 0.01f;
-
-		glClearColor(r, g, b, 1.0f);
+		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
 	}
+
 
 	void Update() override {
 
@@ -69,8 +99,8 @@ static void OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* wi
 static void OnDestroy(ANativeActivity* activity) { app->OnDestroy(activity); delete app; }
 
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize) {
-	app = new MainApp(activity, savedState, savedStateSize);
-
+	app = new MainApp();
+	NativeApp::Intialize(activity);
 	activity->callbacks->onConfigurationChanged = OnConfigurationChanged;
 	activity->callbacks->onDestroy = OnDestroy;
 	activity->callbacks->onInputQueueCreated = OnInputQueueCreated;
@@ -83,4 +113,7 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 	activity->callbacks->onStart = OnStart;
 	activity->callbacks->onStop = OnStop;
 	activity->callbacks->onWindowFocusChanged = OnWindowFocusChanged;
+
+	Application::Set(app);
+	app->Start();
 }

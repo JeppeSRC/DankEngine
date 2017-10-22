@@ -63,7 +63,6 @@ namespace dank {
 	}
 
 	void NativeApp::Start(void*(*startRoutine)(void*)) {
-
 		pthread_attr_t attr;
 		pthread_attr_init(&attr);
 		pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
@@ -150,7 +149,7 @@ namespace dank {
 		eglQuerySurface(app->display, app->surface, EGL_WIDTH, &app->surface_width);
 		eglQuerySurface(app->display, app->surface, EGL_HEIGHT, &app->surface_height);
 
-		glViewport(0, 0, app->surface_width, app->surface_height);
+		GL(glViewport(0, 0, app->surface_width, app->surface_height));
 
 		LOGD("OpenGL Version: %s", glGetString(GL_VERSION));
 		LOGD("OpenGL Vendor: %s", glGetString(GL_VENDOR));
@@ -159,7 +158,7 @@ namespace dank {
 
 		LOGD("Surface: width=%d height=%d", app->surface_width, app->surface_height);
 
-
+		app->init = true;
 	}
 
 	void DestroyDisplay() {

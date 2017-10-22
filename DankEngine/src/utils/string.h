@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include "list.h"
+#include "utils.h"
 
 namespace dank {
 

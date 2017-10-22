@@ -11,10 +11,6 @@ namespace dank {
 
 	Application* Application::application = nullptr;
 
-	Application::Application(ANativeActivity* activity, void* savedState, size_t savedStateSize) {
-		NativeApp::Intialize(activity);
-	}
-
 
 	Application::~Application() {
 		
@@ -33,7 +29,7 @@ namespace dank {
 	}
 
 	void Application::OnWindowFocusChanged(ANativeActivity* activity, int focus) {
-
+		write_cmd(focus ? CMD_ON_FOCUS : CMD_ON_FOCUS_LOST);
 	}
 
 	void Application::OnPause(ANativeActivity* activity) {
@@ -54,6 +50,7 @@ namespace dank {
 	}
 
 	void Application::OnNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window) {
+		LOGW("OnNativeWindowCreated");
 		((NativeApp*)activity->instance)->window = window;
 		write_cmd(CMD_WINDOW_CREATE);
 	}
@@ -110,9 +107,19 @@ namespace dank {
 		int events;
 		CMD_CALLBACK process_cmd = nullptr;
 
+		while (!NativeApp::app->display) {
+			while ((ident = ALooper_pollAll(0, nullptr, &events, (void**)&process_cmd)) >= 0) {
+				if (process_cmd) process_cmd();
+			}
+		}
+
 		glDisable(GL_DEPTH_TEST);
+		glDisable(GL_CULL_FACE);
 
 		eglSwapInterval(app->display, 0);
+
+		Application::Get()->Init();
+
 		while (app->status) {
 			glClear(GL_COLOR_BUFFER_BIT);
 

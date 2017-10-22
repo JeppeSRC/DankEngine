@@ -1,6 +1,10 @@
 #pragma once
+
 #include <android/native_activity.h>
 #include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <EGL/eglplatform.h>
+
 #include <mutex>
 
 #include <GLES/gl.h>
@@ -37,7 +41,6 @@ namespace dank {
 
 	typedef void(*CMD_CALLBACK)();
 	typedef int(*INPUT_CALLBACK)(AInputEvent*);
-
 
 	enum GLES_VERSION {
 		GLES_VERSION_2,
@@ -83,6 +86,8 @@ namespace dank {
 		AInputQueue* inputQueue;
 
 		GLES_VERSION glesVersion;
+
+		bool init = false;
 
 	private:
 		NativeApp(ANativeActivity* activity);

@@ -14,7 +14,15 @@
 #include <android/sensor.h>
 
 #include "core/nativeapp.h"
+
+#include "graphics/indexbuffer.h"
+#include "graphics/vertexbuffer.h"
+#include "graphics/shader.h"
+
 #include "utils/utils.h"
+#include "utils/list.h"
+#include "utils/log.h"
+#include "utils/string.h"
 
 namespace dank {
 
@@ -27,7 +35,7 @@ namespace dank {
 		ANativeActivity* activity;
 
 	public:
-		Application(ANativeActivity* activity, void* savedState, size_t savedStateSize);
+		Application() {}
 		virtual ~Application();
 
 		virtual void OnDestroy(ANativeActivity* activity);
@@ -53,5 +61,7 @@ namespace dank {
 		virtual void Update() = 0;
 
 		void Start();
+
+		virtual void Init() = 0;
 	};
 }

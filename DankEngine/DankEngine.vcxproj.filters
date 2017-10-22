@@ -5,10 +5,20 @@
     <ClInclude Include="src\core\nativeapp.h" />
     <ClInclude Include="src\utils\log.h" />
     <ClInclude Include="src\utils\utils.h" />
+    <ClInclude Include="src\utils\list.h" />
+    <ClInclude Include="src\utils\map.h" />
+    <ClInclude Include="src\utils\string.h" />
+    <ClInclude Include="src\graphics\vertexbuffer.h" />
+    <ClInclude Include="src\graphics\indexbuffer.h" />
+    <ClInclude Include="src\graphics\shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\core\nativeapp.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
+    <ClCompile Include="src\utils\string.cpp" />
+    <ClCompile Include="src\graphics\vertexbuffer.cpp" />
+    <ClCompile Include="src\graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\shader.cpp" />
   </ItemGroup>
 </Project>
