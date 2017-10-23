@@ -62,6 +62,8 @@ public:
 
 	void Render() override {
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
+		LOGW("Shit: %.2f", MemoryAllocator::getAllocated());
+
 	}
 
 

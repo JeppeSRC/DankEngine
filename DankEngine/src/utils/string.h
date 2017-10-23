@@ -3,6 +3,8 @@
 #include "list.h"
 #include "utils.h"
 
+#include "utils/memory/memory.h"
+
 namespace dank {
 
 	class String {

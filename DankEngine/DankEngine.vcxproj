@@ -50,6 +50,8 @@
     <ClInclude Include="src\utils\list.h" />
     <ClInclude Include="src\utils\log.h" />
     <ClInclude Include="src\utils\map.h" />
+    <ClInclude Include="src\utils\memory\memory.h" />
+    <ClInclude Include="src\utils\memory\memoryallocator.h" />
     <ClInclude Include="src\utils\string.h" />
     <ClInclude Include="src\utils\utils.h" />
   </ItemGroup>
@@ -64,6 +66,7 @@
     <ClCompile Include="src\maths\vec3.cpp" />
     <ClCompile Include="src\maths\vec4.cpp" />
     <ClCompile Include="src\utils\asset\fileutils.cpp" />
+    <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
     <ClCompile Include="src\utils\string.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>

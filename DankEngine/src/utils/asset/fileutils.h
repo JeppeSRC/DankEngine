@@ -2,6 +2,7 @@
 #include <android/asset_manager.h>
 #include "utils/string.h"
 #include "utils/log.h"
+#include "utils/memory/memory.h"
 
 namespace dank {
 

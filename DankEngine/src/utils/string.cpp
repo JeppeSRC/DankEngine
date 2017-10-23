@@ -11,7 +11,7 @@ namespace dank {
 			return;
 		}
 		length = strlen(string);
-		str = new char[length + 1];
+		str = denew char[length + 1];
 		str[length] = '\0';
 		memcpy(str, string, length);
 
@@ -31,7 +31,7 @@ namespace dank {
 		}
 		else {
 			this->length = length;
-			str = new char[length + 1];
+			str = denew char[length + 1];
 			str[length] = '\0';
 			memcpy(str, string, length);
 
@@ -42,7 +42,7 @@ namespace dank {
 	String::String(const String& string) {
 		this->length = string.length;
 
-		str = new char[length + 1];
+		str = denew char[length + 1];
 		str[length] = 0;
 		memcpy(str, string.str, length);
 
@@ -52,7 +52,7 @@ namespace dank {
 	String::String(const String* string) {
 		this->length = string->length;
 
-		str = new char[length + 1];
+		str = denew char[length + 1];
 		str[length] = 0;
 		memcpy(str, string->str, length);
 
@@ -77,7 +77,7 @@ namespace dank {
 			delete[] str;
 			length = string.length;
 
-			str = new char[length + 1];
+			str = denew char[length + 1];
 			str[length] = 0;
 			memcpy(str, string.str, length);
 		}
@@ -105,7 +105,7 @@ namespace dank {
 
 	String& String::Append(const char character) {
 		char* tmpstr = str;
-		str = new char[length + 2];
+		str = denew char[length + 2];
 		str[length + 1] = 0;
 		memcpy(str, tmpstr, length);
 		str[length] = character;
@@ -118,13 +118,13 @@ namespace dank {
 	}
 
 	String& String::Append(const String& string) {
-		size_t newlen = length + string.length;
+		size_t denewlen = length + string.length;
 		char* tmpstr = str;
-		str = new char[newlen + 1];
-		str[newlen] = 0;
+		str = denew char[denewlen + 1];
+		str[denewlen] = 0;
 		memcpy(str, tmpstr, length);
 		memcpy(str + length, string.str, string.length);
-		length = newlen;
+		length = denewlen;
 
 		delete[] tmpstr;
 
@@ -162,15 +162,15 @@ namespace dank {
 	String& String::Remove(size_t start, size_t end) {
 		size_t len = end - start;
 
-		size_t newlen = length - len;
+		size_t denewlen = length - len;
 
 		char* tmp = str;
 
-		str = new char[newlen + 1];
+		str = denew char[denewlen + 1];
 		memcpy(str, tmp, start);
-		memcpy(str + start, tmp + start + len, newlen - start);
+		memcpy(str + start, tmp + start + len, denewlen - start);
 
-		length = newlen;
+		length = denewlen;
 		str[length] = '\0';
 
 		delete[] tmp;
@@ -319,12 +319,12 @@ namespace dank {
 		for (size_t i = 0; i < length; i++) {
 			if (str[i] == delimiter) {
 
-				list << new String(str + lastindex, i - lastindex);
+				list << denew String(str + lastindex, i - lastindex);
 				lastindex = i + 1;
 			}
 		}
 
 		if (lastindex < length)
-			list << new String(str + lastindex, length - lastindex);
+			list << denew String(str + lastindex, length - lastindex);
 	}
 }

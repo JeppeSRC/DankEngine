@@ -18,6 +18,7 @@
 #include <GLES3/gl3platform.h>
 
 #include "utils/log.h"
+#include "utils/memory/memory.h"
 
 namespace dank {
 #	define CMD_WINDOW_CREATE		0x01

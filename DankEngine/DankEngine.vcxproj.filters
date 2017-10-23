@@ -18,6 +18,8 @@
     <ClInclude Include="src\maths\mat4.h" />
     <ClInclude Include="src\maths\math.h" />
     <ClInclude Include="src\maths\vec4.h" />
+    <ClInclude Include="src\utils\memory\memoryallocator.h" />
+    <ClInclude Include="src\utils\memory\memory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -32,5 +34,6 @@
     <ClCompile Include="src\maths\vec3.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec4.cpp" />
+    <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
   </ItemGroup>
 </Project>

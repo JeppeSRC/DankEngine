@@ -16,7 +16,7 @@ namespace dank {
 
 		*size = AAsset_getLength(asset);
 
-		*data = new unsigned char[*size];
+		*data = denew unsigned char[*size];
 
 		AAsset_read(asset, *data, *size);
 	}

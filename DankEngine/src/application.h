@@ -26,6 +26,7 @@
 #include "utils/log.h"
 #include "utils/string.h"
 #include "utils/asset/fileutils.h"
+#include "utils/memory/memory.h"
 
 namespace dank {
 

@@ -11,7 +11,7 @@ namespace dank {
 
 	bool NativeApp::Initialise(ANativeActivity* activity) {
 		LOGD("Creating NativeApp");
-		NativeApp::app = new NativeApp(activity);
+		NativeApp::app = denew NativeApp(activity);
 		return true;
 	}
 
