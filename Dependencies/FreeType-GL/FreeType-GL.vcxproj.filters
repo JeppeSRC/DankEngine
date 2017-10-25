@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="include\freetype-gl.h" />
+    <ClInclude Include="include\opengl.h" />
+    <ClInclude Include="include\platform.h" />
+    <ClInclude Include="include\texture-atlas.h" />
+    <ClInclude Include="include\texture-font.h" />
+    <ClInclude Include="include\vec234.h" />
+    <ClInclude Include="include\vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\platform.c" />
+    <ClCompile Include="src\texture-atlas.c" />
+    <ClCompile Include="src\texture-font.c" />
+    <ClCompile Include="src\vector.c" />
+  </ItemGroup>
+</Project>
