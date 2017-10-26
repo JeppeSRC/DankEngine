@@ -37,9 +37,10 @@
   <ItemGroup>
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\core\nativeapp.h" />
-    <ClInclude Include="src\graphics\indexbuffer.h" />
+    <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
+    <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\shader.h" />
-    <ClInclude Include="src\graphics\vertexbuffer.h" />
+    <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\maths\mat4.h" />
     <ClInclude Include="src\maths\math.h" />
     <ClInclude Include="src\maths\mathcommon.h" />
@@ -58,9 +59,10 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\core\nativeapp.cpp" />
-    <ClCompile Include="src\graphics\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
-    <ClCompile Include="src\graphics\vertexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec2.cpp" />
     <ClCompile Include="src\maths\vec3.cpp" />

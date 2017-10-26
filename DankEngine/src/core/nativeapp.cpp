@@ -4,6 +4,10 @@
 
 namespace dank {
 
+	PFNGLGENVERTEXARRAYSOESPROC NativeApp::glGenVertexArraysOES;
+	PFNGLBINDVERTEXARRAYOESPROC NativeApp::glBindVertexArrayOES;
+	PFNGLDELETEVERTEXARRAYSOESPROC NativeApp::glDeleteVertexArraysOES;
+
 	void process_command();
 	void process_input();
 
@@ -137,6 +141,7 @@ namespace dank {
 		}
 		else {
 			app->glesVersion = GLES_VERSION_3;
+			app->hasVaos = true;
 		}
 
 
@@ -157,8 +162,50 @@ namespace dank {
 		LOGD("GLSL Version: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 
 		LOGD("Surface: width=%d height=%d", app->surface_width, app->surface_height);
+		char model_id[PROP_VALUE_MAX], manufacturer_id[PROP_VALUE_MAX], fingerprint_id[PROP_VALUE_MAX], brand_id[PROP_VALUE_MAX], device_id[PROP_VALUE_MAX];
+		__system_property_get("ro.product.model", model_id);
+		__system_property_get("ro.product.manufacturer", manufacturer_id);
+		__system_property_get("ro.build.fingerprint", fingerprint_id);
+		__system_property_get("ro.product.brand", brand_id);
+		__system_property_get("ro.product.device", device_id);
+		String model = String(model_id), manufacturer = String(manufacturer_id), fingerprint = String(fingerprint_id), brand = String(brand_id), device = String(device_id);
+		LOGD("Model: %s", model.str);
+		LOGD("Manufacturer: %s", manufacturer.str);
+		LOGD("Fingerprint: %s", fingerprint.str);
+		LOGD("Brand: %s", brand.str);
+		LOGD("Device: %s", device.str);
+		if (app->glesVersion != GLES_VERSION_3) {
+			if (model.Find("google_sdk") != (size_t)-1
+				|| model.Find("Emulator") != (size_t)-1
+				|| model.Find("Android SDK built for x86") != (size_t)-1
 
-		app->init = true;
+				|| fingerprint.StartsWith("generic")
+				|| fingerprint.StartsWith("unknown")
+				
+				|| (brand.Find("generic") != (size_t)-1 && device.Find("generic") != (size_t)-1)
+				) {
+				app->isEmulator = true;
+			}
+			else {
+				NativeApp::glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArraysOES");
+				NativeApp::glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArrayOES");
+				NativeApp::glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArraysOES");
+				if (!NativeApp::glGenVertexArraysOES || !NativeApp::glBindVertexArrayOES || !NativeApp::glDeleteVertexArraysOES)
+					app->hasVaos = false;
+				else
+					app->hasVaos = true;
+
+			}
+		}
+		else {
+			NativeApp::glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArrays");
+			NativeApp::glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArray");
+			NativeApp::glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArrays");
+
+			unsigned int id;
+			NativeApp::glGenVertexArraysOES(1, &id);
+			LOGD("ID: %i", id);
+		}
 	}
 
 	void DestroyDisplay() {

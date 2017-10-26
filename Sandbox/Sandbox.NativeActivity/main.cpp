@@ -21,14 +21,18 @@ private:
 	IndexBuffer* ibo;
 	const char* vert, *frag;
 	mat4 modelMatrix;
+
+	VertexArray* vao;
+	bool vaoe;
 public:
 	MainApp(ANativeActivity* activity) 
 		: Application(activity) {
 		Application::Set(this);
+		
 	}
 
 	~MainApp() {
-		delete vbo, ibo, shader;
+		delete vbo, ibo, shader, vao;
 	}
 
 	void Init() override {
@@ -47,7 +51,6 @@ public:
 		};
 
 		unsigned short indices[]{ 0, 1, 2 };
-
 		vbo = new VertexBuffer(vertices, sizeof(vertices));
 		ibo = new IndexBuffer(indices, 3);
 
@@ -58,11 +61,11 @@ public:
 		GL(glEnableVertexAttribArray(position));
 		GL(glVertexAttribPointer(position, 3, GL_FLOAT, false, 3 * sizeof(float), 0));
 		glClearColor(0.3, 0.4, 0.7, 1.0);
+		
 	}
 
 	void Render() override {
 		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
-		LOGW("Shit: %.2f", MemoryAllocator::getAllocated());
 
 	}
 

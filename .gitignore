@@ -1,5 +1,7 @@
 bin/
 .vs
+Sandbox/Sandbox.Packaging/x86
+Sandbox/Sandbox.Packaging/ARM
 
 # Prerequisites
 *.d

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <android/native_activity.h>
+#include <sys/system_properties.h>
+
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <EGL/eglplatform.h>
@@ -17,6 +19,7 @@
 #include <GLES3/gl3ext.h>
 #include <GLES3/gl3platform.h>
 
+#include "utils/string.h"
 #include "utils/log.h"
 #include "utils/memory/memory.h"
 
@@ -40,6 +43,8 @@ namespace dank {
 #	define LOOPER_ID_CMD			0x10
 #	define LOOPER_ID_INPUT			0x11
 
+	
+
 	typedef void(*CMD_CALLBACK)();
 	typedef int(*INPUT_CALLBACK)(AInputEvent*);
 
@@ -50,6 +55,10 @@ namespace dank {
 
 	struct NativeApp {
 	public:
+		static PFNGLGENVERTEXARRAYSOESPROC glGenVertexArraysOES;
+		static PFNGLBINDVERTEXARRAYOESPROC glBindVertexArrayOES;
+		static PFNGLDELETEVERTEXARRAYSOESPROC glDeleteVertexArraysOES;
+
 		static NativeApp* app;
 
 		static bool Initialise(ANativeActivity* activity);
@@ -88,7 +97,9 @@ namespace dank {
 
 		GLES_VERSION glesVersion;
 
-		bool init = false;
+		bool isEmulator = false;
+
+		bool hasVaos = false;
 
 	private:
 		NativeApp(ANativeActivity* activity);

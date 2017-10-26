@@ -8,9 +8,6 @@
     <ClInclude Include="src\utils\list.h" />
     <ClInclude Include="src\utils\map.h" />
     <ClInclude Include="src\utils\string.h" />
-    <ClInclude Include="src\graphics\vertexbuffer.h" />
-    <ClInclude Include="src\graphics\indexbuffer.h" />
-    <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\utils\asset\fileutils.h" />
     <ClInclude Include="src\maths\vec2.h" />
     <ClInclude Include="src\maths\mathcommon.h" />
@@ -20,20 +17,25 @@
     <ClInclude Include="src\maths\vec4.h" />
     <ClInclude Include="src\utils\memory\memoryallocator.h" />
     <ClInclude Include="src\utils\memory\memory.h" />
+    <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
+    <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
+    <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\graphics\buffers\vertexarray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\core\nativeapp.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
     <ClCompile Include="src\utils\string.cpp" />
-    <ClCompile Include="src\graphics\vertexbuffer.cpp" />
-    <ClCompile Include="src\graphics\indexbuffer.cpp" />
-    <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\utils\asset\fileutils.cpp" />
     <ClCompile Include="src\maths\vec2.cpp" />
     <ClCompile Include="src\maths\vec3.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec4.cpp" />
     <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
+    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
+    <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
   </ItemGroup>
 </Project>

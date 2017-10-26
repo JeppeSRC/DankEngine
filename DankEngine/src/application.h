@@ -15,8 +15,10 @@
 
 #include "core/nativeapp.h"
 
-#include "graphics/indexbuffer.h"
-#include "graphics/vertexbuffer.h"
+#include "graphics/buffers/indexbuffer.h"
+#include "graphics/buffers/vertexbuffer.h"
+#include "graphics/buffers/vertexarray.h"
+
 #include "graphics/shader.h"
 
 #include "maths/math.h"
