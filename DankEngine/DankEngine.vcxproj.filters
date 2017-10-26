@@ -21,6 +21,10 @@
     <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
+    <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
+    <ClInclude Include="src\graphics\renderers\renderer.h" />
+    <ClInclude Include="src\graphics\renderers\renderer2.h" />
+    <ClInclude Include="src\graphics\renderers\renderer3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -37,5 +41,6 @@
     <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer.cpp" />
   </ItemGroup>
 </Project>
