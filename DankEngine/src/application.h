@@ -19,7 +19,9 @@
 #include "graphics/buffers/vertexbuffer.h"
 #include "graphics/buffers/vertexarray.h"
 
-#include "graphics/shader.h"
+#include "graphics/shaders/shader.h"
+
+#include "graphics/renderers/batchrenderer.h"
 
 #include "maths/math.h"
 

@@ -15,14 +15,7 @@ class MainApp : public Application {
 private:
 	float r = 0, g = 0 , b = 0;
 
-	Shader* shader;
-
-	VertexBuffer* vbo;
-	IndexBuffer* ibo;
-	const char* vert, *frag;
-	mat4 modelMatrix;
-
-	VertexArray* vao;
+	BatchRenderer* renderer;
 	bool vaoe;
 public:
 	MainApp(ANativeActivity* activity) 
@@ -32,41 +25,18 @@ public:
 	}
 
 	~MainApp() {
-		delete vbo, ibo, shader, vao;
+		delete renderer;
 	}
 
 	void Init() override {
-		String vertex = FileUtils::ReadTextFile("shader.vert");
-		vert = vertex.str;
-		String fragment = FileUtils::ReadTextFile("shader.frag");
-		frag = fragment.str;
-
-		shader = new Shader(vert, frag);
-		shader->Bind();
-
-		float vertices[]{
-			0, 1, 0,
-			1, -1, 0,
-			-1, -1, 0
-		};
-
-		unsigned short indices[]{ 0, 1, 2 };
-		vbo = new VertexBuffer(vertices, sizeof(vertices));
-		ibo = new IndexBuffer(indices, 3);
-
-		unsigned int position = shader->GetAttributeLocation("position");
-
-		vbo->Bind();
-		ibo->Bind();
-		GL(glEnableVertexAttribArray(position));
-		GL(glVertexAttribPointer(position, 3, GL_FLOAT, false, 3 * sizeof(float), 0));
-		glClearColor(0.3, 0.4, 0.7, 1.0);
-		
+		renderer = new BatchRenderer(30);
 	}
 
 	void Render() override {
-		glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_SHORT, 0);
-
+		renderer->Begin();
+		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0xfafd32);
+		renderer->End();
+		renderer->Present();
 	}
 
 

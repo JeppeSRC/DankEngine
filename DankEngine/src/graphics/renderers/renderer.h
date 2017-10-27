@@ -5,7 +5,7 @@
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"
 
-#include "graphics/shader.h"
+#include "graphics/shaders/shader.h"
 
 #include "maths/vec2.h"
 #include "maths/vec3.h"
@@ -16,12 +16,13 @@ namespace dank {
 		vec3 position;
 		vec2 texCoord;
 		unsigned int color;
-		float tid;
-		float text;
 	};
 
 	class Renderer {
 	protected:
+		unsigned int numSprites;
+		unsigned short count;
+
 		Vertex* buffer;
 
 		VertexBuffer* vbo;
@@ -31,10 +32,9 @@ namespace dank {
 
 		Shader* shader;
 
-		unsigned short numSprites;
-
-
-		virtual void InitShader() = 0;
+		virtual void InitShader() {
+			//blyat
+		}
 
 	public:
 		Renderer(unsigned int num_sprites);
@@ -43,6 +43,8 @@ namespace dank {
 		virtual void Begin() = 0;
 		virtual void End() = 0;
 		virtual void Present() = 0;
+
+		void Submit(const vec3& position, const vec2& size, unsigned int color);
 
 	};
 }

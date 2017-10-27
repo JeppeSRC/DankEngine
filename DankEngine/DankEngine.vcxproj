@@ -43,7 +43,7 @@
     <ClInclude Include="src\graphics\renderers\renderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer2.h" />
     <ClInclude Include="src\graphics\renderers\renderer3.h" />
-    <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\graphics\shaders\shader.h" />
     <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\maths\mat4.h" />
     <ClInclude Include="src\maths\math.h" />
@@ -66,7 +66,7 @@
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer.cpp" />
-    <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\graphics\shaders\shader.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec2.cpp" />
@@ -81,6 +81,10 @@
     <ProjectReference Include="..\Dependencies\FreeType\FreeType.vcxproj">
       <Project>{1290ca4c-6e1d-4c2f-b094-d2a20f8fe7fa}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\graphics\shaders\renderer2.fs" />
+    <None Include="src\graphics\shaders\renderer2.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{54871b99-eb04-475c-aaf0-217497430efb}</ProjectGuid>
