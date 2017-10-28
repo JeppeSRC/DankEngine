@@ -11,8 +11,10 @@ protected:
 	unsigned int textureID;
 	unsigned int width;
 	unsigned int height;
+	bool deleteTexture;
 
 	Texture();
+	Texture(unsigned int id, unsigned int width, unsigned int height, bool deleteID);
 	Texture(unsigned int width, unsigned int height);
 public:
 	virtual ~Texture();

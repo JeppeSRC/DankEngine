@@ -55,6 +55,7 @@ Texture2D::~Texture2D() {
 }
 
 void Texture2D::Bind(unsigned int slot) const {
+	GL(glActiveTexture(GL_TEXTURE0 + slot));
 	GL(glBindTexture(GL_TEXTURE_2D, textureID));
 }
 

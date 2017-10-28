@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\core\nativeapp.h" />
+    <ClInclude Include="src\graphics\font\font.h" />
     <ClInclude Include="src\graphics\indexbuffer.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\texture\texture.h" />
