@@ -168,7 +168,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -178,7 +178,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -187,7 +187,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -197,7 +197,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -206,7 +206,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -216,7 +216,7 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STBI_Image\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
