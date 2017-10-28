@@ -4,10 +4,6 @@
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
     <AndroidDeviceID>emulator-5554;x86</AndroidDeviceID>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidDeviceID>emulator-####;x86</AndroidDeviceID>
-  </PropertyGroup>
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>

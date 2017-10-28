@@ -37,5 +37,6 @@
     <ClCompile Include="src\maths\vec4.cpp" />
     <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
     <ClCompile Include="src\graphics\texture\texture.cpp" />
+    <ClCompile Include="src\graphics\texture\texture2d.cpp" />
   </ItemGroup>
 </Project>
