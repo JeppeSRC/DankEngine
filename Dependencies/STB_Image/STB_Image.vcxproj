@@ -27,29 +27,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FreeType\FreeType.vcxproj">
-      <Project>{1290ca4c-6e1d-4c2f-b094-d2a20f8fe7fa}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\stb_image.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\freetype-gl.h" />
-    <ClInclude Include="include\opengl.h" />
-    <ClInclude Include="include\platform.h" />
-    <ClInclude Include="include\texture-atlas.h" />
-    <ClInclude Include="include\texture-font.h" />
-    <ClInclude Include="include\vec234.h" />
-    <ClInclude Include="include\vector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\platform.c" />
-    <ClCompile Include="src\texture-atlas.c" />
-    <ClCompile Include="src\texture-font.c" />
-    <ClCompile Include="src\vector.c" />
+    <ClInclude Include="src\stb_image.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{e0172772-c67d-4e7c-b9bd-17141b03f28d}</ProjectGuid>
+    <ProjectGuid>{2fe480c9-e056-4c25-9b24-4d0e465508ae}</ProjectGuid>
     <Keyword>Android</Keyword>
-    <RootNamespace>FreeType_GL</RootNamespace>
+    <RootNamespace>STB_Image</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
@@ -97,32 +83,26 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
-    <TargetExt>.lib</TargetExt>
     <OutDir>$(SolutionDir)bin\$(ProjectName)\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\inter\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
@@ -131,10 +111,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
+      <Optimization>MinSize</Optimization>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -143,10 +122,9 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -154,10 +132,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
@@ -166,10 +142,9 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -177,10 +152,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -189,10 +162,9 @@
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);include;;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <CppLanguageStandard>c++1y</CppLanguageStandard>
-      <CompileAs>Default</CompileAs>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
       <CLanguageStandard>c11</CLanguageStandard>
+      <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

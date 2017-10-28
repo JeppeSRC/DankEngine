@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
@@ -25,6 +26,8 @@
     <ClInclude Include="src\graphics\renderers\renderer2.h" />
     <ClInclude Include="src\graphics\renderers\renderer3.h" />
     <ClInclude Include="src\graphics\shaders\shader.h" />
+    <ClInclude Include="src\graphics\texture\texture.h" />
+    <ClInclude Include="src\graphics\font\font.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
@@ -42,6 +45,12 @@
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer.cpp" />
     <ClCompile Include="src\graphics\shaders\shader.cpp" />
+    <ClCompile Include="src\graphics\texture\texture.cpp" />
+    <ClCompile Include="src\graphics\texture\texture2d.cpp" />
+    <ClCompile Include="src\graphics\font\fontatlas.cpp" />
+    <ClCompile Include="src\graphics\font\font.cpp" />
+    <ClCompile Include="src\graphics\font\fontmanager.cpp" />
+  </ItemGroup>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.vs" />
@@ -49,4 +58,4 @@
     <None Include="src\graphics\shaders\renderer3.fs" />
     <None Include="src\graphics\shaders\renderer3.vs" />
   </ItemGroup>
-</Project>
+  </Project>
