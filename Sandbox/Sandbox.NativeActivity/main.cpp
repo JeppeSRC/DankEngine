@@ -30,11 +30,13 @@ public:
 
 	void Init() override {
 		renderer = new BatchRenderer(30);
+		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
+		glDisable(GL_BLEND);
 	}
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0xfafd32);
+		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0xfffafd32);
 		renderer->End();
 		renderer->Present();
 	}

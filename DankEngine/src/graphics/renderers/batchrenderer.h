@@ -12,12 +12,12 @@ namespace dank {
 	public:
 		BatchRenderer(unsigned int num_sprites) {
 			NativeApp* app = NativeApp::app;
-			//if (app->hasVaos) {
-			//	renderer = new Renderer3(num_sprites);
-			//}
-			//else {
+			if (app->hasVaos) {
+				renderer = new Renderer3(num_sprites);
+			}
+			else {
 				renderer = new Renderer2(num_sprites);
-			//}
+			}
 		}
 
 		~BatchRenderer() {

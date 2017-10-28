@@ -46,5 +46,7 @@
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.vs" />
     <None Include="src\graphics\shaders\renderer2.fs" />
+    <None Include="src\graphics\shaders\renderer3.fs" />
+    <None Include="src\graphics\shaders\renderer3.vs" />
   </ItemGroup>
 </Project>

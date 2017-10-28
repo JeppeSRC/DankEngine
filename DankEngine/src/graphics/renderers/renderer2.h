@@ -10,21 +10,20 @@ namespace dank {
 	private:
 		Vertex* rawbuffer;
 
-		const char* vertex =
-			#include "graphics/shaders/renderer2.vs"
-			;
+		static const char* vertex;
+		static const char* fragment;
 
-		const char* fragment =
-			#include "graphics/shaders/renderer2.fs"
-			;
+		int posLocation, uvLocation, colorLocation;
 
 	protected:
 		
 
 	public:
-		Renderer2(unsigned int num_sprites): Renderer(num_sprites) {
+		Renderer2(unsigned int num_sprites): Renderer(num_sprites, RENDERER_GLES2) {
 			rawbuffer = new Vertex[num_sprites * 4];
-
+			posLocation = shader->GetAttributeLocation("position");
+			uvLocation = shader->GetAttributeLocation("texCoords");
+			colorLocation = shader->GetAttributeLocation("colors");
 		}
 
 		~Renderer2() {
@@ -45,22 +44,17 @@ namespace dank {
 			shader->Bind();
 			vbo->Bind();
 
-			GL(glEnableVertexAttribArray(0));
-			GL(glEnableVertexAttribArray(1));
-			GL(glEnableVertexAttribArray(2));
+			GL(glEnableVertexAttribArray(posLocation));
+			GL(glEnableVertexAttribArray(uvLocation));
+			GL(glEnableVertexAttribArray(colorLocation));
 
-			GL(glVertexAttribPointer(0, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, position)));
-			GL(glVertexAttribPointer(1, 2, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, texCoord)));
-			GL(glVertexAttribPointer(2, 4, GL_UNSIGNED_BYTE, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, color)));
+			GL(glVertexAttribPointer(posLocation, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, position)));
+			GL(glVertexAttribPointer(uvLocation, 2, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, texCoord)));
+			GL(glVertexAttribPointer(colorLocation, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (const void*)MOFFSET(Vertex, color)));
 
 			ibo->Bind();
-			glDrawElements(GL_TRIANGLES, count, ibo->GetFormat(), nullptr);
-		}
-
-		void InitShader() override {
-			shader = new Shader(vertex, fragment);
+			GL(glDrawElements(GL_TRIANGLES, count, ibo->GetFormat(), nullptr));
 		}
 
 	};
-
 }

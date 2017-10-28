@@ -7,17 +7,16 @@ namespace dank {
 	class VertexBuffer {
 	private:
 		unsigned int vbo;
-
+		unsigned int size;
 	public:
 		VertexBuffer(const void* data, unsigned int size);
 		~VertexBuffer();
 
+		void* Map(unsigned int mode) const;
+		void Unmap() const;
+
 		void Bind() const;
 
-		void SetData(const void* const data, unsigned int size) const {
-			GL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
-			GL(glBufferSubData(GL_ARRAY_BUFFER, 0, size, data));
-			GL(glBindBuffer(GL_ARRAY_BUFFER, 0));
-		}
+		void SetData(const void* const data, unsigned int size) const;
 	};
 }

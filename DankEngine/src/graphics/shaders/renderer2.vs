@@ -7,8 +7,7 @@ attribute vec4 colors;
 
 uniform mat4 projection;
 
-
-varying vec4 color
+varying vec4 color;
 
 void main() {
 

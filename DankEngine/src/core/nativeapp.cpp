@@ -239,6 +239,7 @@ namespace dank {
 			break;
 		case CMD_WINDOW_DESTROY:
 			DestroyDisplay();
+			app->status = 0;
 			break;
 		case CMD_ON_START:
 		case CMD_ON_RESUME:

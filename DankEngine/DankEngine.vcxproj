@@ -85,6 +85,8 @@
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />
     <None Include="src\graphics\shaders\renderer2.vs" />
+    <None Include="src\graphics\shaders\renderer3.fs" />
+    <None Include="src\graphics\shaders\renderer3.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{54871b99-eb04-475c-aaf0-217497430efb}</ProjectGuid>
@@ -213,6 +215,7 @@
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include</AdditionalIncludeDirectories>
+      <Optimization>MinSize</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -232,6 +235,7 @@
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include</AdditionalIncludeDirectories>
+      <Optimization>MinSize</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -251,6 +255,7 @@
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include</AdditionalIncludeDirectories>
+      <Optimization>MinSize</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -270,6 +275,7 @@
       </PrecompiledHeaderFile>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include</AdditionalIncludeDirectories>
+      <Optimization>MinSize</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

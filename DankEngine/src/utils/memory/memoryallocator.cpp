@@ -16,6 +16,8 @@ namespace dank {
 	}
 
 	void MemoryAllocator::deallocate(void* memory) {
+		if (memory == nullptr)
+			return; //hackerman
 
 		byte* addr = (byte*)memory;
 		addr -= sizeof(unsigned int);

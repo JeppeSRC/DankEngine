@@ -18,6 +18,11 @@ namespace dank {
 		unsigned int color;
 	};
 
+	enum RendererType {
+		RENDERER_GLES2,
+		RENDERER_GLES3
+	};
+
 	class Renderer {
 	protected:
 		unsigned int numSprites;
@@ -32,12 +37,9 @@ namespace dank {
 
 		Shader* shader;
 
-		virtual void InitShader() {
-			//blyat
-		}
-
+		static const char *vertex2, *fragment2, *vertex3, *fragment3;
 	public:
-		Renderer(unsigned int num_sprites);
+		Renderer(unsigned int num_sprites, RendererType type);
 		~Renderer();
 
 		virtual void Begin() = 0;
