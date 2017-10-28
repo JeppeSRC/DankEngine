@@ -15,7 +15,6 @@ namespace dank {
 
 	public:
 		Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_GLES3) {
-			LOGD("I got here");
 			vao = new VertexArray(sizeof(Vertex));
 
 			vbo->Bind();

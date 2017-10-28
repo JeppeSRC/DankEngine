@@ -36,7 +36,7 @@ public:
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0xfffafd32);
+		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0x32fdfa);
 		renderer->End();
 		renderer->Present();
 	}
