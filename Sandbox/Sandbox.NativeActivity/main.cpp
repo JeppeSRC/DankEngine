@@ -24,10 +24,6 @@ public:
 		
 	}
 
-	~MainApp() {
-		delete renderer;
-	}
-
 	void Init() override {
 		renderer = new BatchRenderer(30);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
@@ -39,6 +35,10 @@ public:
 		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0x32fdfa);
 		renderer->End();
 		renderer->Present();
+	}
+
+	void End() override {
+		delete renderer;
 	}
 
 

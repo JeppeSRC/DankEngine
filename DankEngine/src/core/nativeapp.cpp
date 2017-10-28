@@ -236,10 +236,10 @@ namespace dank {
 		switch (cmd) {
 		case CMD_WINDOW_CREATE:
 			InitializeDisplay();
+			app->shouldClose = false;
 			break;
 		case CMD_WINDOW_DESTROY:
-			DestroyDisplay();
-			app->status = 0;
+			app->shouldClose = true;
 			break;
 		case CMD_ON_START:
 		case CMD_ON_RESUME:

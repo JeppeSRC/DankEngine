@@ -1,61 +1,59 @@
-<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\core\nativeapp.cpp" />
+    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer.cpp" />
+    <ClCompile Include="src\graphics\shaders\shader.cpp" />
+    <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
+    <ClCompile Include="src\graphics\font\font.cpp" />
+    <ClCompile Include="src\graphics\font\fontatlas.cpp" />
+    <ClCompile Include="src\graphics\font\fontmanager.cpp" />
+    <ClCompile Include="src\graphics\texture\texture.cpp" />
+    <ClCompile Include="src\graphics\texture\texture2d.cpp" />
+    <ClCompile Include="src\maths\mat4.cpp" />
+    <ClCompile Include="src\maths\vec2.cpp" />
+    <ClCompile Include="src\maths\vec3.cpp" />
+    <ClCompile Include="src\maths\vec4.cpp" />
+    <ClCompile Include="src\utils\asset\fileutils.cpp" />
+    <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
+    <ClCompile Include="src\utils\string.cpp" />
+    <ClCompile Include="src\utils\utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\core\nativeapp.h" />
-    <ClInclude Include="src\utils\log.h" />
-    <ClInclude Include="src\utils\utils.h" />
-    <ClInclude Include="src\utils\list.h" />
-    <ClInclude Include="src\utils\map.h" />
-    <ClInclude Include="src\utils\string.h" />
-    <ClInclude Include="src\utils\asset\fileutils.h" />
-    <ClInclude Include="src\maths\vec2.h" />
-    <ClInclude Include="src\maths\mathcommon.h" />
-    <ClInclude Include="src\maths\vec3.h" />
-    <ClInclude Include="src\maths\mat4.h" />
-    <ClInclude Include="src\maths\math.h" />
-    <ClInclude Include="src\maths\vec4.h" />
-    <ClInclude Include="src\utils\memory\memoryallocator.h" />
-    <ClInclude Include="src\utils\memory\memory.h" />
     <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
-    <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer2.h" />
     <ClInclude Include="src\graphics\renderers\renderer3.h" />
     <ClInclude Include="src\graphics\shaders\shader.h" />
-    <ClInclude Include="src\graphics\texture\texture.h" />
+    <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\font\font.h" />
+    <ClInclude Include="src\maths\mat4.h" />
+    <ClInclude Include="src\maths\math.h" />
+    <ClInclude Include="src\maths\mathcommon.h" />
+    <ClInclude Include="src\maths\vec2.h" />
+    <ClInclude Include="src\maths\vec3.h" />
+    <ClInclude Include="src\maths\vec4.h" />
+    <ClInclude Include="src\utils\asset\fileutils.h" />
+    <ClInclude Include="src\utils\list.h" />
+    <ClInclude Include="src\utils\log.h" />
+    <ClInclude Include="src\utils\map.h" />
+    <ClInclude Include="src\utils\memory\memory.h" />
+    <ClInclude Include="src\utils\memory\memoryallocator.h" />
+    <ClInclude Include="src\utils\string.h" />
+    <ClInclude Include="src\utils\utils.h" />
+    <ClInclude Include="src\graphics\texture\texture.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\application.cpp" />
-    <ClCompile Include="src\core\nativeapp.cpp" />
-    <ClCompile Include="src\utils\utils.cpp" />
-    <ClCompile Include="src\utils\string.cpp" />
-    <ClCompile Include="src\utils\asset\fileutils.cpp" />
-    <ClCompile Include="src\maths\vec2.cpp" />
-    <ClCompile Include="src\maths\vec3.cpp" />
-    <ClCompile Include="src\maths\mat4.cpp" />
-    <ClCompile Include="src\maths\vec4.cpp" />
-    <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
-    <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
-    <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
-    <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
-    <ClCompile Include="src\graphics\renderers\renderer.cpp" />
-    <ClCompile Include="src\graphics\shaders\shader.cpp" />
-    <ClCompile Include="src\graphics\texture\texture.cpp" />
-    <ClCompile Include="src\graphics\texture\texture2d.cpp" />
-    <ClCompile Include="src\graphics\font\fontatlas.cpp" />
-    <ClCompile Include="src\graphics\font\font.cpp" />
-    <ClCompile Include="src\graphics\font\fontmanager.cpp" />
-  </ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\graphics\shaders\renderer2.vs" />
     <None Include="src\graphics\shaders\renderer2.fs" />
+    <None Include="src\graphics\shaders\renderer2.vs" />
     <None Include="src\graphics\shaders\renderer3.fs" />
     <None Include="src\graphics\shaders\renderer3.vs" />
   </ItemGroup>
-  </Project>
+</Project>

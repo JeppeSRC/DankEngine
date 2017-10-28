@@ -75,5 +75,6 @@ namespace dank {
 		void Start();
 
 		virtual void Init() = 0;
+		virtual void End() = 0;
 	};
 }

@@ -133,6 +133,9 @@ namespace dank {
 
 			eglSwapBuffers(app->display, app->surface);
 		}
+		Application::Get()->End();
+
+		DestroyDisplay();
 
 	}
 

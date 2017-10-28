@@ -43,7 +43,7 @@ namespace dank {
 #	define LOOPER_ID_CMD			0x10
 #	define LOOPER_ID_INPUT			0x11
 
-	
+	void DestroyDisplay();
 
 	typedef void(*CMD_CALLBACK)();
 	typedef int(*INPUT_CALLBACK)(AInputEvent*);
@@ -100,6 +100,7 @@ namespace dank {
 		bool isEmulator = false;
 
 		bool hasVaos = false;
+		bool shouldClose = false;
 
 	private:
 		NativeApp(ANativeActivity* activity);
