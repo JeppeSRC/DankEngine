@@ -3,29 +3,29 @@
 
 namespace dank {
 
-void Font::LoadFont(const void* const data, size_t size, float font_size) {
+void Font::LoadFont(const void* const data, size_t size, float fontSize) {
 	ASSERT(data == nullptr);
 	ftgl::texture_atlas_t* tmpAtlas = ftgl::texture_atlas_new(2048, 2048, 1);
-	font = texture_font_new_from_memory(tmpAtlas, font_size, data, size);
+	font = texture_font_new_from_memory(tmpAtlas, fontSize, data, size);
 
 	texture_font_get_glyph(font, '0');
 
 	atlas = new FontAtlas(tmpAtlas);
 
-	this->size = font_size;
+	this->size = fontSize;
 }
 
-Font::Font(const String& filename, float font_size) {
+Font::Font(const String& filename, float fontSize, const String& fontName) : name(fontName) {
 	unsigned int size = 0;
 	void* data = nullptr;
 
 	FileUtils::ReadFile(*filename, &data, &size);
 
-	LoadFont(data, (size_t)size, font_size);
+	LoadFont(data, (size_t)size, fontSize);
 }
 
-Font::Font(const void* const data, size_t size, float font_size) {
-	LoadFont(data, size, font_size);
+Font::Font(const void* const data, size_t size, float fontSize, const String& fontName) : name(fontName) {
+	LoadFont(data, size, fontSize);
 }
 
 Font::~Font() {

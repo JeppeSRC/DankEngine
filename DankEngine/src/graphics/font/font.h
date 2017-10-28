@@ -2,6 +2,7 @@
 
 #include <graphics/texture/texture.h>
 #include <utils/string.h>
+#include <utils/map.h>
 #include <freetype-gl.h>
 
 namespace dank {
@@ -27,13 +28,34 @@ private:
 
 	FontAtlas* atlas;
 
-	void LoadFont(const void* const data, size_t size, float font_size);
+	void LoadFont(const void* const data, size_t size, float fontSize);
 public:
-	Font(const String& filename, float font_size);
-	Font(const void* const data, size_t size, float font_size);
+	Font(const String& filename, float fontSize, const String& fontName);
+	Font(const void* const data, size_t size, float fontSize, const String& fontName);
 	~Font();
 
 	inline float GetSize() const { return size; }
+	inline const String& GetName() const { return name; }
+};
+
+class FontManager {
+private:
+	struct FONT_DATA {
+		String name;
+		const void* data;
+		size_t size;
+	};
+
+private:
+	static List<Font*> fonts;
+	static List<FONT_DATA*> data;
+
+	static FONT_DATA* GetFontData(const String& fontName);
+public:
+	static void AddFont(const void* const data, size_t size, const String& fontName);
+	static void AddFont(const String& filename, const String& fontName);
+	static Font* GetFont(const String& fontName, float font_size);
+
 };
 
 }

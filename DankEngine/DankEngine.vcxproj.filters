@@ -39,5 +39,8 @@
     <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
     <ClCompile Include="src\graphics\texture\texture.cpp" />
     <ClCompile Include="src\graphics\texture\texture2d.cpp" />
+    <ClCompile Include="src\graphics\font\fontatlas.cpp" />
+    <ClCompile Include="src\graphics\font\font.cpp" />
+    <ClCompile Include="src\graphics\font\fontmanager.cpp" />
   </ItemGroup>
 </Project>
