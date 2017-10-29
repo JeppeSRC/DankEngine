@@ -116,7 +116,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Content Include="assets\arial.ttf" />
+    <Content Include="assets\consola.ttf" />
     <Content Include="assets\cube.png" />
     <Content Include="assets\shader.frag" />
     <Content Include="assets\shader.vert" />

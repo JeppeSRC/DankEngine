@@ -26,9 +26,10 @@ void Renderer2::End()  {
 }
 
 void Renderer2::Present()  {
+	
 	shader->Bind();
 	for (size_t i = 0; i < tids.GetSize(); i++) {
-		tids[i]->Bind();
+		tids[i]->Bind(i);
 	}
 	vbo->Bind();
 
@@ -44,8 +45,11 @@ void Renderer2::Present()  {
 	GL(glVertexAttribPointer(tidLocation, 1, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, texID)));
 	GL(glVertexAttribPointer(textLocation, 1, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, text)));
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	ibo->Bind();
 	GL(glDrawElements(GL_TRIANGLES, count, ibo->GetFormat(), nullptr));
+	glDisable(GL_BLEND);
 }
 
 }

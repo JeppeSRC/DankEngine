@@ -14,12 +14,15 @@ varying float text;
 void main() {
 	vec4 tex = color;
 	int t = int(tID);
-	if(text == 0.0){
+	if(text < 1.0){
 		if(t >= 0) {
 			tex *= texture2D(samplers[t], texCoord);
 		}
 	} else {
-		tex *= texture2D(samplers[t], texCoord).r;
+		tex.r = texture2D(samplers[t], texCoord).r;
+		tex.g = tex.r;
+		tex.b = tex.r;
+		tex.a = 1.0;
 	}
 	gl_FragColor = vec4(tex);
 

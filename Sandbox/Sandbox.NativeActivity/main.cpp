@@ -32,15 +32,15 @@ public:
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
 		glDisable(GL_BLEND);
 		texture = new Texture2D("cube.png");
-		FontManager::AddFont("arial.ttf", "Arial");
-		font = FontManager::GetFont("Arial", 10);
+		FontManager::AddFont("consola.ttf", "Consola");
+		font = FontManager::GetFont("Consola", 2);
 	}
 
 	void Render() override {
 		renderer->Begin();
 		renderer->Submit(vec3(0.3f, 0.3f, 0.0f), vec2(1.f, 1.f), texture);
 		renderer->Submit(vec3(-0.3f, -0.3f, 0.0f), vec2(1.f, 1.f), 0xFF7f37ab);
-		renderer->Submit("Dank af", font, vec2(0.3f, -0.3f), 0xFFFF00FF);
+		renderer->Submit("Dank af", font, vec2(-0.5f, 0.5f), 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
 	}

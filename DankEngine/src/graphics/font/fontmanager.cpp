@@ -42,8 +42,6 @@ void FontManager::AddFont(const String& filename, const String& fontName) {
 	ASSERT(data == nullptr);
 
 	AddFont(data, size, fontName);
-
-	delete[] data;
 }
 
 Font* FontManager::GetFont(const String& fontName, float fontSize) {

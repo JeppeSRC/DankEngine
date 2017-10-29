@@ -31,12 +31,17 @@ void Renderer3::End() {
 void Renderer3::Present() {
 	shader->Bind();
 	for (size_t i = 0; i < tids.GetSize(); i++) {
-		tids[i]->Bind();
+		tids[i]->Bind(i);
 	}
 	vao->Bind();
 	vbo->Bind();
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	ibo->Bind();
 	glDrawElements(GL_TRIANGLES, count, ibo->GetFormat(), nullptr);
+	glDisable(GL_BLEND);
 }
 
 }
