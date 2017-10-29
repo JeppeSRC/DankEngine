@@ -21,6 +21,8 @@
     <ClCompile Include="src\utils\memory\memoryallocator.cpp" />
     <ClCompile Include="src\utils\string.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -29,8 +31,6 @@
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer.h" />
-    <ClInclude Include="src\graphics\renderers\renderer2.h" />
-    <ClInclude Include="src\graphics\renderers\renderer3.h" />
     <ClInclude Include="src\graphics\shaders\shader.h" />
     <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\font\font.h" />

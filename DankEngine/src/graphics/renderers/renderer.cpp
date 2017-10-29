@@ -67,17 +67,17 @@ namespace dank {
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
-		buffer->texCoord = vec2(0, 0);
+		buffer->texCoord = vec2(1, 0);
 		buffer->color = color;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
-		buffer->texCoord = vec2(0, 0);
+		buffer->texCoord = vec2(1, 1);
 		buffer->color = color;
 		buffer++;
 
 		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
-		buffer->texCoord = vec2(0, 0);
+		buffer->texCoord = vec2(0, 1);
 		buffer->color = color;
 		buffer++;
 

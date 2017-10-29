@@ -33,8 +33,6 @@
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
     <ClInclude Include="src\graphics\renderers\renderer.h" />
-    <ClInclude Include="src\graphics\renderers\renderer2.h" />
-    <ClInclude Include="src\graphics\renderers\renderer3.h" />
     <ClInclude Include="src\graphics\shaders\shader.h" />
     <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\font\font.h" />
@@ -60,6 +58,8 @@
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer3.cpp" />
     <ClCompile Include="src\graphics\shaders\shader.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexbuffer.cpp" />
     <ClCompile Include="src\graphics\font\font.cpp" />

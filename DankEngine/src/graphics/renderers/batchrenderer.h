@@ -1,7 +1,6 @@
 #pragma once
 
-#include "renderer2.h"
-#include "renderer3.h"
+#include "renderer.h"
 
 namespace dank {
 

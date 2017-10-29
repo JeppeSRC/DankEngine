@@ -4,6 +4,7 @@
 
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"
+#include "graphics/buffers/vertexarray.h"
 
 #include "graphics/shaders/shader.h"
 
@@ -40,7 +41,7 @@ namespace dank {
 		static const char *vertex2, *fragment2, *vertex3, *fragment3;
 	public:
 		Renderer(unsigned int num_sprites, RendererType type);
-		~Renderer();
+		virtual ~Renderer();
 
 		virtual void Begin() = 0;
 		virtual void End() = 0;
@@ -48,5 +49,37 @@ namespace dank {
 
 		void Submit(const vec3& position, const vec2& size, unsigned int color);
 
+	};
+
+	class Renderer2 : public Renderer {
+	private:
+		Vertex* rawbuffer;
+
+		static const char* vertex;
+		static const char* fragment;
+
+		int posLocation, uvLocation, colorLocation;
+
+	public:
+		Renderer2(unsigned int num_sprites);
+		~Renderer2();
+
+		void Begin() override;
+		void End() override;
+		void Present() override;
+
+	};
+
+	class Renderer3 : public Renderer {
+	private:
+		VertexArray* vao;
+
+	public:
+		Renderer3(unsigned int num_sprites);
+		~Renderer3();
+
+		void Begin() override;
+		void End() override;
+		void Present() override;
 	};
 }
