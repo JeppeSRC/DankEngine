@@ -66,6 +66,7 @@
     <ClCompile Include="src\core\resource\resourcetexture.cpp" />
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\font\fontdata.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer3.cpp" />

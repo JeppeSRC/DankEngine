@@ -105,13 +105,29 @@ public:
 	inline ResourceTextureType GetTextureType() const { return textureType; }
 };
 
+/*
+Data layout:
+	RESOURCE_STORAGE_BINARY:
+		- size
+		- name + null terminator
+		- font data
+
+	RESOURCE_STORAGE_FILE:
+		- filename + null terminator
+		- name + null terminator
+*/
 class ResourceFont : public Resource {
 protected:
 
 	ResourceFont(const ResourceFont* other);
-	ResourceFont();
+	ResourceFont(const char* filename, const char* name, unsigned int resourceID);
+	ResourceFont(const void* const data, unsigned int size, const char* name, unsigned int resourceID);
 public:
 
+	const char* GetName() const;
+	const char* GetFilename() const;
+	const void*  GetFontData() const;
+	unsigned int GetFontDataSize() const;
 };
 
 }

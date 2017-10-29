@@ -3,6 +3,7 @@
 #include <graphics/texture/texture.h>
 #include <utils/string.h>
 #include <utils/map.h>
+#include <core/resource/resource.h>
 #include <freetype-gl.h>
 
 namespace dank {
@@ -18,7 +19,7 @@ public:
 	void Bind(unsigned int slot = 0) const override;
 };
 
-class Font {
+class Font : public ResourceFont  {
 private:
 	String name;
 
@@ -29,6 +30,7 @@ private:
 	FontAtlas* atlas;
 
 	void LoadFont(const void* const data, size_t size, float fontSize);
+	void LoadFont(const String& filename, float fontSize);
 public:
 	Font(const String& filename, float fontSize, const String& fontName);
 	Font(const void* const data, size_t size, float fontSize, const String& fontName);
@@ -39,20 +41,27 @@ public:
 };
 
 class FontManager {
-private:
-	struct FONT_DATA {
+public:
+	class FontData : public ResourceFont {
+	public:
 		String name;
 		const void* data;
-		size_t size;
+		unsigned int size;
+
+	public:
+		FontData(const ResourceFont* resource);
+		FontData(const void* const data, unsigned int size, const String& name);
+		FontData(const String& filename, const String& name);
+		~FontData();
 	};
 
 private:
 	static List<Font*> fonts;
-	static List<FONT_DATA*> data;
+	static List<FontData*> data;
 
-	static FONT_DATA* GetFontData(const String& fontName);
+	static FontData* GetFontData(const String& fontName);
 public:
-	static void AddFont(const void* const data, size_t size, const String& fontName);
+	static void AddFont(const void* const data, unsigned int size, const String& fontName);
 	static void AddFont(const String& filename, const String& fontName);
 	static Font* GetFont(const String& fontName, float font_size);
 
