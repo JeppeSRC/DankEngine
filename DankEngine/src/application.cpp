@@ -17,35 +17,41 @@ namespace dank {
 	}
 
 	void Application::OnDestroy(ANativeActivity* activity) {
+		LOGW("OnDestroy");
 		NativeApp::Destroy();
 	}
 
 	void Application::OnConfigurationChanged(ANativeActivity* activity) {
-
+		LOGW("OnConfigurationChanged");
 	}
 
 	void Application::OnLowMemory(ANativeActivity* activity) {
-
+		LOGW("OnLowMemory");
 	}
 
 	void Application::OnWindowFocusChanged(ANativeActivity* activity, int focus) {
+		LOGW("OnWindowFocusChanged");
 		write_cmd(focus ? CMD_ON_FOCUS : CMD_ON_FOCUS_LOST);
 	}
 
 	void Application::OnPause(ANativeActivity* activity) {
+		LOGW("OnPause");
 		write_cmd(CMD_ON_PAUSE);
 	}
 
 	void Application::OnResume(ANativeActivity* activity) {
+		LOGW("OnResume");
 		write_cmd(CMD_ON_RESUME);
 	}
 
 	void Application::OnStart(ANativeActivity* activity) {
+		LOGW("OnStart");
 		write_cmd(CMD_ON_START);
 		
 	}
 
 	void Application::OnStop(ANativeActivity* activity) {
+		LOGW("OnStop");
 		write_cmd(CMD_ON_STOP);
 	}
 
@@ -56,16 +62,19 @@ namespace dank {
 	}
 
 	void Application::OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window) {
+		LOGW("OnNativeWindowDestroyed");
 		((NativeApp*)activity->instance)->window = nullptr;
 		write_cmd(CMD_WINDOW_DESTROY);
 	}
 	
 	void Application::OnInputQueueCreated(ANativeActivity* activity, AInputQueue* queue) {
+		LOGW("OnInputQueueCreated");
 		NativeApp::app->inputQueue = queue;
 		write_cmd(CMD_INPUT_CREATED);
 	}
 
 	void Application::OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
+		LOGW("OnInputQueueDestroyed");
 		write_cmd(CMD_INPUT_DESTROYED);
 	}
 
