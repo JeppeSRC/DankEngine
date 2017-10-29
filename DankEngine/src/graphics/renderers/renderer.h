@@ -55,9 +55,6 @@ namespace dank {
 	private:
 		Vertex* rawbuffer;
 
-		static const char* vertex;
-		static const char* fragment;
-
 		int posLocation, uvLocation, colorLocation;
 
 	public:
