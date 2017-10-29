@@ -6,6 +6,8 @@
 #include "graphics/buffers/vertexbuffer.h"
 #include "graphics/buffers/vertexarray.h"
 
+#include "graphics/font/font.h"
+
 #include "graphics/shaders/shader.h"
 
 #include "graphics/texture/texture.h"
@@ -20,6 +22,7 @@ namespace dank {
 		vec2 texCoord;
 		unsigned int color;
 		float texID;
+		float text;
 	};
 
 	enum RendererType {
@@ -37,7 +40,7 @@ namespace dank {
 		VertexBuffer* vbo;
 		IndexBuffer* ibo;
 
-		List<const Texture2D*> tids;
+		List<const Texture*> tids;
 
 		Shader* shader;
 
@@ -52,16 +55,17 @@ namespace dank {
 
 		void Submit(const vec3& position, const vec2& size, unsigned int color);
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture);
+		void Submit(const String& text, Font* font, const vec2& position, unsigned int color);
 
 	private:
-		float SubmitTexture(const Texture2D* texture);
+		float SubmitTexture(const Texture* texture);
 	};
 
 	class Renderer2 : public Renderer {
 	private:
 		Vertex* rawbuffer;
 
-		int posLocation, uvLocation, colorLocation, tidLocation;
+		int posLocation, uvLocation, colorLocation, tidLocation, textLocation;
 
 	public:
 		Renderer2(unsigned int num_sprites);

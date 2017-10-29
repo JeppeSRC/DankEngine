@@ -207,7 +207,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
-      <Optimization>MinSize</Optimization>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
@@ -218,6 +218,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
@@ -238,6 +239,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -258,6 +260,7 @@
       <CppLanguageStandard>c++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories)%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -11,6 +11,7 @@ Renderer3::Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_
 	vao->AddAttribute(1, 2, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, texCoord));
 	vao->AddAttribute(2, 4, GL_UNSIGNED_BYTE, true, (unsigned int)MOFFSET(Vertex, color));
 	vao->AddAttribute(3, 1, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, texID));
+	vao->AddAttribute(4, 1, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, text));
 }
 
 Renderer3::~Renderer3() {

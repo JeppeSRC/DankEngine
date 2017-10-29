@@ -23,7 +23,7 @@ void FontManager::AddFont(const void* const fontData, size_t size, const String&
 		if (data->name == name) return true; return false;
 	}, fontName);
 
-	if (index == (size_t)~0) return;
+	if (index != (size_t)~0) return;
 
 	FONT_DATA* d = denew FONT_DATA;
 	d->data = fontData;
@@ -52,14 +52,13 @@ Font* FontManager::GetFont(const String& fontName, float fontSize) {
 		float size;
 	};
 
-	ShitStruct* dank = denew ShitStruct;
-
-	dank->name = fontName;
-	dank->size = fontSize;
+	ShitStruct* dank = denew ShitStruct { fontName, fontSize };
 
 	size_t index = fonts.Find<ShitStruct*>([](Font* font, ShitStruct* shit) -> bool {
 		if (font->GetName() == shit->name && font->GetSize() == shit->size) return true; return false;
 	}, dank);
+	
+	delete dank;
 
 	if (index == (size_t)~0) {
 		FONT_DATA* fData = GetFontData(fontName);

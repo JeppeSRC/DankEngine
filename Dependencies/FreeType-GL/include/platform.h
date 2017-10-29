@@ -53,7 +53,7 @@ extern "C" {
 namespace ftgl {
 #endif
 
-#ifdef __APPLE__
+#ifdef __APPLE__ //fuck you apple
     /* strndup() was only added in OSX lion */
     char * strndup( const char *s1, size_t n);
 #elif defined(_WIN32) || defined(_WIN64)

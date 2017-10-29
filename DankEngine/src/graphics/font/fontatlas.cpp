@@ -1,4 +1,5 @@
 #include "font.h"
+#include "freetype-gl.h"
 
 namespace dank {
 

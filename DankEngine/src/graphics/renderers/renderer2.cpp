@@ -8,6 +8,7 @@ Renderer2::Renderer2(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_
 	uvLocation = shader->GetAttributeLocation("texCoords");
 	colorLocation = shader->GetAttributeLocation("colors");
 	tidLocation = shader->GetAttributeLocation("textureID");
+	textLocation = shader->GetAttributeLocation("tex");
 }
 
 Renderer2::~Renderer2() {
@@ -35,11 +36,13 @@ void Renderer2::Present()  {
 	GL(glEnableVertexAttribArray(uvLocation));
 	GL(glEnableVertexAttribArray(colorLocation));
 	GL(glEnableVertexAttribArray(tidLocation));
+	GL(glEnableVertexAttribArray(textLocation));
 
 	GL(glVertexAttribPointer(posLocation, 3, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, position)));
 	GL(glVertexAttribPointer(uvLocation, 2, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, texCoord)));
 	GL(glVertexAttribPointer(colorLocation, 4, GL_UNSIGNED_BYTE, true, sizeof(Vertex), (const void*)MOFFSET(Vertex, color)));
 	GL(glVertexAttribPointer(tidLocation, 1, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, texID)));
+	GL(glVertexAttribPointer(textLocation, 1, GL_FLOAT, false, sizeof(Vertex), (const void*)MOFFSET(Vertex, text)));
 
 	ibo->Bind();
 	GL(glDrawElements(GL_TRIANGLES, count, ibo->GetFormat(), nullptr));

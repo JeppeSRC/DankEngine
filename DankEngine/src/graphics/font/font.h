@@ -3,7 +3,11 @@
 #include <graphics/texture/texture.h>
 #include <utils/string.h>
 #include <utils/map.h>
-#include <freetype-gl.h>
+
+namespace ftgl {
+	struct texture_atlas_t;
+	struct texture_font_t;
+}
 
 namespace dank {
 
@@ -36,6 +40,8 @@ public:
 
 	inline float GetSize() const { return size; }
 	inline const String& GetName() const { return name; }
+	inline Texture* GetTexture() const { return atlas; }
+	inline ftgl::texture_font_t* GetFont() const { return font; }
 };
 
 class FontManager {

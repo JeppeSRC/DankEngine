@@ -1,3 +1,4 @@
+#include "freetype-gl.h"
 #include "renderer.h"
 
 #define MAX_TEXTURES 0x10
@@ -61,25 +62,29 @@ namespace dank {
 		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(0, 0);
 		buffer->color = color;
-		buffer->texID = 0;
+		buffer->texID = -1;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(1, 0);
 		buffer->color = color;
-		buffer->texID = 0;
+		buffer->texID = -1;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(1, 1);
 		buffer->color = color;
-		buffer->texID = 0;
+		buffer->texID = -1;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(0, 1);
 		buffer->color = color;
-		buffer->texID = 0;
+		buffer->texID = -1;
+		buffer->text = 0.f;
 		buffer++;
 
 		count += 6;
@@ -92,30 +97,34 @@ namespace dank {
 		buffer->texCoord = vec2(0, 0);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(1, 0);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(1, 1);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
+		buffer->text = 0.f;
 		buffer++;
 
 		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(0, 1);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
+		buffer->text = 0.f;
 		buffer++;
 
 		count += 6;
 	}
 
-	float Renderer::SubmitTexture(const Texture2D* texture) {
+	float Renderer::SubmitTexture(const Texture* texture) {
 		if (!texture) return -1.0f;
 
 		size_t index = tids.Find(texture);
@@ -136,4 +145,80 @@ namespace dank {
 		}
 		return -0.0f;
 	}
+
+	void Renderer::Submit(const String& text, Font* font, const vec2& position, unsigned int color) {
+		float tid = SubmitTexture(font->GetTexture());
+
+		float xPos = position.x;
+		float yPos = position.y;
+
+		ftgl::texture_font_t* f = font->GetFont();
+
+		color |= 0xFF000000;
+		for (size_t i = 0; i < text.length; i++) {
+			char c = text[i];
+
+			if (c == ' ') {
+				xPos += font->GetSize() * NativeApp::app->xUnitsPerPixel * 0.25f;
+			}
+			ftgl::texture_glyph_t* glyph = texture_font_get_glyph(f, c);
+
+			float x = xPos + glyph->offset_x * NativeApp::app->xUnitsPerPixel;
+			float y = yPos - glyph->offset_y * NativeApp::app->yUnitsPerPixel;
+
+			if (i != 0) {
+				float kerning = texture_glyph_get_kerning(glyph, text[i - 1]);
+				x += kerning * NativeApp::app->xUnitsPerPixel;
+			}
+
+			float bitmapWidth = (float)glyph->width * NativeApp::app->xUnitsPerPixel;
+			float bitmapHeight = (float)glyph->height * NativeApp::app->yUnitsPerPixel;
+
+			float u0 = glyph->s0;
+			float v0 = glyph->t0;
+			float u1 = glyph->s1;
+			float v1 = glyph->t1;
+
+			buffer->position.x = x;
+			buffer->position.y = y;
+			buffer->texCoord.x = u0;
+			buffer->texCoord.y = v0;
+			buffer->color = color;
+			buffer->texID = tid;
+			buffer->text = 1.0f;
+			buffer++;
+
+			buffer->position.x = x + bitmapWidth;
+			buffer->position.y = y;
+			buffer->texCoord.x = u1;
+			buffer->texCoord.y = v0;
+			buffer->color = color;
+			buffer->texID = tid;
+			buffer->text = 1.0f;
+			buffer++;
+
+			buffer->position.x = x + bitmapWidth;
+			buffer->position.y = y + bitmapHeight;
+			buffer->texCoord.x = u1;
+			buffer->texCoord.y = v1;
+			buffer->color = color;
+			buffer->texID = tid;
+			buffer->text = 1.0f;
+			buffer++;
+
+			buffer->position.x = x;
+			buffer->position.y = y + bitmapHeight;
+			buffer->texCoord.x = u0;
+			buffer->texCoord.y = v1;
+			buffer->color = color;
+			buffer->texID = tid;
+			buffer->text = 1.0f;
+			buffer++;
+
+			count += 6;
+
+			xPos += glyph->advance_x * NativeApp::app->xUnitsPerPixel;
+		}
+	}
+
 }

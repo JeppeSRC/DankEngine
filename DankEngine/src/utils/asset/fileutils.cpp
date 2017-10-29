@@ -19,6 +19,7 @@ namespace dank {
 		*data = denew unsigned char[*size];
 
 		AAsset_read(asset, *data, *size);
+		AAsset_close(asset);
 	}
 
 	String FileUtils::ReadTextFile(const char* const path) {

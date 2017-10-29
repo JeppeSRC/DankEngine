@@ -1,4 +1,8 @@
 #include "font.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+#include "freetype-gl.h"
 #include <utils/asset/fileutils.h>
 
 namespace dank {
