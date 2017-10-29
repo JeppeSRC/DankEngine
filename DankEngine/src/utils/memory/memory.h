@@ -25,7 +25,7 @@ inline void* operator new(size_t count) noexcept {
 		float size = (float)count / (MB);
 		LOGW("Large allocation, size: %.2f MB", size);
 	}
-	return dank::MemoryAllocator::allocate(count);
+	return dank::MemoryAllocator::Allocate(count);
 }
 
 inline void* operator new[](size_t count) noexcept {
@@ -33,7 +33,7 @@ inline void* operator new[](size_t count) noexcept {
 		float size = (float)count / (MB);
 		LOGW("Large allocation, size: %.2f MB", size);
 	}
-	return dank::MemoryAllocator::allocate(count);
+	return dank::MemoryAllocator::Allocate(count);
 }
 
 inline void* operator new(size_t count, const char* file, size_t line) noexcept {
@@ -41,7 +41,7 @@ inline void* operator new(size_t count, const char* file, size_t line) noexcept 
 		float size = (float)count / (MB);
 		LOGW("Large allocation, size: %.2f MB %s", size, file);
 	}
-	return dank::MemoryAllocator::allocate(count);
+	return dank::MemoryAllocator::Allocate(count);
 }
 
 inline void* operator new[](size_t count, const char* file, size_t line) noexcept {
@@ -49,23 +49,23 @@ inline void* operator new[](size_t count, const char* file, size_t line) noexcep
 		float size = (float)count / (MB);
 		LOGW("Large allocation, size: %.2f MB %s", size, file);
 	}
-	return dank::MemoryAllocator::allocate(count);
+	return dank::MemoryAllocator::Allocate(count);
 }
 
 inline void operator delete(void* ptr) noexcept {
-	dank::MemoryAllocator::deallocate(ptr);
+	dank::MemoryAllocator::Deallocate(ptr);
 }
 
 inline void operator delete[](void* ptr) noexcept {
-	dank::MemoryAllocator::deallocate(ptr);
+	dank::MemoryAllocator::Deallocate(ptr);
 }
 
 inline void operator delete(void* ptr, const char* file, unsigned int line) noexcept {
-	dank::MemoryAllocator::deallocate(ptr);
+	dank::MemoryAllocator::Deallocate(ptr);
 	DoubleDeletion(ptr, file, line);
 }
 
 inline void operator delete[](void* ptr, const char* file, unsigned int line) noexcept {
-	dank::MemoryAllocator::deallocate(ptr);
+	dank::MemoryAllocator::Deallocate(ptr);
 	DoubleDeletion(ptr, file, line);
 }

@@ -5,7 +5,7 @@ namespace dank {
 
 	float MemoryAllocator::allocated = 0;
 
-	void* MemoryAllocator::allocate(size_t size) {
+	void* MemoryAllocator::Allocate(size_t size) {
 		allocated += size;
 
 		byte* memory = (byte*)malloc(size + sizeof(size_t));
@@ -15,7 +15,7 @@ namespace dank {
 		return (void*)memory;
 	}
 
-	void MemoryAllocator::deallocate(void* memory) {
+	void MemoryAllocator::Deallocate(void* memory) {
 		if (memory == nullptr)
 			return; //hackerman
 

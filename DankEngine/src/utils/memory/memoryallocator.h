@@ -12,10 +12,10 @@ namespace dank {
 		static float allocated;
 
 	public:
-		static void* allocate(unsigned int size);
-		static void deallocate(void* memory);
+		static void* Allocate(size_t size);
+		static void Deallocate(void* memory);
 
-		static float getAllocated() { return allocated; }
+		static float GetAllocated() { return allocated; }
 	};
 
 }
