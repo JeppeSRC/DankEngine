@@ -25,7 +25,6 @@ public:
 	MainApp(ANativeActivity* activity) 
 		: Application(activity) {
 		Application::Set(this);
-		
 	}
 
 	void Init() override {
