@@ -27,27 +27,46 @@ void Texture2D::Load(const unsigned char* const data, int size) {
 	GL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
-Texture2D::Texture2D(const String& filename) {
+void Texture2D::Load(unsigned int width, unsigned int height, const void* const data) {
+	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Texture2D::Load(const char* filename) {
 	unsigned int size = 0;
 	void* data = nullptr;
 
-	FileUtils::ReadFile(*filename, &data, &size);
+	FileUtils::ReadFile(filename, &data, &size);
 
 	Load((unsigned char*)data, size);
 
 	delete[] data;
 }
 
-Texture2D::Texture2D(const void* const data, unsigned int width, unsigned int height, unsigned int format) : Texture(width, height) {
-	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
-	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-	GL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+Texture2D::Texture2D(const ResourceTexture* resource) : Texture(resource) {
+	ASSERT(resource->GetStorageType() == RESOURCE_STORAGE_UNKNOWN)
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, format, data);
+	if (resource->GetStorageType() == RESOURCE_STORAGE_FILE) {
+		Load(resource->GetFilename());
+	}
+	else {
+		Load(resource->GetWidth(), resource->GetHeight(), resource->GetPixelData());
+	}
+}
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+Texture2D::Texture2D(const String& filename) : Texture(*filename, RESOURCE_TEXTURE_TEXTURE2D) {
+	Load(*filename);
+	
+}
+
+Texture2D::Texture2D(const void* const data, unsigned int width, unsigned int height) : Texture(width, height, 4, data, RESOURCE_TEXTURE_TEXTURE2D) {
+	Load(width, height, data);
 }
 
 

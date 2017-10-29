@@ -3,10 +3,11 @@
 #include <core/nativeapp.h>
 #include <utils/map.h>
 #include <utils/utils.h>
+#include <core/resource/resource.h>
 
 namespace dank {
 
-	class Shader {
+	class Shader : public ResourceShader {
 	public:
 		static unsigned int activeShaderID;
 		static Shader* activeShader;
@@ -14,7 +15,11 @@ namespace dank {
 		unsigned int shader;
 
 		Map<unsigned int, unsigned int> cache;
+
+		void CompileShader(const char* vertex, const char* fragment);
+
 	public:
+		Shader(ResourceShader* resource);
 		Shader(const char* vertex, const char* fragment);
 		~Shader();
 
