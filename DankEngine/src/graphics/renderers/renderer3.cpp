@@ -10,6 +10,7 @@ Renderer3::Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_
 	vao->AddAttribute(0, 3, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, position));
 	vao->AddAttribute(1, 2, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, texCoord));
 	vao->AddAttribute(2, 4, GL_UNSIGNED_BYTE, true, (unsigned int)MOFFSET(Vertex, color));
+	vao->AddAttribute(3, 1, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, texID));
 }
 
 Renderer3::~Renderer3() {
@@ -28,7 +29,9 @@ void Renderer3::End() {
 
 void Renderer3::Present() {
 	shader->Bind();
-
+	for (size_t i = 0; i < tids.GetSize(); i++) {
+		tids[i]->Bind();
+	}
 	vao->Bind();
 	vbo->Bind();
 	ibo->Bind();

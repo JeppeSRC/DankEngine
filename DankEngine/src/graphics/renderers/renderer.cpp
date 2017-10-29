@@ -49,10 +49,7 @@ namespace dank {
 
 		shader->SetIntArray("samplers", MAX_TEXTURES, ids);
 		//add matrix
-
-
 	}
-
 
 	Renderer::~Renderer() {
 		delete vbo;
@@ -64,25 +61,79 @@ namespace dank {
 		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(0, 0);
 		buffer->color = color;
+		buffer->texID = 0;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(1, 0);
 		buffer->color = color;
+		buffer->texID = 0;
 		buffer++;
 
 		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(1, 1);
 		buffer->color = color;
+		buffer->texID = 0;
 		buffer++;
 
 		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(0, 1);
 		buffer->color = color;
+		buffer->texID = 0;
 		buffer++;
 
 		count += 6;
 
 	}
 
+	void Renderer::Submit(const vec3& position, const vec2& size, Texture2D* texture) {
+		float tid = SubmitTexture(texture);
+		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(0, 0);
+		buffer->color = 0xFFFFFFFF;
+		buffer->texID = tid;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(1, 0);
+		buffer->color = 0xFFFFFFFF;
+		buffer->texID = tid;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(1, 1);
+		buffer->color = 0xFFFFFFFF;
+		buffer->texID = tid;
+		buffer++;
+
+		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(0, 1);
+		buffer->color = 0xFFFFFFFF;
+		buffer->texID = tid;
+		buffer++;
+
+		count += 6;
+	}
+
+	float Renderer::SubmitTexture(const Texture2D* texture) {
+		if (!texture) return -1.0f;
+
+		size_t index = tids.Find(texture);
+
+		if (index != (size_t)-1) {
+			return (float)index + 0.5f;
+		}
+		else {
+			index = tids.GetSize();
+			if (index >= MAX_TEXTURES - 1) {
+				End();
+				Present();
+				Begin();
+				index = 0;
+			}
+			tids.Push_back(texture);
+			return (float)index + 0.5;
+		}
+		return -0.0f;
+	}
 }

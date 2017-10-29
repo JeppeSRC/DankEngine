@@ -8,6 +8,8 @@
 
 #include "graphics/shaders/shader.h"
 
+#include "graphics/texture/texture.h"
+
 #include "maths/vec2.h"
 #include "maths/vec3.h"
 
@@ -17,6 +19,7 @@ namespace dank {
 		vec3 position;
 		vec2 texCoord;
 		unsigned int color;
+		float texID;
 	};
 
 	enum RendererType {
@@ -34,7 +37,7 @@ namespace dank {
 		VertexBuffer* vbo;
 		IndexBuffer* ibo;
 
-		//textures
+		List<const Texture2D*> tids;
 
 		Shader* shader;
 
@@ -48,14 +51,17 @@ namespace dank {
 		virtual void Present() = 0;
 
 		void Submit(const vec3& position, const vec2& size, unsigned int color);
+		void Submit(const vec3& position, const vec2& size, Texture2D* texture);
 
+	private:
+		float SubmitTexture(const Texture2D* texture);
 	};
 
 	class Renderer2 : public Renderer {
 	private:
 		Vertex* rawbuffer;
 
-		int posLocation, uvLocation, colorLocation;
+		int posLocation, uvLocation, colorLocation, tidLocation;
 
 	public:
 		Renderer2(unsigned int num_sprites);

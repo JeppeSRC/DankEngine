@@ -16,6 +16,7 @@ private:
 	float r = 0, g = 0 , b = 0;
 
 	BatchRenderer* renderer;
+	Texture2D* texture;
 	bool vaoe;
 public:
 	MainApp(ANativeActivity* activity) 
@@ -28,11 +29,12 @@ public:
 		renderer = new BatchRenderer(30);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
 		glDisable(GL_BLEND);
+		texture = new Texture2D("cube.png");
 	}
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), 0x32fdfa);
+		renderer->Submit(vec3(0.3f, 0.9f, 0.0f), vec2(1.f, 1.f), texture);
 		renderer->End();
 		renderer->Present();
 	}

@@ -9,7 +9,7 @@ namespace dank {
 		Renderer* renderer;
 
 	public:
-		BatchRenderer(unsigned int num_sprites) {
+		inline BatchRenderer(unsigned int num_sprites) {
 			NativeApp* app = NativeApp::app;
 			if (app->hasVaos) {
 				renderer = new Renderer3(num_sprites);
@@ -19,23 +19,27 @@ namespace dank {
 			}
 		}
 
-		~BatchRenderer() {
+		inline ~BatchRenderer() {
 			delete renderer;
 		}
 
-		void Begin() {
+		inline void Begin() {
 			renderer->Begin();
 		}
 
-		void Submit(const vec3& position, const vec2& size, unsigned int color) {
+		inline void Submit(const vec3& position, const vec2& size, unsigned int color) {
 			renderer->Submit(position, size, color);
 		}
 
-		void End() {
+		inline void Submit(const vec3& position, const vec2& size, Texture2D* texture) {
+			renderer->Submit(position, size, texture);
+		}
+
+		inline void End() {
 			renderer->End();
 		}
 
-		void Present() {
+		inline void Present() {
 			renderer->Present();
 		}
 
