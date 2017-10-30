@@ -19,10 +19,7 @@ void main() {
 			tex *= texture2D(samplers[t], texCoord);
 		}
 	} else {
-		tex.r = texture2D(samplers[t], texCoord).r;
-		tex.g = tex.r;
-		tex.b = tex.r;
-		tex.a = 1.0;
+		tex.a = texture2D(samplers[t], texCoord).r;
 	}
 	gl_FragColor = vec4(tex);
 

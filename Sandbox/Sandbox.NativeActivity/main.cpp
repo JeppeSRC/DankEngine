@@ -23,7 +23,7 @@ private:
 
 public:
 	MainApp(ANativeActivity* activity) 
-		: Application(activity) {
+		: Application(activity, 540, 960) {
 		Application::Set(this);
 	}
 
@@ -33,14 +33,14 @@ public:
 		glDisable(GL_BLEND);
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
-		font = FontManager::GetFont("Consola", 2);
+		font = FontManager::GetFont("Consola", 36);
 	}
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit(vec3(0.3f, 0.3f, 0.0f), vec2(1.f, 1.f), texture);
-		renderer->Submit(vec3(-0.3f, -0.3f, 0.0f), vec2(1.f, 1.f), 0xFF7f37ab);
-		renderer->Submit("Dank af", font, vec2(-0.5f, 0.5f), 0xFFFF00FF);
+		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(-270.f, -450.f), 0xFFFF00FF);
+		renderer->Submit(vec3(0.0f, 0.0f, 0.0f), vec2(400.f, 400.f), texture);
+		//renderer->Submit(vec3(-0.3f, -0.3f, 0.0f), vec2(1.f, 1.f), 0xFF7f37ab);
 		renderer->End();
 		renderer->Present();
 	}

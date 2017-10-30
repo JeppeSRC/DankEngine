@@ -14,6 +14,7 @@
 
 #include "maths/vec2.h"
 #include "maths/vec3.h"
+#include "maths/mat4.h"
 
 namespace dank {
 
@@ -45,6 +46,9 @@ namespace dank {
 		Shader* shader;
 
 		static const char *vertex2, *fragment2, *vertex3, *fragment3;
+
+		mat4 orthographicMatrix;
+
 	public:
 		Renderer(unsigned int num_sprites, RendererType type);
 		virtual ~Renderer();
