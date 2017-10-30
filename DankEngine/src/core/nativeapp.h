@@ -48,7 +48,7 @@ namespace dank {
 	typedef void(*CMD_CALLBACK)();
 	typedef int(*INPUT_CALLBACK)(AInputEvent*);
 
-	enum GLES_VERSION {
+	enum class GLES_VERSION {
 		GLES_VERSION_2,
 		GLES_VERSION_3
 	};

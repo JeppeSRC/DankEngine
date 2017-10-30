@@ -2,7 +2,7 @@
 
 namespace dank {
 
-Renderer2::Renderer2(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_GLES2) {
+Renderer2::Renderer2(unsigned int num_sprites) : Renderer(num_sprites, RendererType::RENDERER_GLES2) {
 	rawbuffer = new Vertex[num_sprites * 4];
 	posLocation = shader->GetAttributeLocation("position");
 	uvLocation = shader->GetAttributeLocation("texCoords");

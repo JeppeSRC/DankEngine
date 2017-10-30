@@ -137,10 +137,10 @@ namespace dank {
 				_exit(2);
 			}
 
-			app->glesVersion = GLES_VERSION_2;
+			app->glesVersion = GLES_VERSION::GLES_VERSION_2;
 		}
 		else {
-			app->glesVersion = GLES_VERSION_3;
+			app->glesVersion = GLES_VERSION::GLES_VERSION_3;
 			app->hasVaos = true;
 		}
 
@@ -174,7 +174,7 @@ namespace dank {
 		LOGD("Fingerprint: %s", fingerprint.str);
 		LOGD("Brand: %s", brand.str);
 		LOGD("Device: %s", device.str);
-		if (app->glesVersion != GLES_VERSION_3) {
+		if (app->glesVersion != GLES_VERSION::GLES_VERSION_3) {
 			if (model.Find("google_sdk") != (size_t)-1
 				|| model.Find("Emulator") != (size_t)-1
 				|| model.Find("Android SDK built for x86") != (size_t)-1

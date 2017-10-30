@@ -43,7 +43,7 @@ namespace dank {
 		vbo = new VertexBuffer(nullptr, numSprites * 4 * sizeof(Vertex));
 
 		ibo = new IndexBuffer(indices, numSprites * 6);
-		if (type == RENDERER_GLES2)
+		if (type == RendererType::RENDERER_GLES2)
 			shader = new Shader(vertex2, fragment2);
 		else
 			shader = new Shader(vertex3, fragment3);

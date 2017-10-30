@@ -2,7 +2,7 @@
 
 namespace dank {
 
-Renderer3::Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RENDERER_GLES3) {
+Renderer3::Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RendererType::RENDERER_GLES3) {
 	vao = new VertexArray(sizeof(Vertex));
 
 	vbo->Bind();

@@ -26,7 +26,7 @@ namespace dank {
 		float text;
 	};
 
-	enum RendererType {
+	enum class RendererType {
 		RENDERER_GLES2,
 		RENDERER_GLES3
 	};
