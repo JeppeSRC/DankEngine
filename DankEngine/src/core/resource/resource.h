@@ -4,7 +4,7 @@
 
 namespace dank {
 
-enum ResourceType {
+enum class ResourceType {
 	RESOURCE_UNKNOWN,
 	RESOURCE_BINARY,
 	RESOURCE_SHADER,
@@ -12,7 +12,7 @@ enum ResourceType {
 	RESOURCE_FONT,
 };
 
-enum ResourceStorageType {
+enum class ResourceStorageType {
 	RESOURCE_STORAGE_UNKNOWN,
 	RESOURCE_STORAGE_BINARY,
 	RESOURCE_STORAGE_FILE
@@ -80,7 +80,7 @@ Data layout:
 		- filename + null terminator
 
 */
-enum ResourceTextureType {
+enum class ResourceTextureType {
 	RESOURCE_TEXTURE_UNKNOWN,
 	RESOURCE_TEXTURE_TEXTURE2D,
 };

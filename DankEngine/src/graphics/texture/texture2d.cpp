@@ -50,9 +50,9 @@ void Texture2D::Load(const char* filename) {
 }
 
 Texture2D::Texture2D(const ResourceTexture* resource) : Texture(resource) {
-	ASSERT(resource->GetStorageType() == RESOURCE_STORAGE_UNKNOWN)
+	ASSERT(resource->GetStorageType() == ResourceStorageType::RESOURCE_STORAGE_UNKNOWN)
 
-	if (resource->GetStorageType() == RESOURCE_STORAGE_FILE) {
+	if (resource->GetStorageType() == ResourceStorageType::RESOURCE_STORAGE_FILE) {
 		Load(resource->GetFilename());
 	}
 	else {
@@ -60,12 +60,12 @@ Texture2D::Texture2D(const ResourceTexture* resource) : Texture(resource) {
 	}
 }
 
-Texture2D::Texture2D(const String& filename) : Texture(*filename, RESOURCE_TEXTURE_TEXTURE2D) {
+Texture2D::Texture2D(const String& filename) : Texture(*filename, ResourceTextureType::RESOURCE_TEXTURE_TEXTURE2D) {
 	Load(*filename);
 	
 }
 
-Texture2D::Texture2D(const void* const data, unsigned int width, unsigned int height) : Texture(width, height, 4, data, RESOURCE_TEXTURE_TEXTURE2D) {
+Texture2D::Texture2D(const void* const data, unsigned int width, unsigned int height) : Texture(width, height, 4, data, ResourceTextureType::RESOURCE_TEXTURE_TEXTURE2D) {
 	Load(width, height, data);
 }
 

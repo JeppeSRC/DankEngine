@@ -2,7 +2,7 @@
 
 namespace dank {
 
-Texture::Texture() : ResourceTexture(RESOURCE_TEXTURE_UNKNOWN, 0) ,textureID(0), width(0), height(0), deleteTexture(true) {
+Texture::Texture() : ResourceTexture(ResourceTextureType::RESOURCE_TEXTURE_UNKNOWN, 0) ,textureID(0), width(0), height(0), deleteTexture(true) {
 	GL(glGenTextures(1, &textureID));
 	GL(glBindTexture(GL_TEXTURE_2D, textureID));
 }
@@ -20,11 +20,11 @@ Texture::Texture(unsigned int width, unsigned int height, unsigned int pixelSize
 
 }
 
-Texture::Texture(unsigned int id, unsigned int width, unsigned int height, bool deleteID) : ResourceTexture(RESOURCE_TEXTURE_UNKNOWN, 0), textureID(id), width(width), height(height), deleteTexture(deleteID) {
+Texture::Texture(unsigned int id, unsigned int width, unsigned int height, bool deleteID) : ResourceTexture(ResourceTextureType::RESOURCE_TEXTURE_UNKNOWN, 0), textureID(id), width(width), height(height), deleteTexture(deleteID) {
 	
 }
 
-Texture::Texture(unsigned int width, unsigned int height) : ResourceTexture(RESOURCE_TEXTURE_UNKNOWN, 0), textureID(0), width(width), height(height), deleteTexture(true) {
+Texture::Texture(unsigned int width, unsigned int height) : ResourceTexture(ResourceTextureType::RESOURCE_TEXTURE_UNKNOWN, 0), textureID(0), width(width), height(height), deleteTexture(true) {
 	GL(glGenTextures(1, &textureID));
 	GL(glBindTexture(GL_TEXTURE_2D, textureID));
 }

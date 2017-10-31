@@ -6,7 +6,7 @@ ResourceFont::ResourceFont(const ResourceFont* other) : Resource((void*)other->r
 
 }
 
-ResourceFont::ResourceFont(const char* filename, const char* name, unsigned int resourceID) : Resource(nullptr, strlen(filename) + strlen(name) + 2, RESOURCE_FONT, RESOURCE_STORAGE_FILE, resourceID) {
+ResourceFont::ResourceFont(const char* filename, const char* name, unsigned int resourceID) : Resource(nullptr, strlen(filename) + strlen(name) + 2, ResourceType::RESOURCE_FONT, ResourceStorageType::RESOURCE_STORAGE_FILE, resourceID) {
 	void* res = denew unsigned char[resourceDataSize];
 
 	size_t len = strlen(filename)+1;
@@ -17,7 +17,7 @@ ResourceFont::ResourceFont(const char* filename, const char* name, unsigned int 
 	resourceData = (unsigned long long)res;
 }
 
-ResourceFont::ResourceFont(const void* const data, unsigned int size, const char* name, unsigned int resourceID) : Resource(nullptr, size, RESOURCE_FONT, RESOURCE_STORAGE_BINARY, resourceID) {
+ResourceFont::ResourceFont(const void* const data, unsigned int size, const char* name, unsigned int resourceID) : Resource(nullptr, size, ResourceType::RESOURCE_FONT, ResourceStorageType::RESOURCE_STORAGE_BINARY, resourceID) {
 	unsigned int len = (unsigned int)strlen(name)+1;
 	resourceDataSize += sizeof(unsigned int) + len;
 
@@ -33,13 +33,13 @@ ResourceFont::ResourceFont(const void* const data, unsigned int size, const char
 
 const char* ResourceFont::GetName() const {
 	switch (storageType) {
-		case RESOURCE_STORAGE_BINARY:
+		case ResourceStorageType::RESOURCE_STORAGE_BINARY:
 			return (const char*)resourceData + sizeof(unsigned int);
-		case RESOURCE_STORAGE_FILE:
+		case ResourceStorageType::RESOURCE_STORAGE_FILE:
 			return (const char*)resourceData + strlen((const char*)resourceData)+1;
 	}
 
-	ASSERT(storageType == RESOURCE_STORAGE_UNKNOWN);
+	ASSERT(storageType == ResourceStorageType::RESOURCE_STORAGE_UNKNOWN);
 
 	return nullptr;
 }
