@@ -29,6 +29,8 @@
   <ItemGroup>
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\core\nativeapp.h" />
+    <ClInclude Include="src\core\resource\resource.h" />
+    <ClInclude Include="src\core\resource\resourcemanager.h" />
     <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
@@ -55,8 +57,16 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\core\nativeapp.cpp" />
+    <ClCompile Include="src\core\resource\resource.cpp" />
+    <ClCompile Include="src\core\resource\resourcebinary.cpp" />
+    <ClCompile Include="src\core\resource\resourcefont.cpp" />
+    <ClCompile Include="src\core\resource\resourcemanager.cpp" />
+    <ClCompile Include="src\core\resource\resourceshader.cpp" />
+    <ClCompile Include="src\core\resource\resourcetext.cpp" />
+    <ClCompile Include="src\core\resource\resourcetexture.cpp" />
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
+    <ClCompile Include="src\graphics\font\fontdata.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer3.cpp" />

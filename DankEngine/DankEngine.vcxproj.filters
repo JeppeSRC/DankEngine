@@ -23,6 +23,14 @@
     <ClCompile Include="src\utils\utils.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
     <ClCompile Include="src\graphics\renderers\renderer3.cpp" />
+    <ClCompile Include="src\core\resource\resource.cpp" />
+    <ClCompile Include="src\core\resource\resourcemanager.cpp" />
+    <ClCompile Include="src\core\resource\resourcebinary.cpp" />
+    <ClCompile Include="src\core\resource\resourceshader.cpp" />
+    <ClCompile Include="src\core\resource\resourcetexture.cpp" />
+    <ClCompile Include="src\core\resource\resourcefont.cpp" />
+    <ClCompile Include="src\core\resource\resourcetext.cpp" />
+    <ClCompile Include="src\graphics\font\fontdata.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -49,6 +57,8 @@
     <ClInclude Include="src\utils\string.h" />
     <ClInclude Include="src\utils\utils.h" />
     <ClInclude Include="src\graphics\texture\texture.h" />
+    <ClInclude Include="src\core\resource\resourcemanager.h" />
+    <ClInclude Include="src\core\resource\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

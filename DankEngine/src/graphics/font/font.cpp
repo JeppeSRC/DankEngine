@@ -19,7 +19,7 @@ void Font::LoadFont(const void* const data, size_t size, float fontSize) {
 	this->size = fontSize;
 }
 
-Font::Font(const String& filename, float fontSize, const String& fontName) : name(fontName) {
+void Font::LoadFont(const String& filename, float fontSize) {
 	unsigned int size = 0;
 	void* data = nullptr;
 
@@ -28,7 +28,11 @@ Font::Font(const String& filename, float fontSize, const String& fontName) : nam
 	LoadFont(data, (size_t)size, fontSize);
 }
 
-Font::Font(const void* const data, size_t size, float fontSize, const String& fontName) : name(fontName) {
+Font::Font(const String& filename, float fontSize, const String& fontName) : ResourceFont(*filename, *fontName, 0), name(fontName) {
+	LoadFont(filename, fontSize);
+}
+
+Font::Font(const void* const data, size_t size, float fontSize, const String& fontName) : ResourceFont(data, size, *fontName, 0), name(fontName) {
 	LoadFont(data, size, fontSize);
 }
 

@@ -27,7 +27,7 @@ namespace dank {
 		return false;
 	}
 
-	Shader::Shader(const char* vertex, const char* fragment) {
+	void Shader::CompileShader(const char* vertex, const char* fragment) {
 		LOGD("Compiling shader");
 		shader = GL(glCreateProgram());
 
@@ -91,6 +91,14 @@ namespace dank {
 			activeShaderID = shader;
 		}
 		activeShader = this;
+	}
+
+	Shader::Shader(ResourceShader* resource) : ResourceShader(resource) {
+		CompileShader(resource->GetVSCode(), resource->GetPSCode());
+	}
+
+	Shader::Shader(const char* vertex, const char* fragment) : ResourceShader(vertex, fragment, 0) {
+		CompileShader(vertex, fragment);
 	}
 
 	unsigned int Shader::GetAttributeLocation(const char* name) {
