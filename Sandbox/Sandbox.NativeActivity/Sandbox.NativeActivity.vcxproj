@@ -147,6 +147,7 @@
       </PrecompiledHeaderFile>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
@@ -171,6 +172,7 @@
       </PrecompiledHeaderFile>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>
@@ -195,6 +197,7 @@
       </PrecompiledHeaderFile>
       <CompileAs>CompileAsCpp</CompileAs>
       <CppLanguageStandard>c++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <LibraryDependencies>%(LibraryDependencies);GLESv1_CM;EGL;GLESv2;GLESv3;m;</LibraryDependencies>

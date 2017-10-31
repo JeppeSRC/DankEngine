@@ -8,6 +8,7 @@
 #include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 #include <GLES3/gl3platform.h>
+#include <utils/log.h>
 
 using namespace dank;
 
@@ -22,7 +23,6 @@ public:
 	MainApp(ANativeActivity* activity) 
 		: Application(activity) {
 		Application::Set(this);
-		
 	}
 
 	void Init() override {

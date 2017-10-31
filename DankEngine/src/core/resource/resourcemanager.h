@@ -30,6 +30,9 @@ public:
 
 	void AddResource(Resource* resource);
 	void RemoveResource(Resource* resource);
+
+	Resource* operator[](size_t index) const;
+	Resource* GetResourceByID(unsigned int id) const;
 };
 
 }
