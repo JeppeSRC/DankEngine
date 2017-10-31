@@ -23,7 +23,7 @@ FontManager::FontData::FontData(const void* const data, unsigned int size, const
 
 }
 
-FontManager::FontData::FontData(const String& filename, const String& name) : ResourceFont(*filename, *name, 0) {
+FontManager::FontData::FontData(const String& filename, const String& name) : ResourceFont(*filename, *name, 0), name(name) {
 
 	FileUtils::ReadFile(*filename, (void**)&data, &size);
 
