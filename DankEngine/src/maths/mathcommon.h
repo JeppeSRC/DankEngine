@@ -3,10 +3,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#if !(defined(__arm__) ||  defined(__aarch64__))
-#include <arm_neon.h>
-#endif
-
 #define FD_PRE_TO_RADIANS 0.01745329251994329576923690768489
 #define FD_PRE_TO_DEGREES 57.295779513082320876798154814105
 
@@ -26,4 +22,21 @@
 #define FLOAT64_CMP(a, b) FLOAT_CMP(a, b, unsigned long long)
 
 #define CLAMP(x, min, max) x = x < min ? min : x > max ? max : x;
+
+#define SSE_MATH 1
+
+#if SSE_MATH
+#if defined(__arm__) || defined(__aarch64__)
+#if !defined(__ARM_NEON__) && defined(__arm__)
+#error NEON not enabled! 
+#endif
+
+#include <arm_neon.h>
+
+#else
+
+#include <immintrin.h>
+
+#endif
+#endif
 

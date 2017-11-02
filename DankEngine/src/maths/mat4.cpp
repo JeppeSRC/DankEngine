@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace dank {
-
+/*
 #if !(defined(__arm__) || defined(__aarch64__))
 	void mat4::LoadRows(__m128* xmm) const {
 
@@ -22,7 +22,7 @@ namespace dank {
 		xmm[2] = _mm_set_ps(m[3 + 2 * 4], m[2 + 2 * 4], m[1 + 2 * 4], m[0 + 2 * 4]);
 		xmm[3] = _mm_set_ps(m[3 + 3 * 4], m[2 + 3 * 4], m[1 + 3 * 4], m[0 + 3 * 4]);
 	}
-#endif
+#endif*/
 
 	mat4::mat4() { memset(m, 0, sizeof(m)); }
 
@@ -245,7 +245,7 @@ namespace dank {
 
 		return r;
 	}
-
+	/*
 #if !(defined(__arm__) || defined(__aarch64__))
 
 	mat4 mat4::operator*(const mat4& r) const {
@@ -269,8 +269,8 @@ namespace dank {
 
 		return tmp;
 	}
-
-#else
+	
+#else*/
 
 	mat4 mat4::operator*(const mat4& r) const {
 		float tmp[16];
@@ -287,7 +287,7 @@ namespace dank {
 		return mat4(tmp);
 	}
 
-#endif
+//#endif
 
 	vec4 mat4::operator*(const vec4& v) const {
 

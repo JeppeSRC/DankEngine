@@ -7,7 +7,7 @@ ResourceFont::ResourceFont(const ResourceFont* other) : Resource((void*)other->r
 }
 
 ResourceFont::ResourceFont(const char* filename, const char* name, unsigned int resourceID) : Resource(nullptr, strlen(filename) + strlen(name) + 2, ResourceType::RESOURCE_FONT, ResourceStorageType::RESOURCE_STORAGE_FILE, resourceID) {
-	void* res = denew unsigned char[resourceDataSize];
+	unsigned char* res = denew unsigned char[resourceDataSize];
 
 	size_t len = strlen(filename)+1;
 
@@ -21,7 +21,7 @@ ResourceFont::ResourceFont(const void* const data, unsigned int size, const char
 	unsigned int len = (unsigned int)strlen(name)+1;
 	resourceDataSize += sizeof(unsigned int) + len;
 
-	void* res = denew unsigned char[resourceDataSize];
+	unsigned char* res = denew unsigned char[resourceDataSize];
 
 	*(unsigned int*)res = size;
 

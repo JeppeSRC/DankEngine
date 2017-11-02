@@ -12,7 +12,7 @@ ResourceShader::ResourceShader(const char* vs, const char* ps, unsigned int reso
 
 	resourceDataSize = vsLen + psLen;
 
-	void* res = denew unsigned char[resourceDataSize];
+	unsigned char* res = denew unsigned char[resourceDataSize];
 
 	memcpy(res, vs, vsLen);
 	memcpy(res + vsLen, ps, psLen);

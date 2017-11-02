@@ -35,6 +35,13 @@ public:
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
+
+		vec3 a(1, 0, 1);
+		vec3 b(1, 1, 0);
+
+		vec3 c = a + b;
+
+		LOGD("%f %f %f", c.x, c.y, c.z);
 	}
 
 	void Render() override {

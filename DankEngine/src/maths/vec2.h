@@ -34,6 +34,7 @@ namespace dank {
 		vec2& Divide(const vec3& v);
 		vec2& Divide(const vec2& v);
 		vec2& Divide(float v);
+		float Dot(const vec2& v) const;
 		vec2& Normalize();
 
 		float Length() const;

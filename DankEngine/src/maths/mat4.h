@@ -15,11 +15,12 @@ namespace dank {
 		union {
 			float m[16];
 		};
-
-#if !(defined(__arm__) || defined(__aarch64__))
+		/*
+#if __ARM_NEON__
 		void LoadRows(__m128* xmm) const;
 		void LoadColumns(__m128* xmm) const;
 #endif
+*/
 
 	public:
 		mat4();
