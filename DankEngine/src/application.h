@@ -105,7 +105,7 @@ namespace dank {
 		virtual void OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue);
 
 		virtual void Render() = 0;
-		virtual void Update() = 0;
+		virtual void Update(float delta) = 0;
 
 		void Start();
 

@@ -51,8 +51,8 @@ public:
 	}
 
 
-	void Update() override {
-
+	void Update(float delta) override {
+		LOGD("Delta: %.2f", delta);
 	}
 };
 

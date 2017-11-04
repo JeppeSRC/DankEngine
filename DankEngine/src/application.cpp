@@ -128,6 +128,7 @@ namespace dank {
 		eglSwapInterval(app->display, 0);
 
 		Application::Get()->Init();
+		unsigned long long lastTime = mikrotime();
 
 		while (app->status) {
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -136,7 +137,11 @@ namespace dank {
 				if (process_cmd) process_cmd();
 			}
 
-			Application::Get()->Update();
+			unsigned long long now = mikrotime();
+			float delta = ((float)(now - lastTime)) / (float)1000000;
+			lastTime = now;
+
+			Application::Get()->Update(delta);
 			Application::Get()->Render();
 
 
