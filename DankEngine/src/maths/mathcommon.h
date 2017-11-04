@@ -30,11 +30,11 @@
 #if !defined(__ARM_NEON__) && defined(__arm__)
 #error NEON not enabled! 
 #endif
-
+#define SSE_ARM
 #include <arm_neon.h>
 
 #else
-
+#define SSE_X86
 #include <immintrin.h>
 
 #endif
