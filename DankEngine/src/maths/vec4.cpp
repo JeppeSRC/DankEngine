@@ -36,12 +36,12 @@ vec4& vec4::Add(const vec3& v) {
 }
 
 vec4& vec4::Add(const vec2& v) {
-	float vtmp[4]{ v.x, v.y, 0, 0 };
-	float tmp[4]{ x, y, z, w };
-	float32x4_t vxmm = vld1q_f32(vtmp);
-	float32x4_t xmm = vld1q_f32(tmp);
-	xmm = vaddq_f32(xmm, vxmm);
-    memcpy(this, &xmm, sizeof(float) * 4);
+	float vtmp[2]{ v.x, v.y };
+	float tmp[2]{ x, y };
+	float32x2_t vxmm = vld1_f32(vtmp);
+	float32x2_t xmm = vld1_f32(tmp);
+	xmm = vadd_f32(xmm, vxmm);
+	memcpy(this, &xmm, sizeof(float) * 2);
 	return *this;
 }
 
@@ -76,12 +76,12 @@ vec4& vec4::Subtract(const vec3& v) {
 }
 
 vec4& vec4::Subtract(const vec2& v) {
-	float vtmp[4]{ v.x, v.y, 0, 0 };
-	float tmp[4]{ x, y, z, w };
-	float32x4_t vxmm = vld1q_f32(vtmp);
-	float32x4_t xmm = vld1q_f32(tmp);
-	xmm = vsubq_f32(xmm, vxmm);
-    memcpy(this, &xmm, sizeof(float) * 4);
+	float vtmp[2]{ v.x, v.y };
+	float tmp[2]{ x, y };
+	float32x2_t vxmm = vld1_f32(vtmp);
+	float32x2_t xmm = vld1_f32(tmp);
+	xmm = vsub_f32(xmm, vxmm);
+	memcpy(this, &xmm, sizeof(float) * 2);
 	return *this;
 }
 
@@ -116,12 +116,12 @@ vec4& vec4::Multiply(const vec3& v) {
 }
 
 vec4& vec4::Multiply(const vec2& v) {
-	float vtmp[4]{ v.x, v.y, 1, 1 };
-	float tmp[4]{ x, y, z, w };
-	float32x4_t vxmm = vld1q_f32(vtmp);
-	float32x4_t xmm = vld1q_f32(tmp);
-	xmm = vmulq_f32(xmm, vxmm);
-    memcpy(this, &xmm, sizeof(float) * 4);
+	float vtmp[2]{ v.x, v.y };
+	float tmp[2]{ x, y };
+	float32x2_t vxmm = vld1_f32(vtmp);
+	float32x2_t xmm = vld1_f32(tmp);
+	xmm = vmul_f32(xmm, vxmm);
+	memcpy(this, &xmm, sizeof(float) * 2);
 	return *this;
 }
 
