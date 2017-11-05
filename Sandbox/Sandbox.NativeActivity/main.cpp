@@ -40,7 +40,7 @@ public:
 		renderer->Begin();
 		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 150), 0xFFFF00FF);
 		renderer->Submit(vec3(250.0f, 270, 0.0f), vec2(200.f, 200.f), texture);
-		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), 0xFFFF00FF);
+		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), nullptr, 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
 	}

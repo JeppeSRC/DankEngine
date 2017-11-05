@@ -129,6 +129,39 @@ namespace dank {
 		count += 6;
 	}
 
+	void Renderer::Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color) {
+		float tid = SubmitTexture(texture);
+		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(0, 0);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(1, 0);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(1, 1);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(0, 1);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		count += 6;
+	}
+
 	float Renderer::SubmitTexture(const Texture* texture) {
 		if (!texture) return -1.0f;
 
