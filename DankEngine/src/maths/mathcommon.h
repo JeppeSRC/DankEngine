@@ -23,7 +23,7 @@
 
 #define CLAMP(x, min, max) x = x < min ? min : x > max ? max : x;
 
-//#define SSE_MATH 1
+#define SSE_MATH 1
 
 #if SSE_MATH
 #if defined(__arm__) || defined(__aarch64__)

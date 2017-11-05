@@ -68,6 +68,8 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 namespace dank {
 
 	class Application {
+	private:
+		bool thingyIDontKnowWhatToName = false;
 	public:
 		static Application* application;
 		static Application* Get() { return application; }

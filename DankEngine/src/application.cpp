@@ -73,6 +73,7 @@ namespace dank {
 
 	void Application::OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
 		LOGW("OnInputQueueDestroyed");
+		thingyIDontKnowWhatToName = false;
 		write_cmd(CMD_INPUT_DESTROYED);
 	}
 

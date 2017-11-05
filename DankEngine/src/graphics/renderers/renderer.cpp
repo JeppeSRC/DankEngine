@@ -55,7 +55,6 @@ namespace dank {
 
 		shader->SetIntArray("samplers", MAX_TEXTURES, ids);
 		shader->SetMat4("projection", orthographicMatrix.GetData());
-		//add matrix
 	}
 
 	Renderer::~Renderer() {

@@ -181,7 +181,8 @@ namespace dank {
 
 				|| fingerprint.StartsWith("generic")
 				|| fingerprint.StartsWith("unknown")
-				
+				|| manufacturer.StartsWith("unknown")
+				|| device.StartsWith("generic")
 				|| (brand.Find("generic") != (size_t)-1 && device.Find("generic") != (size_t)-1)
 				) {
 				app->isEmulator = true;
