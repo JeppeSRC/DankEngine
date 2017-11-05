@@ -8,7 +8,6 @@ namespace dank {
 class mat4 {
 private:
 	friend class mat3;
-	friend class vec2;
 	friend class vec3;
 	friend class vec4;
 private:
@@ -43,7 +42,6 @@ public:
 	mat4 operator*(const mat4& m) const;
 	vec4 operator*(const vec4& v) const;
 	vec3 operator*(const vec3& v) const;
-	vec2 operator*(const vec2& v) const;
 
 	inline const float* GetData() const { return m; }
 };

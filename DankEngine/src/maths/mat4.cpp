@@ -352,7 +352,7 @@ vec4 mat4::operator*(const vec4& v) const {
 	__m128 res = _mm_mul_ps(vec[0], col[0]);
 
 	for (int i = 1; i < 4; i++) {
-		res = _mm_fmadd_ps(vec[i], col[i], res);
+		//res = _mm_fmadd_ps(vec[i], col[i], res);
 	}
 	
 	vec4 m(0, 0, 0, 0);
@@ -464,8 +464,8 @@ vec4 mat4::operator*(const vec4& v) const {
 	float32x4_t res = vmulq_f32(vec[0], col[0]);
 
 	for (int i = 1; i < 4; i++) {
-#ifdef __aarch64__
-		res = vfmaq_f32(vec[i], col[i], res);
+#ifdef DONT_USE //__aarch64__
+		res = vfmaq_f32(res, vec[i], col[i]);
 #else
 		res = vaddq_f32(vmulq_f32(vec[i], col[i]), res);
 #endif
@@ -478,7 +478,7 @@ vec4 mat4::operator*(const vec4& v) const {
 
 vec3 mat4::operator*(const vec3& v) const {
 
-	float32x4_t vec[3];
+	float32x4_t vec[4];
 	float32x4_t col[4];
 
 	float tmp[4]{ v.x, v.x, v.x, v.x };
@@ -499,13 +499,20 @@ vec3 mat4::operator*(const vec3& v) const {
 
 	vec[2] = vld1q_f32(tmp);
 
+	tmp[0] = 1.0f;
+	tmp[1] = 1.0f;
+	tmp[2] = 1.0f;
+	tmp[3] = 1.0f;
+
+	vec[3] = vld1q_f32(tmp);
+
 	LoadColumns(col);
 
 	float32x4_t res = vmulq_f32(vec[0], col[0]);
 
-	for (int i = 1; i < 3; i++) {
+	for (int i = 1; i < 4; i++) {
 #ifdef __aarch64__
-		res = vfmaq_f32(vec[i], col[i], res);
+		res = vfmaq_f32(res, vec[i], col[i]);
 #else
 		res = vaddq_f32(vmulq_f32(vec[i], col[i]), res);
 #endif
@@ -514,39 +521,6 @@ vec3 mat4::operator*(const vec3& v) const {
 	vst1q_f32(tmp, res);
 
 	return vec3(tmp[0], tmp[1], tmp[2]);
-}
-
-vec2 mat4::operator*(const vec2& v) const {
-
-	float32x4_t vec[2];
-	float32x4_t col[4];
-
-	float tmp[4]{ v.x, v.x, v.x, v.x };
-
-	vec[0] = vld1q_f32(tmp);
-
-	tmp[0] = v.y;
-	tmp[1] = v.y;
-	tmp[2] = v.y;
-	tmp[3] = v.y;
-
-	vec[1] = vld1q_f32(tmp);
-
-	LoadColumns(col);
-
-	float32x4_t res = vmulq_f32(vec[0], col[0]);
-
-	for (int i = 1; i < 4; i++) {
-#ifdef __aarch64__
-		res = vfmaq_f32(vec[i], col[i], res);
-#else
-		res = vaddq_f32(vmulq_f32(vec[i], col[i]), res);
-#endif
-	}
-
-	vst1q_f32(tmp, res);
-
-	return vec2(tmp[0], tmp[1]);
 }
 
 #else
@@ -566,29 +540,23 @@ mat4 mat4::operator*(const mat4& r) const {
 	return mat4(tmp);
 }
 
-ec4 mat4::operator*(const vec4& v) const {
+vec4 mat4::operator*(const vec4& v) const {
 
-	float x = m[0 + 0 * 4] * v.x + m[1 + 0 * 4] * v.x + m[2 + 0 * 4] * v.x + m[3 + 0 * 4] * v.x;
-	float y = m[0 + 1 * 4] * v.y + m[1 + 1 * 4] * v.y + m[2 + 1 * 4] * v.y + m[3 + 1 * 4] * v.y;
-	float z = m[0 + 2 * 4] * v.z + m[1 + 2 * 4] * v.z + m[2 + 2 * 4] * v.z + m[3 + 2 * 4] * v.z;
-	float w = m[0 + 3 * 4] * v.w + m[1 + 3 * 4] * v.w + m[2 + 3 * 4] * v.w + m[3 + 3 * 4] * v.w;
+	float x = m[0 + 0 * 4] * v.x + m[0 + 1 * 4] * v.y + m[0 + 2 * 4] * v.z + m[0 + 3 * 4] * v.w;
+	float y = m[1 + 0 * 4] * v.x + m[1 + 1 * 4] * v.y + m[1 + 2 * 4] * v.z + m[1 + 3 * 4] * v.w;
+	float z = m[2 + 0 * 4] * v.x + m[2 + 1 * 4] * v.y + m[2 + 2 * 4] * v.z + m[2 + 3 * 4] * v.w;
+	float w = m[3 + 0 * 4] * v.x + m[3 + 1 * 4] * v.y + m[3 + 2 * 4] * v.z + m[3 + 3 * 4] * v.w;
 
 	return vec4(x, y, z, w);
 }
 
 vec3 mat4::operator*(const vec3& v) const {
-	float x = m[0 + 0 * 4] * v.x + m[1 + 0 * 4] * v.x + m[2 + 0 * 4] * v.x + m[3 + 0 * 4] * v.x;
-	float y = m[0 + 1 * 4] * v.y + m[1 + 1 * 4] * v.y + m[2 + 1 * 4] * v.y + m[3 + 1 * 4] * v.y;
-	float z = m[0 + 2 * 4] * v.z + m[1 + 2 * 4] * v.z + m[2 + 2 * 4] * v.z + m[3 + 2 * 4] * v.z;
-
+	float x = m[0 + 0 * 4] * v.x + m[0 + 1 * 4] * v.y + m[0 + 2 * 4] * v.z + m[0 + 3 * 4] * 1;
+	float y = m[1 + 0 * 4] * v.x + m[1 + 1 * 4] * v.y + m[1 + 2 * 4] * v.z + m[1 + 3 * 4] * 1;
+	float z = m[2 + 0 * 4] * v.x + m[2 + 1 * 4] * v.y + m[2 + 2 * 4] * v.z + m[2 + 3 * 4] * 1;
+	float w = m[3 + 0 * 4] * v.x + m[3 + 1 * 4] * v.y + m[3 + 2 * 4] * v.z + m[3 + 3 * 4] * 1;
+	
 	return vec3(x, y, z);
-}
-
-vec2 mat4::operator*(const vec2& v) const {
-	float x = m[0 + 0 * 4] * v.x + m[1 + 0 * 4] * v.x + m[2 + 0 * 4] * v.x + m[3 + 0 * 4] * v.x;
-	float y = m[0 + 1 * 4] * v.y + m[1 + 1 * 4] * v.y + m[2 + 1 * 4] * v.y + m[3 + 1 * 4] * v.y;
-
-	return vec2(x, y);
 }
 
 #endif
