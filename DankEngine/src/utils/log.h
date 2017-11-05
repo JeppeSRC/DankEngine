@@ -38,7 +38,7 @@ namespace dank {
 		unsigned int error = glGetError();
 
 		if (error) {
-			LOGF("Error %u calling %s in %s:%u", error, func, file, line);
+			//LOGF("Error %u calling %s in %s:%u", error, func, file, line);
 		}
 	}
 }

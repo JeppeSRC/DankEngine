@@ -70,6 +70,7 @@ namespace dank {
 		static Application* application;
 		static Application* Get() { return application; }
 		static void Set(Application* application) { Application::application = application;  }
+
 	protected:
 		ANativeActivity* activity;
 		float width;

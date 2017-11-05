@@ -24,10 +24,11 @@ namespace dank {
 
 	int InputManager::OnGameInput(AInputEvent* event) {
 		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-			float x = AMotionEvent_getX(event, 0);
-			float y = AMotionEvent_getY(event, 0);
-			LOGD("X: %f Y: %f", x, y);
+			x = AMotionEvent_getX(event, 0);
+			y = AMotionEvent_getY(event, 0);
 		}
+		x *= NativeApp::app->xUnitsPerPixel;
+		y *= NativeApp::app->yUnitsPerPixel;
 	}
 
 	void InputManager::ShowKeyboard() {

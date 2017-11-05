@@ -6,7 +6,7 @@
 
 namespace dank {
 
-	const char* Renderer::vertex2 = "version 100\n"
+	const char* Renderer::vertex2 = "#version 100\n"
 			#include "graphics/shaders/renderer2.vs"
 			;
 

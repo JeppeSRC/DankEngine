@@ -21,6 +21,9 @@ namespace dank {
 		static void ShowKeyboard();
 		static void HideKeyboard();
 
+		inline static float GetX() { return x; }
+		inline static float GetY() { return y; }
+
 	};
 
 }

@@ -117,18 +117,19 @@ namespace dank {
 
 		eglSwapInterval(app->display, 0);
 
+		app->xUnitsPerPixel = Application::Get()->GetGameWidth() / (float)app->surface_width;
+		app->yUnitsPerPixel = Application::Get()->GetGameHeight() / (float)app->surface_height;
+
 		InputManager::Init();
 
 		Application::Get()->Init();
 		unsigned long long lastTime = mikrotime();
-
 		while (app->status) {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			while ((ident = ALooper_pollAll(app->status == 2 ? -1 : 0, nullptr, &events, (void**)&process_cmd)) >= 0) {
 				if (process_cmd) process_cmd();
 			}
-
 			unsigned long long now = mikrotime();
 			float delta = ((float)(now - lastTime)) / (float)1000000;
 			lastTime = now;

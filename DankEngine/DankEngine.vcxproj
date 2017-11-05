@@ -222,7 +222,8 @@
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
-      <AdditionalOptions>-mfma</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <FloatABI>
       </FloatABI>
     </ClCompile>
@@ -236,7 +237,8 @@
       <AdditionalIncludeDirectories>$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories);src;$(SolutionDir)Dependencies\FreeType\include;$(SolutionDir)Dependencies\FreeType-GL\include;$(SolutionDir)Dependencies\STB_Image\src</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-mfma</AdditionalOptions>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatABI>
       </FloatABI>
