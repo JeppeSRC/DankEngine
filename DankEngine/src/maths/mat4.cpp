@@ -353,6 +353,7 @@ vec4 mat4::operator*(const vec4& v) const {
 
 	for (int i = 1; i < 4; i++) {
 		//res = _mm_fmadd_ps(vec[i], col[i], res);
+		res = _mm_add_ps(_mm_mul_ps(vec[i], col[i]), res);
 	}
 	
 	vec4 m(0, 0, 0, 0);
@@ -363,19 +364,21 @@ vec4 mat4::operator*(const vec4& v) const {
 }
 
 vec3 mat4::operator*(const vec3& v) const {
-	__m128 vec[3];
+	__m128 vec[4];
 	__m128 col[4];
 
 	vec[0] = _mm_set_ps(v.x, v.x, v.x, v.x);
 	vec[1] = _mm_set_ps(v.y, v.y, v.y, v.y);
 	vec[2] = _mm_set_ps(v.z, v.z, v.z, v.z);
+	vec[3] = _mm_set_ps(1, 1, 1, 1);
 
 	LoadColumns(col);
 
 	__m128 res = _mm_mul_ps(vec[0], col[0]);
 
 	for (int i = 1; i < 2; i++) {
-		res = _mm_fmadd_ps(vec[i], col[i], res);
+		//res = _mm_fmadd_ps(vec[i], col[i], res);
+		res = _mm_add_ps(_mm_mul_ps(vec[i], col[i]), res);
 	}
 
 	vec3 m(0, 0, 0);
