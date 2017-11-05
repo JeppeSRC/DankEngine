@@ -6,7 +6,7 @@
 
 namespace dank {
 
-	const char* Renderer::vertex2 = "version 100\n"
+const char* Renderer::vertex2 = "#version 100\n"
 			#include "graphics/shaders/renderer2.vs"
 			;
 
@@ -55,7 +55,6 @@ namespace dank {
 
 		shader->SetIntArray("samplers", MAX_TEXTURES, ids);
 		shader->SetMat4("projection", orthographicMatrix.GetData());
-		//add matrix
 	}
 
 	Renderer::~Renderer() {
