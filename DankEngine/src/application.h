@@ -69,14 +69,14 @@ namespace dank {
 		static Application* application;
 		static Application* Get() { return application; }
 		static void Set(Application* application) { Application::application = application;  }
-	private:
+	protected:
 		ANativeActivity* activity;
-		unsigned int width;
-		unsigned int height;
+		float width;
+		float height;
 
 
 	public:
-		Application(ANativeActivity* activity, unsigned int width, unsigned int height)
+		Application(ANativeActivity* activity, float width, float height)
 			: width(width), height(height) {
 			NativeApp::Initialise(activity);
 			FileUtils::assetManager = activity->assetManager;
@@ -111,7 +111,8 @@ namespace dank {
 		virtual void Init() = 0;
 		virtual void End() = 0;
 
-		inline unsigned int GetGameWidth() { return width; }
-		inline unsigned int GetGameHeight() { return height; }
+		inline float GetGameWidth() { return width; }
+		inline float GetGameHeight() { return height; }
+		
 	};
 }

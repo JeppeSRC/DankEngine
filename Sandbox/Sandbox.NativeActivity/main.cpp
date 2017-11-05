@@ -24,14 +24,13 @@ private:
 
 public:
 	MainApp(ANativeActivity* activity) 
-		: Application(activity, 540, 960) {
+		: Application(activity, 1000, 500) {
 		Application::Set(this);
 	}
 
 	void Init() override {
+		height = width / ((float)NativeApp::app->surface_width / NativeApp::app->surface_height);
 		renderer = new BatchRenderer(30);
-		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
-		glDisable(GL_BLEND);
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
@@ -39,9 +38,9 @@ public:
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(-270.f, -450.f), 0xFFFF00FF);
-		renderer->Submit(vec3(0.0f, 0.0f, 0.0f), vec2(400.f, 400.f), texture);
-		//renderer->Submit(vec3(-0.3f, -0.3f, 0.0f), vec2(1.f, 1.f), 0xFF7f37ab);
+		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 150), 0xFFFF00FF);
+		renderer->Submit(vec3(250.0f, 270, 0.0f), vec2(200.f, 200.f), texture);
+		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
 	}
