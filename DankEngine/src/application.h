@@ -47,7 +47,6 @@ static void OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* wi
 static void OnDestroy(ANativeActivity* activity) { app->OnDestroy(activity); delete app; } \
 void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_t savedStateSize) {  \
 	app = new x(activity); \
-	LOGD("Saved state size: %u", savedStateSize);\
 	activity->callbacks->onConfigurationChanged = OnConfigurationChanged; \
 	activity->callbacks->onDestroy = OnDestroy; \
 	activity->callbacks->onInputQueueCreated = OnInputQueueCreated; \
