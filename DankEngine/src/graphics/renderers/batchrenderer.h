@@ -35,6 +35,10 @@ namespace dank {
 			renderer->Submit(position, size, texture);
 		}
 
+		inline void Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color) {
+			renderer->Submit(position, size, texture, color);
+		}
+
 		inline void Submit(const String& text, Font* font, const vec2& position, unsigned int color) {
 			renderer->Submit(text, font, position, color);
 		}

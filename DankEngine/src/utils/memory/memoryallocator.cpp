@@ -3,7 +3,7 @@ typedef char byte;
 
 namespace dank {
 
-	float MemoryAllocator::allocated = 0;
+	unsigned int MemoryAllocator::allocated = 0;
 
 	void* MemoryAllocator::Allocate(size_t size) {
 		allocated += size;

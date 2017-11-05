@@ -9,7 +9,7 @@ namespace dank {
 	class MemoryAllocator {
 	private:
 		
-		static float allocated;
+		static unsigned int allocated;
 
 	public:
 		static void* Allocate(size_t size);

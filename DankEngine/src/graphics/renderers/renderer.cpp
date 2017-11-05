@@ -6,24 +6,24 @@
 
 namespace dank {
 
-	const char* Renderer::vertex2 = 
+	const char* Renderer::vertex2 = "version 100\n"
 			#include "graphics/shaders/renderer2.vs"
 			;
 
-	const char* Renderer::fragment2 =
+	const char* Renderer::fragment2 = "#version 100\n"
 			#include "graphics/shaders/renderer2.fs"
 			;
 
-	const char* Renderer::vertex3 = 
+	const char* Renderer::vertex3 = "#version 300 es\n"
 			#include "graphics/shaders/renderer3.vs"
 			;
-	const char* Renderer::fragment3 =
+	const char* Renderer::fragment3 = "#version 300 es\n"
 			#include "graphics/shaders/renderer3.fs"
 			;
 
 
 	Renderer::Renderer(unsigned int num_sprites, RendererType type) {
-		orthographicMatrix = mat4::Orthographic(0, Application::Get()->GetGameWidth(), 0, Application::Get()->GetGameHeight(), 1.0, -1.0);
+		orthographicMatrix = mat4::Orthographic(0, Application::Get()->GetGameWidth(), 0, Application::Get()->GetGameHeight(), -1.0, 1.0);
 
 		numSprites = num_sprites;
 		unsigned short offset = 0;
@@ -53,6 +53,7 @@ namespace dank {
 		int ids[32] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 };
 
 		shader->SetIntArray("samplers", MAX_TEXTURES, ids);
+		shader->SetMat4("projection", orthographicMatrix.GetData());
 		//add matrix
 	}
 
@@ -63,28 +64,28 @@ namespace dank {
 	}
 
 	void Renderer::Submit(const vec3& position, const vec2& size, unsigned int color) {
-		buffer->position = orthographicMatrix * (position + vec2(size.x * -0.5f, size.y * -0.5f));
+		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(0, 0);
 		buffer->color = color;
 		buffer->texID = -1;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x *  0.5f, size.y * -0.5f));
+		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(1, 0);
 		buffer->color = color;
 		buffer->texID = -1;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x *  0.5f, size.y *  0.5f));
+		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(1, 1);
 		buffer->color = color;
 		buffer->texID = -1;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x * -0.5f, size.y *  0.5f));
+		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(0, 1);
 		buffer->color = color;
 		buffer->texID = -1;
@@ -97,30 +98,63 @@ namespace dank {
 
 	void Renderer::Submit(const vec3& position, const vec2& size, Texture2D* texture) {
 		float tid = SubmitTexture(texture);
-		buffer->position = orthographicMatrix * (position + vec2(size.x * -0.5f, size.y * -0.5f));
+		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(0, 0);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x *  0.5f, size.y * -0.5f));
+		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
 		buffer->texCoord = vec2(1, 0);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x *  0.5f, size.y *  0.5f));
+		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(1, 1);
 		buffer->color = 0xFFFFFFFF;
 		buffer->texID = tid;
 		buffer->text = 0.f;
 		buffer++;
 
-		buffer->position = orthographicMatrix * (position + vec2(size.x * -0.5f, size.y *  0.5f));
+		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
 		buffer->texCoord = vec2(0, 1);
 		buffer->color = 0xFFFFFFFF;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		count += 6;
+	}
+
+	void Renderer::Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color) {
+		float tid = SubmitTexture(texture);
+		buffer->position = position + vec2(size.x * -0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(0, 0);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y * -0.5f);
+		buffer->texCoord = vec2(1, 0);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x *  0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(1, 1);
+		buffer->color = color;
+		buffer->texID = tid;
+		buffer->text = 0.f;
+		buffer++;
+
+		buffer->position = position + vec2(size.x * -0.5f, size.y *  0.5f);
+		buffer->texCoord = vec2(0, 1);
+		buffer->color = color;
 		buffer->texID = tid;
 		buffer->text = 0.f;
 		buffer++;
@@ -183,7 +217,7 @@ namespace dank {
 			float u1 = glyph->s1;
 			float v1 = glyph->t1;
 
-			buffer->position = orthographicMatrix * vec3(x, y, 0.0);
+			buffer->position = vec3(x, y, 0.0);
 			buffer->texCoord.x = u0;
 			buffer->texCoord.y = v0;
 			buffer->color = color;
@@ -191,7 +225,7 @@ namespace dank {
 			buffer->text = 1.0f;
 			buffer++;
 
-			buffer->position = orthographicMatrix * vec3(x + bitmapWidth, y, 0.0);
+			buffer->position = vec3(x + bitmapWidth, y, 0.0);
 			buffer->texCoord.x = u1;
 			buffer->texCoord.y = v0;
 			buffer->color = color;
@@ -199,7 +233,7 @@ namespace dank {
 			buffer->text = 1.0f;
 			buffer++;
 
-			buffer->position = orthographicMatrix * vec3(x + bitmapWidth, y + bitmapHeight, 0.0);
+			buffer->position = vec3(x + bitmapWidth, y + bitmapHeight, 0.0);
 			buffer->texCoord.x = u1;
 			buffer->texCoord.y = v1;
 			buffer->color = color;
@@ -207,7 +241,7 @@ namespace dank {
 			buffer->text = 1.0f;
 			buffer++;
 
-			buffer->position = orthographicMatrix * vec3(x, y + bitmapHeight, 0.0);
+			buffer->position = vec3(x, y + bitmapHeight, 0.0);
 			buffer->texCoord.x = u0;
 			buffer->texCoord.y = v1;
 			buffer->color = color;

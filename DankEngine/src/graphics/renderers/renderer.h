@@ -59,6 +59,7 @@ namespace dank {
 
 		void Submit(const vec3& position, const vec2& size, unsigned int color);
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture);
+		void Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color);
 		void Submit(const String& text, Font* font, const vec2& position, unsigned int color);
 
 	private:

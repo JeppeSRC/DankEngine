@@ -4,6 +4,7 @@
 #include <utils/string.h>
 #include <utils/map.h>
 #include <core/resource/resource.h>
+#include <maths/vec2.h>
 
 namespace ftgl {
 	struct texture_atlas_t;
@@ -46,6 +47,8 @@ public:
 	inline const String& GetName() const { return name; }
 	inline Texture* GetTexture() const { return atlas; }
 	inline ftgl::texture_font_t* GetFont() const { return font; }
+
+	vec2 GetMetrics(const String& text) const;
 };
 
 class FontManager {

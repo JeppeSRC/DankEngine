@@ -1,5 +1,4 @@
 R"(
-#version 100
 
 attribute vec3 position;
 attribute vec2 texCoords;
@@ -20,6 +19,6 @@ void main() {
 	tID = textureID;
 	text = tex;
 
-	gl_Position = /*projection */ vec4(position, 1);
+	gl_Position = projection * vec4(position, 1);
 }
 )"
