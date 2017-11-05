@@ -14,6 +14,7 @@
 #include <android/sensor.h>
 
 #include "core/nativeapp.h"
+#include "core/input/inputmanager.h"
 
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"

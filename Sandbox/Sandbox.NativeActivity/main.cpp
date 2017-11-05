@@ -35,6 +35,7 @@ public:
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
+		InputManager::ShowKeyboard();
 	}
 
 	void Render() override {

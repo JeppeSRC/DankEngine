@@ -7,8 +7,6 @@ namespace dank {
 	void* app_main(void*);
 	void game_main();
 
-	int OnGameInput(AInputEvent* event);
-
 	Application* Application::application = nullptr;
 
 
@@ -89,7 +87,7 @@ namespace dank {
 
 		ALooper_addFd(app->looper, app->msgRead, LOOPER_ID_CMD, ALOOPER_EVENT_INPUT, nullptr, (void*)app->cmd);
 
-		app->OnInput = OnGameInput;
+		app->OnInput = InputManager::OnGameInput;
 
 		pthread_mutex_lock(&app->mutex);
 		app->status = 1;
@@ -99,14 +97,6 @@ namespace dank {
 		game_main();
 
 		return nullptr;
-	}
-
-	int OnGameInput(AInputEvent* event) {
-		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-			float x = AMotionEvent_getX(event, 0);
-			float y = AMotionEvent_getY(event, 0);
-			LOGD("X: %f Y: %f", x, y);
-		}
 	}
 
 	void game_main() {
@@ -126,6 +116,8 @@ namespace dank {
 		glDisable(GL_CULL_FACE);
 
 		eglSwapInterval(app->display, 0);
+
+		InputManager::Init();
 
 		Application::Get()->Init();
 		unsigned long long lastTime = mikrotime();
