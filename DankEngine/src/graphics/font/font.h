@@ -26,7 +26,7 @@ public:
 	void Bind(unsigned int slot = 0) const override;
 };
 
-class Font : public ResourceFont  {
+class Font {
 private:
 	String name;
 
@@ -59,11 +59,14 @@ public:
 		const void* data;
 		unsigned int size;
 
+	private:
+		void OnCreate(ResourceCreateState state) override;
 	public:
 		FontData(const ResourceFont* resource);
 		FontData(const void* const data, unsigned int size, const String& name);
 		FontData(const String& filename, const String& name);
 		~FontData();
+
 	};
 
 private:

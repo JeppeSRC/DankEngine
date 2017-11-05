@@ -15,6 +15,8 @@
 
 #include "core/nativeapp.h"
 
+#include <core/resource/resourcemanager.h>
+
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"
 #include "graphics/buffers/vertexarray.h"
@@ -74,12 +76,14 @@ namespace dank {
 		float width;
 		float height;
 
+		ResourceManager* resourceManager;
 
 	public:
 		Application(ANativeActivity* activity, float width, float height)
 			: width(width), height(height) {
 			NativeApp::Initialise(activity);
 			FileUtils::assetManager = activity->assetManager;
+			resourceManager = new ResourceManager(nullptr);
 		}
 
 		virtual ~Application();

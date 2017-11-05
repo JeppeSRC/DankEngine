@@ -50,9 +50,9 @@ void Texture2D::Load(const char* filename) {
 }
 
 Texture2D::Texture2D(const ResourceTexture* resource) : Texture(resource) {
-	ASSERT(resource->GetStorageType() == ResourceStorageType::RESOURCE_STORAGE_UNKNOWN)
+	ASSERT(resource->GetStorageType() == ResourceStorageType::UNKNOWN)
 
-	if (resource->GetStorageType() == ResourceStorageType::RESOURCE_STORAGE_FILE) {
+	if (resource->GetStorageType() == ResourceStorageType::FILE) {
 		Load(resource->GetFilename());
 	}
 	else {
@@ -73,6 +73,18 @@ Texture2D::Texture2D(const void* const data, unsigned int width, unsigned int he
 void Texture2D::Bind(unsigned int slot) const {
 	GL(glActiveTexture(GL_TEXTURE0 + slot));
 	GL(glBindTexture(GL_TEXTURE_2D, textureID));
+}
+
+void Texture2D::OnCreate(ResourceCreateState state) {
+	ASSERT(state == ResourceCreateState::UNKNOWN);
+	ASSERT(GetStorageType() == ResourceStorageType::UNKNOWN)
+
+	if (GetStorageType() == ResourceStorageType::FILE) {
+		Load(GetFilename());
+	}
+	else {
+		Load(GetWidth(), GetHeight(), GetPixelData());
+	}
 }
 
 }

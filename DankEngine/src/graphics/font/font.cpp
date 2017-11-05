@@ -28,11 +28,11 @@ void Font::LoadFont(const String& filename, float fontSize) {
 	LoadFont(data, (size_t)size, fontSize);
 }
 
-Font::Font(const String& filename, float fontSize, const String& fontName) : ResourceFont(*filename, *fontName, 0), name(fontName) {
+Font::Font(const String& filename, float fontSize, const String& fontName) : name(fontName) {
 	LoadFont(filename, fontSize);
 }
 
-Font::Font(const void* const data, size_t size, float fontSize, const String& fontName) : ResourceFont(data, size, *fontName, 0), name(fontName) {
+Font::Font(const void* const data, size_t size, float fontSize, const String& fontName) : name(fontName) {
 	LoadFont(data, size, fontSize);
 }
 

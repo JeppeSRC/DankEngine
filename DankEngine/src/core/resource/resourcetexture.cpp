@@ -7,10 +7,10 @@ ResourceTexture::ResourceTexture(const ResourceTexture* other) : Resource((void*
 
 }
 
-ResourceTexture::ResourceTexture(ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::RESOURCE_TEXTURE, ResourceStorageType::RESOURCE_STORAGE_UNKNOWN, resourceID), textureType(type) { }
+ResourceTexture::ResourceTexture(ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::TEXTURE, ResourceStorageType::UNKNOWN, resourceID), textureType(type) { }
 
 
-ResourceTexture::ResourceTexture(const char* filename, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, strlen(filename) + 1, ResourceType::RESOURCE_TEXTURE, ResourceStorageType::RESOURCE_STORAGE_FILE, resourceID), textureType(type) {
+ResourceTexture::ResourceTexture(const char* filename, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, strlen(filename) + 1, ResourceType::TEXTURE, ResourceStorageType::FILE, resourceID), textureType(type) {
 	void* res = denew unsigned char[resourceDataSize];
 
 	memcpy(res, filename, resourceDataSize);
@@ -18,7 +18,7 @@ ResourceTexture::ResourceTexture(const char* filename, ResourceTextureType type,
 	resourceData = (unsigned long long)res;
 }
 
-ResourceTexture::ResourceTexture(unsigned int width, unsigned int height, unsigned int pixelSize, const void* const data, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::RESOURCE_TEXTURE, ResourceStorageType::RESOURCE_STORAGE_BINARY, resourceID), textureType(type) {
+ResourceTexture::ResourceTexture(unsigned int width, unsigned int height, unsigned int pixelSize, const void* const data, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::TEXTURE, ResourceStorageType::BINARY, resourceID), textureType(type) {
 	resourceDataSize = width * height * pixelSize + 12;
 
 	void* res = denew unsigned char[resourceDataSize];

@@ -29,6 +29,8 @@ public:
 };
 
 class Texture2D : public Texture {
+private:
+	void OnCreate(ResourceCreateState state);
 protected:
 
 	void Load(unsigned int width, unsigned int height, const void* const data);

@@ -173,5 +173,8 @@ namespace dank {
 		glUniformMatrix4fv(location, 1, false, data);
 	}
 
-
+	void Shader::OnCreate(ResourceCreateState state) {
+		ASSERT(state == ResourceCreateState::UNKNOWN);
+		CompileShader(GetVSCode(), GetPSCode());
+	}
 }

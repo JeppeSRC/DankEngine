@@ -19,6 +19,8 @@ namespace dank {
 
 		void CompileShader(const char* vertex, const char* fragment);
 
+		void OnCreate(ResourceCreateState satet);
+
 	public:
 		Shader(ResourceShader* resource);
 		Shader(const char* vertex, const char* fragment);
@@ -45,13 +47,13 @@ namespace dank {
 		void SetMat4(unsigned int location, const float* const data) const;
 
 		inline void SetVec2(const char* const name, const vec2& v) { SetVec2(name, v.x, v.y); }
-		inline void SetVec2(unsigned int location, const vec2& v) { SetVec2(location, v.x, v.y); }
+		inline void SetVec2(unsigned int location, const vec2& v) {  SetVec2(location, v.x, v.y); }
 		inline void SetVec3(const char* const name, const vec3& v) { SetVec3(name, v.x, v.y, v.z); }
-		inline void SetVec3(unsigned int location, const vec3& v) { SetVec3(location, v.x, v.y, v.z); }
+		inline void SetVec3(unsigned int location, const vec3& v) {  SetVec3(location, v.x, v.y, v.z); }
 		inline void SetVec4(const char* const name, const vec4& v) { SetVec4(name, v.x, v.y, v.z, v.w); }
-		inline void SetVec4(unsigned int location, const vec4& v) { SetVec4(location, v.x, v.y, v.z, v.w); }
+		inline void SetVec4(unsigned int location, const vec4& v) {  SetVec4(location, v.x, v.y, v.z, v.w); }
 		inline void SetMat4(const char* const name, const mat4& m) { SetMat4(name, m.GetData()); }
-		inline void SetMat4(unsigned int location, const mat4& m) { SetMat4(location, m.GetData());  }
+		inline void SetMat4(unsigned int location, const mat4& m) {  SetMat4(location, m.GetData()); }
 		
 	};
 

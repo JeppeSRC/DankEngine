@@ -65,6 +65,8 @@ namespace dank {
 
 		inline void Add(K key, D item) {
 
+			if (keys.Find(key) != (size_t)~0) return;
+
 			data << item;
 			keys << key;
 		}

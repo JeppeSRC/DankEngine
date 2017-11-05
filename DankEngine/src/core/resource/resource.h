@@ -5,19 +5,26 @@
 namespace dank {
 
 enum class ResourceType {
-	RESOURCE_UNKNOWN,
-	RESOURCE_BINARY,
-	RESOURCE_SHADER,
-	RESOURCE_TEXTURE,
-	RESOURCE_FONT,
+	UNKNOWN,
+	BINARY,
+	SHADER,
+	TEXTURE,
+	FONT,
 };
 
 enum class ResourceStorageType {
-	RESOURCE_STORAGE_UNKNOWN,
-	RESOURCE_STORAGE_BINARY,
-	RESOURCE_STORAGE_FILE
+	UNKNOWN,
+	BINARY,
+	FILE
 };
 
+//TODO: more dank names
+enum class ResourceCreateState {
+	UNKNOWN,
+	COLD,
+	HOT
+};
+ 
 class Resource {
 protected:
 	ResourceType type;
@@ -32,6 +39,7 @@ protected:
 public:
 	virtual ~Resource();
 
+	virtual void OnCreate(ResourceCreateState state) {}
 
 	inline const void* GetResourceData() const { return (void*)resourceData; }
 	inline unsigned int GetResourceDataSize() const { return resourceDataSize; }
@@ -70,13 +78,13 @@ public:
 
 /*
 Data layout:
-	RESOURCE_STORAGE_BINARY:
+	BINARY:
 		- width
 		- height
 		- format
 		- data
 
-	RESOURCE_STORAGE_FILE:
+	FILE:
 		- filename + null terminator
 
 */
@@ -107,12 +115,12 @@ public:
 
 /*
 Data layout:
-	RESOURCE_STORAGE_BINARY:
+	BINARY:
 		- size
 		- name + null terminator
 		- font data
 
-	RESOURCE_STORAGE_FILE:
+	FILE:
 		- filename + null terminator
 		- name + null terminator
 */

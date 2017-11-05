@@ -6,7 +6,7 @@ ResourceShader::ResourceShader(const ResourceShader* other) : Resource((void*)ot
 
 }
 
-ResourceShader::ResourceShader(const char* vs, const char* ps, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::RESOURCE_SHADER, ResourceStorageType::RESOURCE_STORAGE_FILE, resourceID) {
+ResourceShader::ResourceShader(const char* vs, const char* ps, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::SHADER, ResourceStorageType::FILE, resourceID) {
 	size_t vsLen = strlen(vs)+1;
 	size_t psLen = strlen(ps)+1;
 
