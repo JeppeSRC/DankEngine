@@ -14,6 +14,7 @@
 #include <android/sensor.h>
 
 #include "core/nativeapp.h"
+#include "core/input/inputmanager.h"
 
 #include <core/resource/resourcemanager.h>
 
@@ -71,6 +72,7 @@ namespace dank {
 		static Application* application;
 		static Application* Get() { return application; }
 		static void Set(Application* application) { Application::application = application;  }
+
 	protected:
 		ANativeActivity* activity;
 		float width;
@@ -108,7 +110,7 @@ namespace dank {
 		virtual void OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue);
 
 		virtual void Render() = 0;
-		virtual void Update() = 0;
+		virtual void Update(float delta) = 0;
 
 		void Start();
 

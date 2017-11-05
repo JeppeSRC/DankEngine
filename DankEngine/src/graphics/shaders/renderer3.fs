@@ -1,6 +1,7 @@
 R"(
 
 precision mediump float;
+precision mediump int;
 
 in vec2 texCoord;
 in vec4 color;

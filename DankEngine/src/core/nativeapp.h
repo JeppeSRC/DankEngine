@@ -77,8 +77,8 @@ namespace dank {
 		int surface_width;
 		int surface_height;
 
-		float xUnitsPerPixel = 1.0f; // TODO: CHANGE THIS RETARD
-		float yUnitsPerPixel = 1.0f;
+		float xUnitsPerPixel;
+		float yUnitsPerPixel;
 
 		int msgRead;
 		int msgWrite;
