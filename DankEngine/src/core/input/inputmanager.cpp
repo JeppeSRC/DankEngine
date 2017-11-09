@@ -8,6 +8,7 @@ namespace dank {
 	JNIEnv* InputManager::env = nullptr;
 	jobject InputManager::inputmanager;
 	jmethodID InputManager::toggleSoftInput;
+	int InputManager::keys[MAX_KEYS] = { 0 };
 
 	void InputManager::Init() {
 		NativeApp* app = NativeApp::app;

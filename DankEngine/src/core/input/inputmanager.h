@@ -5,6 +5,8 @@
 #include "utils/log.h"
 namespace dank {
 
+#define MAX_KEYS 10000
+
 	class InputManager {
 	private:
 		static float x;
@@ -13,6 +15,9 @@ namespace dank {
 		static JNIEnv* env;
 		static jobject inputmanager;
 		static jmethodID toggleSoftInput;
+
+		static int keys[MAX_KEYS];
+
 	public:
 		static void Init();
 
