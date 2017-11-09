@@ -136,6 +136,7 @@ namespace dank {
 			lastTime = now;
 
 			Application::Get()->Update(delta);
+			InputManager::Update();
 			Application::Get()->Render();
 
 

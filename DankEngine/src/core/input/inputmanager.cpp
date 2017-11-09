@@ -8,7 +8,7 @@ namespace dank {
 	JNIEnv* InputManager::env = nullptr;
 	jobject InputManager::inputmanager;
 	jmethodID InputManager::toggleSoftInput;
-	int InputManager::keys[MAX_KEYS] = { 0 };
+	bool InputManager::keys[MAX_KEYS] = { 0 };
 
 	void InputManager::Init() {
 		NativeApp* app = NativeApp::app;
@@ -24,12 +24,16 @@ namespace dank {
 	}
 
 	int InputManager::OnGameInput(AInputEvent* event) {
-		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
-			x = AMotionEvent_getX(event, 0);
-			y = AMotionEvent_getY(event, 0);
+		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_KEY) {
+			keys[AKeyEvent_getKeyCode(event)] = true;
+			return 1;
 		}
-		x *= NativeApp::app->xUnitsPerPixel;
-		y *= NativeApp::app->yUnitsPerPixel;
+		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
+			x = AMotionEvent_getX(event, 0) * NativeApp::app->xUnitsPerPixel;
+			y = AMotionEvent_getY(event, 0) * NativeApp::app->yUnitsPerPixel;
+			return 1;
+		}
+		return 0;
 	}
 
 	void InputManager::ShowKeyboard() {

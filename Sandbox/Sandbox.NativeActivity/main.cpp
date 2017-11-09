@@ -39,6 +39,8 @@ public:
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
+
+		InputManager::ShowKeyboard();
 	}
 
 	void Render() override {
@@ -58,6 +60,8 @@ public:
 	void Update(float delta) override {
 		x = InputManager::GetX();
 		y = InputManager::GetY();
+		if (InputManager::GetKey(AKEYCODE_B))
+			InputManager::HideKeyboard();
 	}
 };
 
