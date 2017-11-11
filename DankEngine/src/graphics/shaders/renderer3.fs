@@ -8,7 +8,7 @@ in vec4 color;
 in float tID;
 in float text;
 
-uniform sampler2D samplers[16];
+uniform sampler2D samplers[#maxTextures];
 
 layout(location = 0) out vec4 outColor;
 

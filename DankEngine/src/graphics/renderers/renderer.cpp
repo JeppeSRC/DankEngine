@@ -44,10 +44,21 @@ namespace dank {
 
 		ibo = new IndexBuffer(indices, numSprites * 6);
 
-		if (type == RendererType::RENDERER_GLES2)
-			shader = new Shader(vertex2, fragment2);
-		else
-			shader = new Shader(vertex3, fragment3);
+		
+
+		if (type == RendererType::RENDERER_GLES2) {
+			ShaderFactory factory(vertex2, fragment2);
+			
+			factory.SetVariable("maxTextures", 16U, ShaderType::PIXEL);
+			
+			shader = factory.CreateShader();
+		} else {
+			ShaderFactory factory(vertex3, fragment3);
+
+			factory.SetVariable("maxTextures", 16U, ShaderType::PIXEL);
+
+			shader = factory.CreateShader();
+		}
 	
 		shader->Bind();
 

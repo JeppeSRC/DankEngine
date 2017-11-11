@@ -131,6 +131,21 @@ namespace dank {
 		return *this;
 	}
 
+	String& String::Insert(const String& string, size_t offset) {
+		size_t denewlen = length + string.length;
+		char* tmpstr = str;
+		str = denew char[denewlen + 1];
+		str[denewlen] = 0;
+		memcpy(str, tmpstr, offset);
+		memcpy(str + offset, string.str, string.length);
+		memcpy(str + offset + string.length, tmpstr + offset, length - offset);
+		length = denewlen;
+
+		delete[] tmpstr;
+
+		return *this;
+	}
+
 	String& String::RemoveChars(const String& chars, bool iterate) {
 
 		size_t start = 0;

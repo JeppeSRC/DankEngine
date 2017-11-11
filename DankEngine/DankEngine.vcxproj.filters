@@ -32,6 +32,7 @@
     <ClCompile Include="src\core\resource\resourcetext.cpp" />
     <ClCompile Include="src\graphics\font\fontdata.cpp" />
     <ClCompile Include="src\core\input\inputmanager.cpp" />
+    <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />

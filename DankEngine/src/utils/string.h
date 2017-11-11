@@ -34,6 +34,8 @@ namespace dank {
 		inline String& operator<<(const String& string) { return Append(string); }
 		inline String& operator<<(const char character) { return Append(character); }
 
+		String& Insert(const String& string, size_t offset = 0);
+
 		String& RemoveChars(const String& chars, bool iterate);
 		String& Remove(const String& string);
 		String& Remove(size_t start, size_t end);

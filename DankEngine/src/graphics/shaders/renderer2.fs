@@ -2,7 +2,7 @@ R"(
 precision mediump float;
 precision mediump int;
 
-uniform sampler2D samplers[16];
+uniform sampler2D samplers[#maxTextures];
 
 varying vec4 color;
 varying vec2 texCoord;
