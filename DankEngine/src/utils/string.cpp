@@ -162,15 +162,15 @@ namespace dank {
 	String& String::Remove(size_t start, size_t end) {
 		size_t len = end - start;
 
-		size_t denewlen = length - len;
+		size_t newlen = length - len;
 
 		char* tmp = str;
 
-		str = denew char[denewlen + 1];
+		str = denew char[newlen + 1];
 		memcpy(str, tmp, start);
-		memcpy(str + start, tmp + start + len, denewlen - start);
+		memcpy(str + start, tmp + start + len, newlen - start);
 
-		length = denewlen;
+		length = newlen;
 		str[length] = '\0';
 
 		delete[] tmp;
