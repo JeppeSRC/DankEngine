@@ -61,6 +61,7 @@
     <ClInclude Include="src\core\resource\resourcemanager.h" />
     <ClInclude Include="src\core\resource\resource.h" />
     <ClInclude Include="src\core\input\inputmanager.h" />
+    <ClInclude Include="src\core\rtti.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

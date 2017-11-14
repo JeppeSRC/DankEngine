@@ -4,12 +4,27 @@
 
 #include <iostream>
 
+#include "core/rtti.h"
+
 #include "utils/log.h"
 
 
 namespace dank {
 
 #define MAX_KEYS 10000
+
+	class InputComponent : public RTTI {
+		RTTI_IMPLEMENTATION(InputComponent, RTTI);
+
+	public:
+		virtual void OnMove(float x, float y) = 0;
+		virtual void OnPress(float x, float y) = 0;
+		virtual void OnRelease(float x, float y) = 0;
+
+		virtual void OnKeyPress(bool keys[]) = 0;
+		virtual void OnKeyRelease(bool keys[]) = 0;
+		virtual void OnKeyRepeat(bool keys[]) = 0;
+	};
 
 	class InputManager {
 	private:

@@ -181,25 +181,25 @@ namespace dank {
 	String& String::RemoveBlankspace() {
 
 		size_t start = Find(" ");
-		while (start != -1) {
+		while (start != (size_t)-1) {
 			Remove(start, start + 1);
 			start = Find(" ", start);
 		}
 
 		start = Find("\n");
-		while (start != -1) {
+		while (start != (size_t)-1) {
 			Remove(start, start + 1);
 			start = Find("\n", start);
 		}
 
 		start = Find("\r");
-		while (start != -1) {
+		while (start != (size_t)-1) {
 			Remove(start, start + 1);
 			start = Find("\r", start);
 		}
 
 		start = Find("\t");
-		while (start != -1) {
+		while (start != (size_t)-1) {
 			Remove(start, start + 1);
 			start = Find("\t", start);
 		}
