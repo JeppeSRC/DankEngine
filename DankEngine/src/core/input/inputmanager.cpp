@@ -11,6 +11,9 @@ namespace dank {
 
 	List<EventListenerComponent*> InputManager::eventListeners;
 
+	bool InputManager::keys[MAX_KEYS];
+
+
 
 	void InputManager::Init() {
 		NativeApp* app = NativeApp::app;
@@ -28,21 +31,20 @@ namespace dank {
 	int InputManager::OnGameInput(AInputEvent* event) {
 		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_KEY) {
 			int code = AKeyEvent_getKeyCode(event);
+			keys[code] = true;
+
 			switch (AKeyEvent_getAction(event)) {
 			case AKEY_EVENT_ACTION_UP:
-				eventListeners.Each([code](EventListenerComponent* item) -> void {
-					item->OnKeyRelease(code);
-				});
+				for(size_t i=0; i < eventListeners.GetSize(); i++)
+					eventListeners[i]->OnKeyRelease(code);
 				break;
 			case AKEY_EVENT_ACTION_DOWN:
-				eventListeners.Each([code](EventListenerComponent* item) -> void {
-					item->OnKeyPress(code);
-				});
+				for (size_t i = 0; i < eventListeners.GetSize(); i++)
+					eventListeners[i]->OnKeyPress(code);
 				break;
 			case AKEY_EVENT_ACTION_MULTIPLE:
-				eventListeners.Each([code](EventListenerComponent* item) -> void {
-					item->OnKeyRepeat(code);
-				});
+				for (size_t i = 0; i < eventListeners.GetSize(); i++)
+					eventListeners[i]->OnKeyRepeat(code);
 				break;
 			}
 			return 1;
@@ -52,15 +54,13 @@ namespace dank {
 			y = AMotionEvent_getY(event, 0) * NativeApp::app->yUnitsPerPixel;
 
 			bool down = AMotionEvent_getAction(event) == AMOTION_EVENT_ACTION_DOWN;
-
-			eventListeners.Each([down](EventListenerComponent* item) -> void {
-				item->OnMove(x, y);
+			for (size_t i = 0; i < eventListeners.GetSize(); i++) {
+				eventListeners[i]->OnMove(x, y);
 				if (down)
-					item->OnPress(x, y);
+					eventListeners[i]->OnPress(x, y);
 				else
-					item->OnRelease(x, y);
-			});
-
+					eventListeners[i]->OnRelease(x, y);
+			}
 			return 1;
 		}
 		return 0;

@@ -147,7 +147,7 @@ namespace dank {
 			return T();
 		}
 
-		inline void Each([]void(*eachfunction)(T item)) {
+		inline void Each(void *eachfunction(T item)) {
 			for (size_t i = 0; i < size; i++) {
 				eachfunction(data[i]);
 			}

@@ -37,6 +37,8 @@ namespace dank {
 
 		static List<EventListenerComponent*> eventListeners;
 
+		static bool keys[MAX_KEYS];
+
 	public:
 		static void Init();
 
