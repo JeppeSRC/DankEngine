@@ -4,12 +4,27 @@
 
 #include <iostream>
 
+#include "core/rtti.h"
+
 #include "utils/log.h"
 
 
 namespace dank {
 
 #define MAX_KEYS 10000
+
+	class EventListenerComponent : public RTTI {
+		RTTI_IMPLEMENTATION(EventListenerComponent, RTTI);
+
+	public:
+		virtual void OnMove(float x, float y) {}
+		virtual void OnPress(float x, float y) {}
+		virtual void OnRelease(float x, float y) {}
+
+		virtual void OnKeyPress(int key) {}
+		virtual void OnKeyRelease(int key) {}
+		virtual void OnKeyRepeat(int key) {}
+	};
 
 	class InputManager {
 	private:
@@ -19,6 +34,8 @@ namespace dank {
 		static JNIEnv* env;
 		static jobject inputmanager;
 		static jmethodID toggleSoftInput;
+
+		static List<EventListenerComponent*> eventListeners;
 
 		static bool keys[MAX_KEYS];
 
@@ -37,6 +54,16 @@ namespace dank {
 		inline static void Update() {
 			memset(keys, 0, MAX_KEYS);
 		}
+
+		inline static void AddEventListener(EventListenerComponent* eventListener) {
+			eventListeners.Push_back(eventListener);
+		}
+
+		inline static void RemoveEventListener(EventListenerComponent* eventListener) {
+			eventListeners.Remove(eventListener);
+		}
+
+
 	};
 
 }

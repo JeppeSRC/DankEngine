@@ -147,6 +147,12 @@ namespace dank {
 			return T();
 		}
 
+		inline void Each(void *eachfunction(T item)) {
+			for (size_t i = 0; i < size; i++) {
+				eachfunction(data[i]);
+			}
+		}
+
 		inline T RemoveIndex(size_t index) {
 			T tmp = data[index];
 
