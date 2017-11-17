@@ -8,7 +8,7 @@ namespace dank {
 		AAsset* asset = AAssetManager_open(assetManager, path, AASSET_MODE_UNKNOWN);
 
 		if (!asset) {
-			LOGD("File: %s doesn't exist! U nub!!!!!!!", path);
+			LOGD("[FileUtils] File: %s doesn't exist! U nub!!!!!!!", path);
 			*data = nullptr;
 			*size = 0;
 			return;
@@ -39,10 +39,10 @@ namespace dank {
 
 		const char* file = nullptr;
 
-		LOGD("PrintingFiles in %s", path);
+		LOGD("[FileUtils] PrintingFiles in %s", path);
 		unsigned int index = 0;
 		while (file = AAssetDir_getNextFileName(dir)) {
-			LOGD("File %u at %s", index++, file);
+			LOGD("[FileUtils] File %u at %s", index++, file);
 		}
 
 		AAssetDir_close(dir);

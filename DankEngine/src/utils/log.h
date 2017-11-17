@@ -37,7 +37,7 @@ namespace dank {
 	inline void GLCallLog(const char* const func, const char* const file, int line) {
 		unsigned int error = 0;
 		while (error = glGetError()) {
-			LOGF("Error %u calling %s in %s:%u", error, func, file, line);
+			LOGF("[GL] Error %u calling %s in %s:%u", error, func, file, line);
 		}
 	}
 }

@@ -15,64 +15,64 @@ namespace dank {
 	}
 
 	void Application::OnDestroy(ANativeActivity* activity) {
-		LOGW("OnDestroy");
+		LOGW("[Application] OnDestroy");
 		NativeApp::Destroy();
 	}
 
 	void Application::OnConfigurationChanged(ANativeActivity* activity) {
-		LOGW("OnConfigurationChanged");
+		LOGW("[Application] OnConfigurationChanged");
 	}
 
 	void Application::OnLowMemory(ANativeActivity* activity) {
-		LOGW("OnLowMemory");
+		LOGW("[Application] OnLowMemory");
 	}
 
 	void Application::OnWindowFocusChanged(ANativeActivity* activity, int focus) {
-		LOGW("OnWindowFocusChanged");
+		LOGW("[Application] OnWindowFocusChanged");
 		write_cmd(focus ? CMD_ON_FOCUS : CMD_ON_FOCUS_LOST);
 	}
 
 	void Application::OnPause(ANativeActivity* activity) {
-		LOGW("OnPause");
+		LOGW("[Application] OnPause");
 		write_cmd(CMD_ON_PAUSE);
 	}
 
 	void Application::OnResume(ANativeActivity* activity) {
-		LOGW("OnResume");
+		LOGW("[Application] OnResume");
 		write_cmd(CMD_ON_RESUME);
 	}
 
 	void Application::OnStart(ANativeActivity* activity) {
-		LOGW("OnStart");
+		LOGW("[Application] OnStart");
 		write_cmd(CMD_ON_START);
 		
 	}
 
 	void Application::OnStop(ANativeActivity* activity) {
-		LOGW("OnStop");
+		LOGW("[Application] OnStop");
 		write_cmd(CMD_ON_STOP);
 	}
 
 	void Application::OnNativeWindowCreated(ANativeActivity* activity, ANativeWindow* window) {
-		LOGW("OnNativeWindowCreated");
+		LOGW("[Application] OnNativeWindowCreated");
 		((NativeApp*)activity->instance)->window = window;
 		write_cmd(CMD_WINDOW_CREATE);
 	}
 
 	void Application::OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window) {
-		LOGW("OnNativeWindowDestroyed");
+		LOGW("[Application] OnNativeWindowDestroyed");
 		((NativeApp*)activity->instance)->window = nullptr;
 		write_cmd(CMD_WINDOW_DESTROY);
 	}
 	
 	void Application::OnInputQueueCreated(ANativeActivity* activity, AInputQueue* queue) {
-		LOGW("OnInputQueueCreated");
+		LOGW("[Application] OnInputQueueCreated");
 		NativeApp::app->inputQueue = queue;
 		write_cmd(CMD_INPUT_CREATED);
 	}
 
 	void Application::OnInputQueueDestroyed(ANativeActivity* activity, AInputQueue* queue) {
-		LOGW("OnInputQueueDestroyed");
+		LOGW("[Application] OnInputQueueDestroyed");
 		thingyIDontKnowWhatToName = false;
 		write_cmd(CMD_INPUT_DESTROYED);
 	}

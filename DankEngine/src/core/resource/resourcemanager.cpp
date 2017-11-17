@@ -49,7 +49,7 @@ void ResourceManager::RemoveResource(unsigned int id) {
 	Resource* res = GetResourceByID(id);
 
 	if (res == nullptr) {
-		LOGW("No resource with ID \"%u\"", id);
+		LOGW("[Resource Manager] No resource with ID \"%u\"", id);
 		return;
 	}
 
@@ -60,7 +60,7 @@ void ResourceManager::RemoveResource(const String& id) {
 	size_t index = idMappings.GetDataList().Find<const String&>([](String* item, const String& other) -> bool { return *item == other; }, id);
 
 	if (index == (size_t)~0) {
-		LOGW("No resource with ID \"%s\"", *id);
+		LOGW("[Resource Manager]No resource with ID \"%s\"", *id);
 		return;
 	}
 
@@ -79,7 +79,7 @@ Resource* ResourceManager::GetResourceByID(unsigned int id) const {
 		if (res->GetResourceID() == id) return res;
 	}
 
-	ASSERT_MSG(true, "No resource with ID");
+	ASSERT_MSG(true, "[Resource Manager]No resource with ID");
 
 	return nullptr;
 }
@@ -88,7 +88,7 @@ Resource* ResourceManager::GetResourceByID(const String& id) const {
 	size_t index = idMappings.GetDataList().Find<const String&>([](String* item, const String& other) -> bool { return *item == other; }, id);
 
 	if (index == (size_t)~0) {
-		LOGW("No resource with ID \"%s\"", *id);
+		LOGW("[Resource Manager] No resource with ID \"%s\"", *id);
 		return nullptr;
 	}
 

@@ -11,7 +11,7 @@ namespace dank {
 			GL(glGetProgramiv(shader, param, &res));
 			if (res == 0) {
 				GL(glGetProgramInfoLog(shader, 2048, 0, log));
-				LOGE("Shader ERROR: %s", log);
+				LOGE("[Shader] Shader ERROR: %s", log);
 				return true;
 			}
 		}
@@ -28,7 +28,7 @@ namespace dank {
 	}
 
 	void Shader::CompileShader(const char* vertex, const char* fragment) {
-		LOGD("Compiling shader");
+		LOGD("[Shader] Compiling shader");
 		shader = GL(glCreateProgram());
 
 		unsigned int v = GL(glCreateShader(GL_VERTEX_SHADER));
@@ -45,13 +45,13 @@ namespace dank {
 
 		GL(glCompileShader(v));
 		if (check_error(v, GL_COMPILE_STATUS, false)) {
-			LOGE("Failed to compile vertex shader");
+			LOGE("[Shader] Failed to compile vertex shader");
 			goto error;
 		}
 
 		GL(glCompileShader(f));
 		if (check_error(f, GL_COMPILE_STATUS, false)) {
-			LOGE("Failed to compile fragment shader");
+			LOGE("[Shader] Failed to compile fragment shader");
 			goto error;
 		}
 
@@ -60,13 +60,13 @@ namespace dank {
 
 		GL(glLinkProgram(shader));
 		if (check_error(shader, GL_LINK_STATUS, true)) {
-			LOGE("Failed to link shader");
+			LOGE("[Shader] Failed to link shader");
 			goto error;
 		}
 
 		GL(glValidateProgram(shader));
 		if (check_error(shader, GL_VALIDATE_STATUS, true)) {
-			LOGE("Failed to validate shader");
+			LOGE("[Shader] Failed to validate shader");
 			goto error;
 		}
 

@@ -15,7 +15,7 @@
 
 #ifdef _DEBUG 
 #define DoubleDeletion(ptr, file, line) if(ptr == nullptr) \
-										LOGE("Error: Double deletion at %s, %i", file, line)
+										LOGE("[Memory] Error: Double deletion at %s, %i", file, line)
 #else
 #define DoubleDeletion(ptr, file, line)
 #endif
@@ -23,7 +23,7 @@
 inline void* operator new(size_t count) noexcept {
 	if (count > MB) {
 		float size = (float)count / (MB);
-		LOGW("Large allocation, size: %.2f MB", size);
+		LOGW("[Memory] Large allocation, size: %.2f MB", size);
 	}
 	return dank::MemoryAllocator::Allocate(count);
 }
@@ -31,7 +31,7 @@ inline void* operator new(size_t count) noexcept {
 inline void* operator new[](size_t count) noexcept {
 	if (count > MB) {
 		float size = (float)count / (MB);
-		LOGW("Large allocation, size: %.2f MB", size);
+		LOGW("[Memory] Large allocation, size: %.2f MB", size);
 	}
 	return dank::MemoryAllocator::Allocate(count);
 }
@@ -39,7 +39,7 @@ inline void* operator new[](size_t count) noexcept {
 inline void* operator new(size_t count, const char* file, size_t line) noexcept {
 	if (count > MB) {
 		float size = (float)count / (MB);
-		LOGW("Large allocation, size: %.2f MB %s", size, file);
+		LOGW("[Memory] Large allocation, size: %.2f MB %s", size, file);
 	}
 	return dank::MemoryAllocator::Allocate(count);
 }
@@ -47,7 +47,7 @@ inline void* operator new(size_t count, const char* file, size_t line) noexcept 
 inline void* operator new[](size_t count, const char* file, size_t line) noexcept {
 	if (count > MB) {
 		float size = (float)count / (MB);
-		LOGW("Large allocation, size: %.2f MB %s", size, file);
+		LOGW("[Memory] Large allocation, size: %.2f MB %s", size, file);
 	}
 	return dank::MemoryAllocator::Allocate(count);
 }
