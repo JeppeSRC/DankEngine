@@ -52,15 +52,24 @@ namespace dank {
 		if (AInputEvent_getType(event) == AINPUT_EVENT_TYPE_MOTION) {
 			x = AMotionEvent_getX(event, 0) * NativeApp::app->xUnitsPerPixel;
 			y = AMotionEvent_getY(event, 0) * NativeApp::app->yUnitsPerPixel;
+			
+			int e = AMotionEvent_getAction(event);
 
-			bool down = AMotionEvent_getAction(event) == AMOTION_EVENT_ACTION_DOWN;
-			for (size_t i = 0; i < eventListeners.GetSize(); i++) {
-				eventListeners[i]->OnMove(x, y);
-				if (down)
+			switch (e) {
+			case AMOTION_EVENT_ACTION_MOVE:
+				for (size_t i = 0; i < eventListeners.GetSize(); i++)
+					eventListeners[i]->OnMove(x, y);
+				break;
+			case AMOTION_EVENT_ACTION_DOWN:
+				for (size_t i = 0; i < eventListeners.GetSize(); i++)
 					eventListeners[i]->OnPress(x, y);
-				else
+				break;
+			case AMOTION_EVENT_ACTION_UP:
+				for (size_t i = 0; i < eventListeners.GetSize(); i++)
 					eventListeners[i]->OnRelease(x, y);
+				break;
 			}
+
 			return 1;
 		}
 		return 0;
