@@ -43,7 +43,7 @@ namespace dank {
 #	define LOOPER_ID_CMD			0x10
 #	define LOOPER_ID_INPUT			0x11
 
-	void DestroyDisplay();
+	void DestroyDisplay(bool);
 
 	typedef void(*CMD_CALLBACK)();
 	typedef int(*INPUT_CALLBACK)(AInputEvent*);

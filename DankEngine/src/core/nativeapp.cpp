@@ -54,6 +54,7 @@ namespace dank {
 	NativeApp::~NativeApp() {
 		activity->instance = nullptr;
 
+		pthread_join(thread, nullptr);
 		pthread_mutex_destroy(&mutex);
 		pthread_cond_destroy(&cond);
 	}
@@ -82,6 +83,9 @@ namespace dank {
 	void InitializeDisplay() {
 		NativeApp* app = NativeApp::app;
 
+		int num_configs;
+		EGLConfig config;
+
 		int attrib[]{
 			EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
 			EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
@@ -93,6 +97,20 @@ namespace dank {
 			EGL_NONE
 		};
 
+		if (app->display && app->context) {
+			eglChooseConfig(app->display, attrib, &config, 1, &num_configs);
+
+			app->surface = eglCreateWindowSurface(app->display, config, app->window, nullptr);
+
+			if (eglMakeCurrent(app->display, app->surface, app->surface, app->context) == 0) {
+				LOGF("[NativeApp] Failed to make context current!");
+				_exit(3);
+			}
+
+			return;
+		}
+
+
 		app->display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 
 		if (eglInitialize(app->display, 0, 0) == 0) {
@@ -103,9 +121,6 @@ namespace dank {
 		LOGD("[NativeApp] EGL Vendor:  %s", eglQueryString(app->display, EGL_VENDOR));
 		LOGD("[NativeApp] EGL Extensions: %s", eglQueryString(app->display, EGL_EXTENSIONS));
 		LOGD("[NativeApp] EGL Client APIs: %s", eglQueryString(app->display, EGL_CLIENT_APIS));
-
-		int num_configs;
-		EGLConfig config;
 
 		eglChooseConfig(app->display, attrib, &config, 1, &num_configs);
 
@@ -147,7 +162,7 @@ namespace dank {
 
 
 		if (eglMakeCurrent(app->display, app->surface, app->surface, app->context) == 0) {
-			LOGE("[NativeApp] Failed to make context current!");
+			LOGE("[NativeApp] Failed to make context current during initialization!");
 			_exit(2);
 		}
 
@@ -209,25 +224,30 @@ namespace dank {
 		}
 	}
 
-	void DestroyDisplay() {
+	void DestroyDisplay(bool fuck_everything) {
 		NativeApp* app = NativeApp::app;
 		if (app->window) {
 			eglMakeCurrent(app->display, 0, 0, 0);
-			if (app->context) {
+			if (app->context && fuck_everything) {
 				eglDestroyContext(app->display, app->context);
 				app->context = nullptr;
 			}
 
 			if (app->surface) {
 				eglDestroySurface(app->display, app->surface);
+				app->surface = nullptr;
 			}
 
-			eglTerminate(app->display);
+			if (fuck_everything) {
+				eglTerminate(app->display);
+				app->display = nullptr;
+			}
 		}
 
-		app->display = nullptr;
-		app->context = nullptr;
-		app->surface = nullptr;
+		app->window = nullptr;
+
+		if (fuck_everything) LOGD("[NativeApp] Destroyed display, contex and surface!");
+		else LOGD("[NativeApp] Destroyed surface!");
 	}
 
 	void process_command() {
@@ -240,7 +260,9 @@ namespace dank {
 			app->shouldClose = false;
 			break;
 		case CMD_WINDOW_DESTROY:
-			app->shouldClose = true;
+			DestroyDisplay(false);
+			//app->shouldClose = true;
+			app->status = APP_STATUS_PAUSE;
 			break;
 		case CMD_ON_START:
 		case CMD_ON_RESUME:
@@ -249,6 +271,9 @@ namespace dank {
 		case CMD_ON_PAUSE:
 		case CMD_ON_STOP:
 			app->status = APP_STATUS_PAUSE;
+			break;
+		case CMD_ON_DESTROY:
+			app->status = APP_STATUS_TERMINATE;
 			break;
 		case CMD_INPUT_CREATED:
 			AInputQueue_attachLooper(app->inputQueue, app->looper, LOOPER_ID_INPUT, 0, (void*)app->input);

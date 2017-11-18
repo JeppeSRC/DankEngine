@@ -16,6 +16,7 @@ namespace dank {
 
 	void Application::OnDestroy(ANativeActivity* activity) {
 		LOGW("[Application] OnDestroy");
+		write_cmd(CMD_ON_DESTROY);
 		NativeApp::Destroy();
 	}
 
@@ -61,7 +62,6 @@ namespace dank {
 
 	void Application::OnNativeWindowDestroyed(ANativeActivity* activity, ANativeWindow* window) {
 		LOGW("[Application] OnNativeWindowDestroyed");
-		((NativeApp*)activity->instance)->window = nullptr;
 		write_cmd(CMD_WINDOW_DESTROY);
 	}
 	
@@ -107,7 +107,7 @@ namespace dank {
 		int events;
 		CMD_CALLBACK process_cmd = nullptr;
 
-		while (!NativeApp::app->display) {
+		while (!app->display) {
 			while ((ident = ALooper_pollAll(0, nullptr, &events, (void**)&process_cmd)) >= 0) {
 				if (process_cmd) process_cmd();
 			}
@@ -130,7 +130,14 @@ namespace dank {
 
 			while ((ident = ALooper_pollAll(app->status == 2 ? -1 : 0, nullptr, &events, (void**)&process_cmd)) >= 0) {
 				if (process_cmd) process_cmd();
+
+				while (!app->display) {
+					while ((ident = ALooper_pollAll(0, nullptr, &events, (void**)&process_cmd)) >= 0) {
+						if (process_cmd) process_cmd();
+					}
+				}
 			}
+
 			unsigned long long now = mikrotime();
 			float delta = ((float)(now - lastTime)) / (float)1000000;
 			lastTime = now;
@@ -144,7 +151,7 @@ namespace dank {
 		}
 		Application::Get()->End();
 
-		DestroyDisplay();
+		DestroyDisplay(true);
 
 	}
 
