@@ -17,6 +17,7 @@ private:
 	float r = 0, g = 0 , b = 0;
 
 	BatchRenderer* renderer;
+	UIManager* mainMenu;
 	Texture2D* texture;
 	bool vaoe;
 
@@ -39,18 +40,26 @@ public:
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
-		UIManager* m = new UIManager();
 
-		m->Add(new UIButton("test", vec2(0, 0), vec2(100, 100), "", nullptr));
+		mainMenu = new UIManager;
+
+		UIButton* btn = new UIButton("btnTest", vec2(300, 300), vec2(200, 75), nullptr);
+		btn->SetFont(font);
+		btn->SetTitle("Button!");
+
+		mainMenu->Add(btn);
+		
 	}
 
 	void Render() override {
 		renderer->Begin();
-		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 150), 0xFFFF00FF);
+		renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 250), 0xFFFF00FF);
 		renderer->Submit(vec3(x, y, 0.0f), vec2(200.f, 200.f), texture);
 		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), nullptr, 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
+
+		mainMenu->Render();
 	}
 
 	void End() override {
@@ -63,6 +72,8 @@ public:
 		y = InputManager::GetY();
 		if (InputManager::GetKey(AKEYCODE_B))
 			InputManager::HideKeyboard();
+
+		mainMenu->Update(delta);
 	}
 };
 

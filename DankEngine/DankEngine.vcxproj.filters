@@ -69,6 +69,7 @@
     <ClInclude Include="src\graphics\uiitem\uibutton.h" />
     <ClInclude Include="src\graphics\uiitem\uiitem.h" />
     <ClInclude Include="src\core\ui\uimanager.h" />
+    <ClInclude Include="src\graphics\uiitem\uilabel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

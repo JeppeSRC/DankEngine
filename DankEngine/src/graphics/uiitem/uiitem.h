@@ -4,6 +4,7 @@
 #include <utils/string.h>
 #include <maths/vec2.h>
 #include <graphics/texture/texture.h>
+#include <graphics/renderers/renderer.h>
 
 
 namespace dank {
@@ -32,10 +33,13 @@ public:
 	bool IsPointInside(float x, float y) const;
 	bool IsPointInside(const vec2& point) const;
 
+	virtual void OnUpdate(float delta) { }
+	virtual void OnRender(Renderer* renderer) = 0;
+
 	virtual void OnPress(const vec2& point);
 	virtual void OnRelease();
 	virtual void OnMove(const vec2& point);
-	virtual void OnKey(unsigned int keyCode);
+	virtual void OnKey(int keyCode);
 	virtual void OnFocusChanged(bool infocus) {}
 
 	inline void SetName(const String& name) { this->name = name; }

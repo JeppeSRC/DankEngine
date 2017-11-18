@@ -21,6 +21,17 @@ const char* Renderer::fragment3 = "#version 300 es\n"
 		#include "graphics/shaders/renderer3.fs"
 		;
 
+Renderer* Renderer::CreateRenderer(unsigned int num_sprites) {
+	NativeApp* app = NativeApp::app;
+	if (app->hasVaos) {
+		return new Renderer3(num_sprites);
+	}
+	else {
+		return new Renderer2(num_sprites);
+	}
+
+	return nullptr;
+}
 
 Renderer::Renderer(unsigned int num_sprites, RendererType type) {
 	orthographicMatrix = mat4::Orthographic(0, Application::Get()->GetGameWidth(), 0, Application::Get()->GetGameHeight(), -1.0, 1.0);
@@ -265,5 +276,39 @@ void Renderer::Submit(const String& text, Font* font, const vec2& position, unsi
 		xPos += glyph->advance_x * NativeApp::app->xUnitsPerPixel;
 	}
 }
+
+void Renderer::SubmitTopLeft(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color) {
+	float tid = SubmitTexture(texture);
+	buffer->position = position;
+	buffer->texCoord = vec2(0, 0);
+	buffer->color = color;
+	buffer->texID = tid;
+	buffer->text = 0.f;
+	buffer++;
+
+	buffer->position = position + vec2(size.x, 0);
+	buffer->texCoord = vec2(1, 0);
+	buffer->color = color;
+	buffer->texID = tid;
+	buffer->text = 0.f;
+	buffer++;
+
+	buffer->position = position + vec2(size.x, size.y);
+	buffer->texCoord = vec2(1, 1);
+	buffer->color = color;
+	buffer->texID = tid;
+	buffer->text = 0.f;
+	buffer++;
+
+	buffer->position = position + vec2(0, size.y);
+	buffer->texCoord = vec2(0, 1);
+	buffer->color = color;
+	buffer->texID = tid;
+	buffer->text = 0.f;
+	buffer++;
+
+	count += 6;
+}
+
 
 }

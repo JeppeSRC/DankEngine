@@ -40,8 +40,8 @@ void UIItem::OnMove(const vec2& point) {
 	LOGD("[UIItem] %s not implemented for %s", __FUNCTION__, *name);
 }
 
-void UIItem::OnKey(unsigned int keyCode) {
-	LOGD("[UIItem] %s not implemented for %s KeyCode: %u", __FUNCTION__, *name, keyCode);
+void UIItem::OnKey(int keyCode) {
+	LOGD("[UIItem] %s not implemented for %s KeyCode: %d", __FUNCTION__, *name, keyCode);
 }
 
 }
