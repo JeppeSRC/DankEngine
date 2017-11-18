@@ -17,6 +17,8 @@ namespace dank {
 		RTTI_IMPLEMENTATION(EventListenerComponent, RTTI);
 
 	public:
+		EventListenerComponent() { InputManager::AddEventListener(this); }
+		~EventListenerComponent() { InputManager::RemoveEventListener(this); }
 		virtual void OnMove(float x, float y) {}
 		virtual void OnPress(float x, float y) {}
 		virtual void OnRelease(float x, float y) {}
