@@ -5,7 +5,7 @@
 
 namespace dank {
 
-UIItem::UIItem(const String& name, const vec2& position, const vec2& size) : name(name), position(position), size(size), color(0xFFFFFFFF), texture(nullptr) {
+UIItem::UIItem(const String& name, const vec2& position, const vec2& size) : name(name), position(position), size(size), color(0xFFFFFFFF), texture(nullptr), parent(nullptr) {
 
 }
 
