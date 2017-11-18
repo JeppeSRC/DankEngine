@@ -39,6 +39,9 @@ public:
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
+		UIManager* m = new UIManager();
+
+		m->Add(new UIButton("test", vec2(0, 0), vec2(100, 100), "", nullptr));
 	}
 
 	void Render() override {

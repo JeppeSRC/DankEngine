@@ -9,6 +9,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidDeviceID>emulator-5554;x86</AndroidDeviceID>
+    <AndroidDeviceID>emulator-5556;sdk_phone_armv7</AndroidDeviceID>
   </PropertyGroup>
 </Project>
