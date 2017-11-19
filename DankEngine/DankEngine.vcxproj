@@ -88,6 +88,7 @@
     <ClCompile Include="src\graphics\texture\texture2d.cpp" />
     <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec2.cpp" />
     <ClCompile Include="src\maths\vec3.cpp" />

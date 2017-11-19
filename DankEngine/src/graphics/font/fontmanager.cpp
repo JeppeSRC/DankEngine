@@ -5,6 +5,7 @@ namespace dank {
 
 List<Font*> FontManager::fonts;
 List<FontManager::FontData*> FontManager::data;
+Font* FontManager::defaultFont = nullptr;
 
 
 FontManager::FontData* FontManager::GetFontData(const String& fontName) {
@@ -67,6 +68,14 @@ Font* FontManager::GetFont(const String& fontName, float fontSize) {
 	}
 
 	return nullptr;
+}
+
+void FontManager::SetDefaultFont(const String& fontName, float font_size) {
+	defaultFont = GetFont(fontName, font_size);
+}
+
+void FontManager::SetDefaultFont(Font* font) {
+	defaultFont = font;
 }
 
 }

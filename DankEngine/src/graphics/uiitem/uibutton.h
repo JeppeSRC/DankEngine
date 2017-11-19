@@ -24,7 +24,7 @@ protected:
 
 	void* callbackData;
 public:
-	UIButton(const String& name, const vec2& position, const vec2& size, FPBUTTONCALLBACK callback);
+	UIButton(const String& name, const vec2& position, const vec2& size, const String& title, FPBUTTONCALLBACK callback);
 
 	virtual void OnRender(Renderer* renderer) override;
 
@@ -32,8 +32,8 @@ public:
 	virtual void OnRelease() override;
 
 	inline void SetCallback(FPBUTTONCALLBACK callback, void* data) { this->callback = callback; this->callbackData = data; }
-	void SetTitle(const String& title);
-	inline void SetFont(Font* font) { this->font = font; }
+	virtual void SetTitle(const String& title);
+	virtual void SetFont(Font* font);
 	inline void SetTitleColor(unsigned int color) { this->titleColor = color; }
 
 	inline const String& GetTitle() const { return title; }

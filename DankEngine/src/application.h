@@ -20,6 +20,7 @@
 
 #include <graphics/uiitem/uiitem.h>
 #include <graphics/uiitem/uibutton.h>
+#include <graphics/uiitem/uilabel.h>
 
 #include <core/resource/resourcemanager.h>
 

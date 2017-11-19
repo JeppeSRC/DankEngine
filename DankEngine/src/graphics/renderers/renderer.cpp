@@ -218,9 +218,6 @@ void Renderer::Submit(const String& text, Font* font, const vec2& position, unsi
 	for (size_t i = 0; i < text.length; i++) {
 		char c = text[i];
 
-		if (c == ' ') {
-			xPos += font->GetSize() * NativeApp::app->xUnitsPerPixel * 0.25f;
-		}
 		ftgl::texture_glyph_t* glyph = texture_font_get_glyph(f, c);
 
 		float x = xPos + glyph->offset_x * NativeApp::app->xUnitsPerPixel;

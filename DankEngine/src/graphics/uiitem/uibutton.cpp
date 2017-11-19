@@ -2,8 +2,8 @@
 
 namespace dank {
 
-UIButton::UIButton(const String& name, const vec2& position, const vec2& size, FPBUTTONCALLBACK callback) : UIItem(name, position, size), title(title), callback(callback) {
-
+UIButton::UIButton(const String& name, const vec2& position, const vec2& size, const String& title, FPBUTTONCALLBACK callback) : UIItem(name, position, size), font(FontManager::GetDefaultFont()), callback(callback) {
+	SetTitle(title);
 }
 
 void UIButton::OnPress(const vec2& point) {
@@ -24,11 +24,19 @@ void UIButton::OnRender(Renderer* renderer) {
 void UIButton::SetTitle(const String& title) {
 	this->title = title;
 
+	ASSERT(font == nullptr);
+
 	vec2 metrics = font->GetMetrics(title);
 
 	titlePosition = size * 0.5f; 
 	titlePosition.x -= metrics.x * 0.5f;
 	titlePosition.y += metrics.y * 0.5f;
+}
+
+void UIButton::SetFont(Font* font) {
+	this->font = font;
+
+	SetTitle(title);
 }
 
 }

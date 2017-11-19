@@ -69,7 +69,9 @@ public:
 
 	};
 
+
 private:
+	static Font* defaultFont;
 	static List<Font*> fonts;
 	static List<FontData*> data;
 
@@ -78,7 +80,11 @@ public:
 	static void AddFont(const void* const data, unsigned int size, const String& fontName);
 	static void AddFont(const String& filename, const String& fontName);
 	static Font* GetFont(const String& fontName, float font_size);
+	
+	inline static Font* GetDefaultFont() { return defaultFont; }
 
+	static void SetDefaultFont(const String& fontName, float font_size);
+	static void SetDefaultFont(Font* font);
 };
 
 }

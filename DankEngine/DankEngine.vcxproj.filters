@@ -36,6 +36,7 @@
     <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
     <ClCompile Include="src\core\ui\uimanager.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />

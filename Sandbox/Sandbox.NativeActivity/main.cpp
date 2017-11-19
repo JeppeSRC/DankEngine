@@ -39,13 +39,13 @@ public:
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 46);
+		FontManager::SetDefaultFont(font);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
 
 		mainMenu = new UIManager;
 
-		UIButton* btn = new UIButton("btnTest", vec2(300, 300), vec2(200, 75), nullptr);
+		UIButton* btn = new UIButton("btnTest", vec2(300, 300), vec2(200, 75), "Button!!", nullptr);
 		btn->SetFont(font);
-		btn->SetTitle("Button!");
 		btn->SetCallback([](BtnCallbackType type, const vec2& point, void* data) {
 			if (type == BtnCallbackType::PRESS) {
 				bool& s = *(bool*)data;
@@ -54,7 +54,12 @@ public:
 			}
 		}, &shit);
 
+		UILabel* lbl = new UILabel("lbl", vec2(100, 1000), "abcdefghijklmnopqrstuvwxyz");
+		lbl->SetContentColor(0xAAFF00FF);
+		lbl->SetColor(0xAA000000);
+
 		mainMenu->Add(btn);
+		mainMenu->Add(lbl);
 		
 	}
 
