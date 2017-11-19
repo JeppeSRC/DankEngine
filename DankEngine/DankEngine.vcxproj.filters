@@ -33,6 +33,7 @@
     <ClCompile Include="src\graphics\font\fontdata.cpp" />
     <ClCompile Include="src\core\input\inputmanager.cpp" />
     <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
+    <ClCompile Include="src\audio\audiomanager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -63,6 +64,7 @@
     <ClInclude Include="src\core\resource\resource.h" />
     <ClInclude Include="src\core\input\inputmanager.h" />
     <ClInclude Include="src\core\rtti.h" />
+    <ClInclude Include="src\audio\audiomanager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

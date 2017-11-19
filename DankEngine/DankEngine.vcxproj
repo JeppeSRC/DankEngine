@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
+    <ClInclude Include="src\audio\audiomanager.h" />
     <ClInclude Include="src\core\input\inputmanager.h" />
     <ClInclude Include="src\core\nativeapp.h" />
     <ClInclude Include="src\core\resource\resource.h" />
@@ -58,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\audio\audiomanager.cpp" />
     <ClCompile Include="src\core\input\inputmanager.cpp" />
     <ClCompile Include="src\core\nativeapp.cpp" />
     <ClCompile Include="src\core\resource\resource.cpp" />

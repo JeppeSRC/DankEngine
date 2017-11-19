@@ -13,6 +13,8 @@
 
 #include <android/sensor.h>
 
+#include "audio/audiomanager.h"
+
 #include "core/nativeapp.h"
 #include "core/input/inputmanager.h"
 

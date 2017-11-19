@@ -123,6 +123,9 @@ namespace dank {
 
 		InputManager::Init();
 
+		AudioManager::Init();
+
+
 		Application::Get()->Init();
 		unsigned long long lastTime = mikrotime();
 		while (app->status) {
@@ -149,7 +152,11 @@ namespace dank {
 
 			eglSwapBuffers(app->display, app->surface);
 		}
+
 		Application::Get()->End();
+
+		AudioManager::Destroy();
+
 
 		DestroyDisplay(true);
 

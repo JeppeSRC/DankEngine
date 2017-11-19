@@ -66,7 +66,6 @@ namespace dank {
 		inline char* operator*() const { return str; }
 
 		inline void SetNoDelete(bool nodelete) { this->noDelete = nodelete; }
-
 	};
 
 }

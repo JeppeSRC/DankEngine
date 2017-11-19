@@ -49,6 +49,7 @@ namespace dank {
 		cmd = process_command;
 		input = process_input;
 		OnInput = nullptr;
+		
 	}
 
 	NativeApp::~NativeApp() {
