@@ -25,7 +25,6 @@ namespace dank {
 
 		(*outputMixInterface)->SetEnvironmentalReverbProperties(outputMixInterface, &reverbSettings);
 
-		//CreateBufferQueueAudioPlayer
 		//Jni code for getting the buffer size and sample rate
 		char buildversionsdk[50];
 		__system_property_get("ro.build.version.sdk", buildversionsdk);
@@ -63,6 +62,9 @@ namespace dank {
 			env->ReleaseStringUTFChars(bufSizeObject, bufSizeStr);
 		}
 		LOGI("[AudioManager] Sample rate: %d, Buffer size: %d", sampleRate, bufSize);
+
+		//Create buffer queue audio player
+
 	}
 
 	void AudioManager::Destroy() {
