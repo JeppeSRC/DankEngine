@@ -116,6 +116,7 @@
     </AntPackage>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Content Include="assets\background.mp3" />
     <Content Include="assets\consola.ttf" />
     <Content Include="assets\cube.png" />
     <Content Include="assets\shader.frag" />

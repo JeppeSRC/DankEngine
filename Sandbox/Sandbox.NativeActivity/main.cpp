@@ -19,7 +19,7 @@ private:
 	BatchRenderer* renderer;
 	Texture2D* texture;
 	bool vaoe;
-
+	Audio* audio;
 	Font* font;
 
 	float x = 0, y = 0;
@@ -33,12 +33,14 @@ public:
 	void Init() override {
 		height = width / ((float)NativeApp::app->surface_width / NativeApp::app->surface_height);
 		NativeApp::app->yUnitsPerPixel = Application::Get()->GetGameHeight() / (float)NativeApp::app->surface_height;
-
+		audio = new Audio("background.mp3");
 		renderer = new BatchRenderer(30);
 		texture = new Texture2D("cube.png");
 		FontManager::AddFont("consola.ttf", "Consola");
 		font = FontManager::GetFont("Consola", 36);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
+		audio->Loop(true);
+		audio->Play();
 	}
 
 	void Render() override {

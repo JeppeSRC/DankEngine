@@ -13,6 +13,7 @@
 
 #include <android/sensor.h>
 
+#include "audio/audio.h"
 #include "audio/audiomanager.h"
 
 #include "core/nativeapp.h"

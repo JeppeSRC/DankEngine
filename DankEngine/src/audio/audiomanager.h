@@ -15,7 +15,7 @@ namespace dank {
 
 	class AudioManager {
 	private:
-		static SLObjectItf engineObject;
+		static SLObjectItf engineObject, bufferQueuePlayerObject;
 		static SLEngineItf engineInterface;
 
 		static SLObjectItf outputMixObject;
@@ -24,6 +24,9 @@ namespace dank {
 	public:
 		static void Init();
 		static void Destroy();
+
+		inline static SLEngineItf GetEngineInterface() { return engineInterface; }
+		inline static SLObjectItf GetOutputMix() { return outputMixObject; }
 
 	private:
 		inline static int ToInt(std::string string) {

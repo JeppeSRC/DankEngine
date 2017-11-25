@@ -34,6 +34,7 @@
     <ClCompile Include="src\core\input\inputmanager.cpp" />
     <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
     <ClCompile Include="src\audio\audiomanager.cpp" />
+    <ClCompile Include="src\audio\audio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -65,6 +66,7 @@
     <ClInclude Include="src\core\input\inputmanager.h" />
     <ClInclude Include="src\core\rtti.h" />
     <ClInclude Include="src\audio\audiomanager.h" />
+    <ClInclude Include="src\audio\audio.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

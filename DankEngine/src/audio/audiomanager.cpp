@@ -1,12 +1,14 @@
 #include "audiomanager.h"
 #include "application.h"
+#include "utils/asset/fileutils.h"
 
 #define JELLY_BEAN_MR1	17
 
 namespace dank {
 
-	SLObjectItf AudioManager::engineObject = nullptr;
+	SLObjectItf AudioManager::engineObject = nullptr, AudioManager::bufferQueuePlayerObject = nullptr;
 	SLEngineItf AudioManager::engineInterface;
+
 	SLObjectItf AudioManager::outputMixObject;
 	SLEnvironmentalReverbItf AudioManager::outputMixInterface;
 
@@ -19,14 +21,14 @@ namespace dank {
 		SLboolean req[1] = { SL_BOOLEAN_FALSE };
 		(*engineInterface)->CreateOutputMix(engineInterface, &outputMixObject, 1, ids, req);
 		(*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
-
+		
 		(*outputMixObject)->GetInterface(outputMixObject, SL_IID_ENVIRONMENTALREVERB, &outputMixInterface);
 		SLEnvironmentalReverbSettings reverbSettings = SL_I3DL2_ENVIRONMENT_PRESET_STONECORRIDOR;
-
+		
 		(*outputMixInterface)->SetEnvironmentalReverbProperties(outputMixInterface, &reverbSettings);
 
 		//Jni code for getting the buffer size and sample rate
-		char buildversionsdk[50];
+		/*char buildversionsdk[50];
 		__system_property_get("ro.build.version.sdk", buildversionsdk);
 		int sampleRate, bufSize;
 		if (ToInt(std::string(buildversionsdk)) >= JELLY_BEAN_MR1) {
@@ -64,12 +66,39 @@ namespace dank {
 		LOGI("[AudioManager] Sample rate: %d, Buffer size: %d", sampleRate, bufSize);
 
 		//Create buffer queue audio player
+		SLDataLocator_AndroidSimpleBufferQueue loc_bufq = { SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE, 2 };
+		SLDataFormat_PCM format_pcm = { SL_DATAFORMAT_PCM, 1, SL_SAMPLINGRATE_8,
+			SL_PCMSAMPLEFORMAT_FIXED_16, SL_PCMSAMPLEFORMAT_FIXED_16,
+			SL_SPEAKER_FRONT_CENTER, SL_BYTEORDER_LITTLEENDIAN
+		};
 
+		if (sampleRate) {
+			format_pcm.samplesPerSec = sampleRate * 1000; // because it needs to be in milli seconds
+		}
+
+		SLDataSource audioSrc = { &loc_bufq, &format_pcm };
+
+		SLDataLocator_OutputMix loc_outmix = { SL_DATALOCATOR_OUTPUTMIX, outputMixObject };
+		SLDataSink audioSink = { &loc_outmix, NULL };
+
+		const SLInterfaceID ids[3] = { SL_IID_BUFFERQUEUE, SL_IID_VOLUME, SL_IID_EFFECTSEND };
+		const SLboolean req[3] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
+
+		(*engineInterface)->CreateAudioPlayer(engineInterface, &bufferQueuePlayerObject, &audioSrc, &audioSink, sampleRate ? 2 : 3, ids, req);
+		(*bufferQueuePlayerObject)->Realize(bufferQueuePlayerObject, SL_BOOLEAN_FALSE);
+		(*bufferQueuePlayerObject)->GetInterface(bufferQueuePlayerObject, SL_IID_PLAY, &bufferQueuePlay);
+		(*bufferQueuePlayerObject)->GetInterface(bufferQueuePlayerObject, SL_IID_BUFFERQUEUE, &bufferQueuePlayerBuffer);
+		(*bufferQueuePlayerBuffer)->RegisterCallback(bufferQueuePlayerBuffer, bufferQueuePlayerCallback, NULL);
+		if (sampleRate == 0) {
+			(*bufferQueuePlayerObject)->GetInterface(bufferQueuePlayerObject, SL_IID_EFFECTSEND, &bufferQueuePlayerEffectSend);
+		}
+
+		(*bufferQueuePlayerObject)->GetInterface(bufferQueuePlayerObject, SL_IID_VOLUME, &bufferQueuePlayerVolume);
+		(*bufferQueuePlay)->SetPlayState(bufferQueuePlay, SL_PLAYSTATE_PLAYING);*/
 	}
 
 	void AudioManager::Destroy() {
 		(*outputMixObject)->Destroy(outputMixObject);
 		(*engineObject)->Destroy(engineObject);
 	}
-
 }
