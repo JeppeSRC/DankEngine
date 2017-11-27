@@ -20,17 +20,17 @@ namespace dank {
 
 		const SLInterfaceID ids2[3] = { SL_IID_SEEK, SL_IID_MUTESOLO, SL_IID_VOLUME };
 		const SLboolean req2[3] = { SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE };
-		(*engine)->CreateAudioPlayer(engine, &playerObject, &audioSrc, &audioSnk, 3, ids2, req2);
-		(*playerObject)->Realize(playerObject, SL_BOOLEAN_FALSE);
-		(*playerObject)->GetInterface(playerObject, SL_IID_PLAY, &playerPlay);
-		(*playerObject)->GetInterface(playerObject, SL_IID_SEEK, &playerSeek);
-		(*playerObject)->GetInterface(playerObject, SL_IID_MUTESOLO, &playerMuteSolo);
-		(*playerObject)->GetInterface(playerObject, SL_IID_VOLUME, &playerVolume);
+		SL((*engine)->CreateAudioPlayer(engine, &playerObject, &audioSrc, &audioSnk, 3, ids2, req2));
+		SL((*playerObject)->Realize(playerObject, SL_BOOLEAN_FALSE));
+		SL((*playerObject)->GetInterface(playerObject, SL_IID_PLAY, &playerPlay));
+		SL((*playerObject)->GetInterface(playerObject, SL_IID_SEEK, &playerSeek));
+		SL((*playerObject)->GetInterface(playerObject, SL_IID_MUTESOLO, &playerMuteSolo));
+		SL((*playerObject)->GetInterface(playerObject, SL_IID_VOLUME, &playerVolume));
 	}
 
 
 	Audio::~Audio() {
-
+		(*playerObject)->Destroy(playerObject);
 	}
 
 }

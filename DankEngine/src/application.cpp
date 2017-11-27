@@ -157,7 +157,6 @@ namespace dank {
 
 		AudioManager::Destroy();
 
-
 		DestroyDisplay(true);
 
 	}
