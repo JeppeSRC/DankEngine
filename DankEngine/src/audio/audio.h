@@ -22,6 +22,12 @@ namespace dank {
 		inline void Stop() { (*playerPlay)->SetPlayState(playerPlay, SL_PLAYSTATE_STOPPED); }
 
 		inline void Loop(bool loop) { (*playerSeek)->SetLoop(playerSeek, loop ? SL_BOOLEAN_TRUE : SL_BOOLEAN_FALSE, 0, SL_TIME_UNKNOWN); }
+
+		inline bool FinishedPlaying() {
+			unsigned int playing;
+			(*playerPlay)->GetPlayState(playerPlay, &playing);
+			return playing != SL_PLAYSTATE_PLAYING;
+		}
 	};
 
 }

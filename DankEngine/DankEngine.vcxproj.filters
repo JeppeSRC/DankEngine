@@ -67,6 +67,7 @@
     <ClInclude Include="src\core\rtti.h" />
     <ClInclude Include="src\audio\audiomanager.h" />
     <ClInclude Include="src\audio\audio.h" />
+    <ClInclude Include="src\audio\audioplaylist.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

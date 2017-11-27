@@ -15,6 +15,7 @@
 
 #include "audio/audio.h"
 #include "audio/audiomanager.h"
+#include "audio/audioplaylist.h"
 
 #include "core/nativeapp.h"
 #include "core/input/inputmanager.h"

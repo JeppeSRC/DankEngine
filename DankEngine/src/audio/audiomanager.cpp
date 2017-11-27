@@ -26,7 +26,7 @@ namespace dank {
 		SLEnvironmentalReverbSettings reverbSettings = SL_I3DL2_ENVIRONMENT_PRESET_STONECORRIDOR;
 		
 		(*outputMixInterface)->SetEnvironmentalReverbProperties(outputMixInterface, &reverbSettings);
-
+		
 		//Jni code for getting the buffer size and sample rate
 		/*char buildversionsdk[50];
 		__system_property_get("ro.build.version.sdk", buildversionsdk);

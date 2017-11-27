@@ -30,6 +30,7 @@
     <ClInclude Include="src\application.h" />
     <ClInclude Include="src\audio\audio.h" />
     <ClInclude Include="src\audio\audiomanager.h" />
+    <ClInclude Include="src\audio\audioplaylist.h" />
     <ClInclude Include="src\core\input\inputmanager.h" />
     <ClInclude Include="src\core\nativeapp.h" />
     <ClInclude Include="src\core\resource\resource.h" />
