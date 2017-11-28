@@ -6,6 +6,7 @@
 namespace dank {
 
 class UIManager : public EventListenerComponent {
+	RTTI_IMPLEMENTATION(UIManager, EventListenerComponent)
 private:
 
 	void OnPress(float x, float y) override;

@@ -59,14 +59,17 @@ public:
 		lbl->SetContentColor(0xAAFF00FF);
 		lbl->SetColor(0xAA000000);
 
+		UIImage* image = new UIImage("image", texture, vec2(200, 200), vec2(200, 200));
+
 		mainMenu->Add(btn);
 		mainMenu->Add(lbl);
+		mainMenu->Add(image);
 	}
 
 	void Render() override {
 		renderer->Begin();
 		if (shit) renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 250), 0xFFFF00FF);
-		renderer->Submit(vec3(x, y, 0.0f), vec2(200.f, 200.f), texture);
+		//renderer->Submit(vec3(x, y, 0.0f), vec2(200.f, 200.f), texture);
 		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), nullptr, 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
@@ -84,6 +87,7 @@ public:
 		y = InputManager::GetY();
 		if (InputManager::GetKey(AKEYCODE_B))
 			InputManager::HideKeyboard();
+
 		playlist->Update();
 		mainMenu->Update(delta);
 	}

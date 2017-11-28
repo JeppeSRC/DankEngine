@@ -19,14 +19,14 @@
 
 #include "core/nativeapp.h"
 #include "core/input/inputmanager.h"
+#include "core/resource/resourcemanager.h"
 
-#include <core/ui/uimanager.h>
+#include "core/ui/uimanager.h"
 
-#include <graphics/uiitem/uiitem.h>
-#include <graphics/uiitem/uibutton.h>
-#include <graphics/uiitem/uilabel.h>
-
-#include <core/resource/resourcemanager.h>
+#include "graphics/uiitem/uiitem.h"
+#include "graphics/uiitem/uibutton.h"
+#include "graphics/uiitem/uilabel.h"
+#include "graphics/uiitem/uiimage.h"
 
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"

@@ -46,6 +46,7 @@
     <ClInclude Include="src\graphics\font\font.h" />
     <ClInclude Include="src\graphics\texture\texture.h" />
     <ClInclude Include="src\graphics\uiitem\uibutton.h" />
+    <ClInclude Include="src\graphics\uiitem\uiimage.h" />
     <ClInclude Include="src\graphics\uiitem\uiitem.h" />
     <ClInclude Include="src\graphics\uiitem\uilabel.h" />
     <ClInclude Include="src\maths\mat4.h" />
@@ -92,6 +93,7 @@
     <ClCompile Include="src\graphics\texture\texture.cpp" />
     <ClCompile Include="src\graphics\texture\texture2d.cpp" />
     <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uiimage.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
     <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
