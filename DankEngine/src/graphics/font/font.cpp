@@ -43,29 +43,34 @@ Font::~Font() {
 vec2 Font::GetMetrics(const String& text) const {
 	vec2 metrics;
 
+	float top = 0;
+	float bottom = 0;
+
 	for (size_t i = 0; i < text.length; i++) {
 		char c = text[i];
 
-		if (c == ' ') {
-			metrics.x += size * NativeApp::app->xUnitsPerPixel * 0.25f;
-			continue;
-		}
-
 		ftgl::texture_glyph_t* glyph = texture_font_get_glyph(font, c);
 
-		if (glyph->height> metrics.y) metrics.y = glyph->height;
+		if (glyph->offset_y > top) top = glyph->offset_y;
 
-		metrics.x += glyph->offset_x * NativeApp::app->xUnitsPerPixel;
+		float tmp = glyph->height - glyph->offset_y;
+
+		if (tmp > bottom) bottom = tmp;
+
+		metrics.x += glyph->offset_x;
 
 		if (i != 0) {
 			float kerning = texture_glyph_get_kerning(glyph, text[i - 1]);
-			metrics.x += kerning * NativeApp::app->xUnitsPerPixel;
+			metrics.x += kerning;
 		}
 
-		metrics.x += glyph->advance_x * NativeApp::app->xUnitsPerPixel;
+		if (i < text.length-1) metrics.x += glyph->advance_x;
 
 	}
 
+	metrics.y = top + bottom;
+
+	metrics.x *= NativeApp::app->xUnitsPerPixel;
 	metrics.y *= NativeApp::app->yUnitsPerPixel;
 
 	return metrics;

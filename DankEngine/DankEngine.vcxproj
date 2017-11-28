@@ -36,6 +36,7 @@
     <ClInclude Include="src\core\resource\resource.h" />
     <ClInclude Include="src\core\resource\resourcemanager.h" />
     <ClInclude Include="src\core\rtti.h" />
+    <ClInclude Include="src\core\ui\uimanager.h" />
     <ClInclude Include="src\graphics\buffers\indexbuffer.h" />
     <ClInclude Include="src\graphics\buffers\vertexarray.h" />
     <ClInclude Include="src\graphics\renderers\batchrenderer.h" />
@@ -44,6 +45,9 @@
     <ClInclude Include="src\graphics\buffers\vertexbuffer.h" />
     <ClInclude Include="src\graphics\font\font.h" />
     <ClInclude Include="src\graphics\texture\texture.h" />
+    <ClInclude Include="src\graphics\uiitem\uibutton.h" />
+    <ClInclude Include="src\graphics\uiitem\uiitem.h" />
+    <ClInclude Include="src\graphics\uiitem\uilabel.h" />
     <ClInclude Include="src\maths\mat4.h" />
     <ClInclude Include="src\maths\math.h" />
     <ClInclude Include="src\maths\mathcommon.h" />
@@ -72,6 +76,7 @@
     <ClCompile Include="src\core\resource\resourceshader.cpp" />
     <ClCompile Include="src\core\resource\resourcetext.cpp" />
     <ClCompile Include="src\core\resource\resourcetexture.cpp" />
+    <ClCompile Include="src\core\ui\uimanager.cpp" />
     <ClCompile Include="src\graphics\buffers\indexbuffer.cpp" />
     <ClCompile Include="src\graphics\buffers\vertexarray.cpp" />
     <ClCompile Include="src\graphics\font\fontdata.cpp" />
@@ -86,6 +91,9 @@
     <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
     <ClCompile Include="src\graphics\texture\texture.cpp" />
     <ClCompile Include="src\graphics\texture\texture2d.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
     <ClCompile Include="src\maths\mat4.cpp" />
     <ClCompile Include="src\maths\vec2.cpp" />
     <ClCompile Include="src\maths\vec3.cpp" />

@@ -35,6 +35,10 @@
     <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
     <ClCompile Include="src\audio\audiomanager.cpp" />
     <ClCompile Include="src\audio\audio.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
+    <ClCompile Include="src\core\ui\uimanager.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -68,6 +72,10 @@
     <ClInclude Include="src\audio\audiomanager.h" />
     <ClInclude Include="src\audio\audio.h" />
     <ClInclude Include="src\audio\audioplaylist.h" />
+    <ClInclude Include="src\graphics\uiitem\uibutton.h" />
+    <ClInclude Include="src\graphics\uiitem\uiitem.h" />
+    <ClInclude Include="src\core\ui\uimanager.h" />
+    <ClInclude Include="src\graphics\uiitem\uilabel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

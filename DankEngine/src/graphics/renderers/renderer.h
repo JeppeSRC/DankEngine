@@ -49,8 +49,8 @@ namespace dank {
 
 		mat4 orthographicMatrix;
 
-	public:
 		Renderer(unsigned int num_sprites, RendererType type);
+	public:
 		virtual ~Renderer();
 
 		virtual void Begin() = 0;
@@ -61,6 +61,11 @@ namespace dank {
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture);
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color);
 		void Submit(const String& text, Font* font, const vec2& position, unsigned int color);
+
+		//UI
+		void SubmitTopLeft(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color);
+
+		static Renderer* CreateRenderer(unsigned int num_sprites);
 
 	private:
 		float SubmitTexture(const Texture* texture);
