@@ -41,6 +41,7 @@
     <ClCompile Include="src\utils\utils.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiimage.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiprogressbar.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uijoystick.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="src\utils\utils.h" />
     <ClInclude Include="src\graphics\uiitem\uiimage.h" />
     <ClInclude Include="src\graphics\uiitem\uiprogressbar.h" />
+    <ClInclude Include="src\graphics\uiitem\uijoystick.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

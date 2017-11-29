@@ -43,7 +43,7 @@ public:
 	virtual void OnFocusChanged(bool infocus) {}
 
 	inline void SetName(const String& name) { this->name = name; }
-	inline void SetPosition(const vec2& positoin) { this->position = position; }
+	inline void SetPosition(const vec2& position) { this->position = position; }
 	inline void SetSize(const vec2& size) { this->size = size; }
 	inline void SetColor(unsigned int color) { this->color = color; }
 	inline void SetTexture(Texture2D* texture) { this->texture = texture; }

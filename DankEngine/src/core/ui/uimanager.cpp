@@ -4,6 +4,7 @@ namespace dank {
 
 UIManager::UIManager() {
 	renderer = Renderer::CreateRenderer(64);
+	created = true;
 }
 
 UIManager::UIManager(Renderer* renderer) : renderer(renderer) {
@@ -11,7 +12,8 @@ UIManager::UIManager(Renderer* renderer) : renderer(renderer) {
 }
 
 UIManager::~UIManager() {
-	
+	if (created)
+		delete renderer;
 }
 
 void UIManager::OnPress(float x, float y) {

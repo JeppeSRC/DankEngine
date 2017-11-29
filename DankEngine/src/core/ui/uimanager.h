@@ -18,9 +18,10 @@ private:
 
 	List<UIItem*> items;
 
-	UIItem* infocus;
+	UIItem* infocus = nullptr;
 
 	Renderer* renderer;
+	bool created = false;
 public:
 	UIManager();
 	UIManager(Renderer* renderer);

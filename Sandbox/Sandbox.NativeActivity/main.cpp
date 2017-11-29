@@ -14,7 +14,7 @@ using namespace dank;
 
 class MainApp : public Application {
 private:
-	float r = 0, g = 0 , b = 0;
+	float r = 0, g = 0, b = 0;
 
 	BatchRenderer* renderer;
 	UIManager* mainMenu;
@@ -23,12 +23,18 @@ private:
 	Font* font;
 	AudioPlaylist *playlist;
 	float x = 0, y = 0;
-
+	UIItem* items[4];
 public:
-	MainApp(ANativeActivity* activity) 
+
+	MainApp(ANativeActivity* activity)
 		: Application(activity, 1000, 500) {
 		Application::Set(this);
 	}
+
+	void JoystickCallback(float x, float y) {
+
+	}
+
 	bool shit = true;
 	void Init() override {
 		height = width / ((float)NativeApp::app->surface_width / NativeApp::app->surface_height);
@@ -63,10 +69,30 @@ public:
 
 		UIProgressBar* bar = new UIProgressBar("bar", vec2(20, 900), vec2(400, 40), 0xFF00FF00);
 		bar->SetStep(50);
+
+		UIJoystick* joystick = new UIJoystick("joystick", vec2(400, 1200), vec2(200, 200), vec2(100, 100));
+		joystick->SetColor(0xAA000000);
+		joystick->SetInnerColor(0xFF0000FF);
+
+		items[0] = btn;
+		items[1] = lbl;
+		items[2] = image;
+		items[3] = bar;
+
+		joystick->SetCallback([](float xOffset, float yOffset, void* data) {
+			UIItem* *items = (UIItem**)data;
+			for (int i = 0; i < 4; i++) {
+				UIItem* item = items[i];
+				items[i]->SetPosition(items[i]->GetPosition() + vec2(xOffset, yOffset));
+			}
+
+		}, (void*)items);
+
 		mainMenu->Add(btn);
 		mainMenu->Add(lbl);
 		mainMenu->Add(image);
 		mainMenu->Add(bar);
+		mainMenu->Add(joystick);
 	}
 
 	void Render() override {
@@ -95,5 +121,6 @@ public:
 		mainMenu->Update(delta);
 	}
 };
+
 
 APP_START(MainApp);

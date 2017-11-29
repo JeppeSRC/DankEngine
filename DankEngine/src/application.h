@@ -28,6 +28,7 @@
 #include "graphics/uiitem/uilabel.h"
 #include "graphics/uiitem/uiimage.h"
 #include "graphics/uiitem/uiprogressbar.h"
+#include "graphics/uiitem/uijoystick.h"
 
 #include "graphics/buffers/indexbuffer.h"
 #include "graphics/buffers/vertexbuffer.h"
