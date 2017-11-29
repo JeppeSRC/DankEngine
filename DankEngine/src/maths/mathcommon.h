@@ -22,6 +22,7 @@
 #define FLOAT64_CMP(a, b) FLOAT_CMP(a, b, unsigned long long)
 
 #define CLAMP(x, min, max) x = x < min ? min : x > max ? max : x;
+#define _CLAMP(x, min, max) x < min ? min : x > max ? max : x
 
 #define SSE_MATH 1
 

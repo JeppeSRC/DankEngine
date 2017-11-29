@@ -91,5 +91,8 @@ namespace dank {
 		bool operator<=(const vec2& v) const;
 
 		inline vec2 operator-() { return vec2(-x, -y); }
+		
+		inline float GetX() const { return x; }
+		inline float GetY() const { return y; }
 	};
 }

@@ -59,11 +59,14 @@ public:
 		lbl->SetContentColor(0xAAFF00FF);
 		lbl->SetColor(0xAA000000);
 
-		UIImage* image = new UIImage("image", texture, vec2(200, 200), vec2(200, 200));
+		UIImage* image = new UIImage("image", texture, vec2(0, 200), vec2(200, 200));
 
+		UIProgressBar* bar = new UIProgressBar("bar", vec2(20, 900), vec2(400, 40), 0xFF00FF00);
+		bar->SetStep(50);
 		mainMenu->Add(btn);
 		mainMenu->Add(lbl);
 		mainMenu->Add(image);
+		mainMenu->Add(bar);
 	}
 
 	void Render() override {
