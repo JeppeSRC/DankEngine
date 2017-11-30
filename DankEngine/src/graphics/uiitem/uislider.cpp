@@ -16,7 +16,8 @@ void UISlider::OnPress(const vec2& point) {
 		}
 	}
 
-	grabbed = -1.0f;
+	grabbed = handleSize.x * 0.5f;
+	handlePosition.x = point.x - grabbed;
 }
 
 void UISlider::OnMove(const vec2& point) {
