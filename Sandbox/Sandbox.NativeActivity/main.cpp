@@ -31,10 +31,6 @@ public:
 		Application::Set(this);
 	}
 
-	void JoystickCallback(float x, float y) {
-
-	}
-
 	bool shit = true;
 	void Init() override {
 		height = width / ((float)NativeApp::app->surface_width / NativeApp::app->surface_height);
@@ -100,6 +96,7 @@ public:
 		if (shit) renderer->Submit("abcdefghijklmnopqrstuvwxyz", font, vec2(250, 250), 0xFFFF00FF);
 		//renderer->Submit(vec3(x, y, 0.0f), vec2(200.f, 200.f), texture);
 		renderer->Submit(vec3(100, 100, 0.0f), vec2(100, 100), nullptr, 0xFFFF00FF);
+		renderer->SubmitCircle(vec3(300, 700, 0.0f), 50.0f, 100.0f, 0xFFFF00FF);
 		renderer->End();
 		renderer->Present();
 

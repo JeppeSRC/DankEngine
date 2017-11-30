@@ -14,8 +14,14 @@ namespace dank {
 	}
 
 	void UIJoystick::OnMove(const vec2& point) {
-		//LOGD("Position: %.2f, %.2f", point.x, point.y);
 		innerPosition = point + position - innerSize / 2;
+		vec2 deltaPos = -(centerPosition - innerPosition);
+		if (std::abs(deltaPos.x) > innerSize.x) {
+			innerPosition.x = centerPosition.x + (std::abs(deltaPos.x) / deltaPos.x * innerSize.x);
+		}
+		if (std::abs(deltaPos.y) > innerSize.y) {
+			innerPosition.y = centerPosition.y + (std::abs(deltaPos.y) / deltaPos.y * innerSize.y);
+		}
 	}
 
 	void UIJoystick::OnRelease() {

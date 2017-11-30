@@ -30,8 +30,8 @@ protected:
 public:
 	virtual ~UIItem();
 
-	bool IsPointInside(float x, float y) const;
-	bool IsPointInside(const vec2& point) const;
+	virtual bool IsPointInside(float x, float y) const;
+	virtual bool IsPointInside(const vec2& point) const;
 
 	virtual void OnUpdate(float delta) { }
 	virtual void OnRender(Renderer* renderer) = 0;

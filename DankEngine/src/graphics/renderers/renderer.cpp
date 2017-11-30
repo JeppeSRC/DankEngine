@@ -274,6 +274,33 @@ void Renderer::Submit(const String& text, Font* font, const vec2& position, unsi
 	}
 }
 
+void Renderer::SubmitCircle(const vec3& position, float radius, float resolution, unsigned int color) {
+	for (int i = 0; i < resolution; i++) {
+		buffer->position = position;
+		buffer->texCoord.x = 0;
+		buffer->texCoord.y = 0;
+		buffer->color = color;
+		buffer->texID = -1;
+		buffer->text = 0;
+		buffer++;
+
+		buffer->position = vec3(position.x + (radius * cos(i * M_PI * 2 / resolution)), position.y + (radius * sin(i * M_PI * 2 / resolution)), position.z);
+		buffer->texCoord.x = 0;
+		buffer->texCoord.y = 0;
+		buffer->color = color;
+		buffer->texID = -1;
+		buffer->text = 0;
+		buffer++;
+		buffer->position = vec3(position.x + (radius * cos((i - 1) * M_PI * 2 / resolution)), position.y + (radius * sin((i - 1) * M_PI * 2 / resolution)), position.z);
+		buffer->texCoord.x = 0;
+		buffer->texCoord.y = 0;
+		buffer->color = color;
+		buffer->texID = -1;
+		buffer->text = 0;
+		buffer++;
+	}
+}
+
 void Renderer::SubmitTopLeft(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color) {
 	float tid = SubmitTexture(texture);
 	buffer->position = position;
