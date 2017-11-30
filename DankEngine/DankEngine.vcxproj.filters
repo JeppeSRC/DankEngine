@@ -42,6 +42,23 @@
     <ClCompile Include="src\graphics\uiitem\uiimage.cpp" />
     <ClCompile Include="src\graphics\uiitem\uiprogressbar.cpp" />
     <ClCompile Include="src\graphics\uiitem\uijoystick.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer2.cpp" />
+    <ClCompile Include="src\graphics\renderers\renderer3.cpp" />
+    <ClCompile Include="src\core\resource\resource.cpp" />
+    <ClCompile Include="src\core\resource\resourcemanager.cpp" />
+    <ClCompile Include="src\core\resource\resourcebinary.cpp" />
+    <ClCompile Include="src\core\resource\resourceshader.cpp" />
+    <ClCompile Include="src\core\resource\resourcetexture.cpp" />
+    <ClCompile Include="src\core\resource\resourcefont.cpp" />
+    <ClCompile Include="src\core\resource\resourcetext.cpp" />
+    <ClCompile Include="src\graphics\font\fontdata.cpp" />
+    <ClCompile Include="src\core\input\inputmanager.cpp" />
+    <ClCompile Include="src\graphics\shaders\shaderfactory.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uibutton.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uiitem.cpp" />
+    <ClCompile Include="src\core\ui\uimanager.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
+    <ClCompile Include="src\graphics\uiitem\uislider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -82,6 +99,16 @@
     <ClInclude Include="src\graphics\uiitem\uiimage.h" />
     <ClInclude Include="src\graphics\uiitem\uiprogressbar.h" />
     <ClInclude Include="src\graphics\uiitem\uijoystick.h" />
+    <ClInclude Include="src\graphics\texture\texture.h" />
+    <ClInclude Include="src\core\resource\resourcemanager.h" />
+    <ClInclude Include="src\core\resource\resource.h" />
+    <ClInclude Include="src\core\input\inputmanager.h" />
+    <ClInclude Include="src\core\rtti.h" />
+    <ClInclude Include="src\graphics\uiitem\uibutton.h" />
+    <ClInclude Include="src\graphics\uiitem\uiitem.h" />
+    <ClInclude Include="src\core\ui\uimanager.h" />
+    <ClInclude Include="src\graphics\uiitem\uilabel.h" />
+    <ClInclude Include="src\graphics\uiitem\uislider.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />

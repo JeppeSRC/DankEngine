@@ -42,10 +42,11 @@ public:
 		FontManager::SetDefaultFont(font);
 		glClearColor(0.3f, 0.4f, 0.7f, 1.0f);
 		playlist = new AudioPlaylist(true);
+
 		playlist->Push(new Audio("broad spectrum.wav"));
 		playlist->Push(new Audio("background.mp3"));
 		playlist->Play();
-		mainMenu = new UIManager;
+		mainMenu = new UIManager();
 
 		UIButton* btn = new UIButton("btnTest", vec2(300, 300), vec2(200, 75), "Button!!", nullptr);
 		btn->SetFont(font);
@@ -56,10 +57,17 @@ public:
 				s = !s;
 			}
 		}, &shit);
-
+		
 		UILabel* lbl = new UILabel("lbl", vec2(100, 1000), "abcdefghijklmnopqrstuvwxyz");
 		lbl->SetContentColor(0xAAFF00FF);
-		lbl->SetColor(0xAA000000);
+		lbl->SetColor(0x00);
+
+		UISlider* slider = new UISlider("slider", vec2(100, 500), vec2(400, 75), vec2(20, 55));
+		slider->SetColor(0xFFFF00FF);
+
+		vec2 dank;
+
+		slider->Interpolate(dank);
 
 		UIImage* image = new UIImage("image", texture, vec2(0, 200), vec2(200, 200));
 
@@ -89,6 +97,8 @@ public:
 		mainMenu->Add(image);
 		mainMenu->Add(bar);
 		mainMenu->Add(joystick);
+
+		mainMenu->Add(slider);
 	}
 
 	void Render() override {

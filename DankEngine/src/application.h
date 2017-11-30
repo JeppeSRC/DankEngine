@@ -21,7 +21,12 @@
 #include "core/input/inputmanager.h"
 #include "core/resource/resourcemanager.h"
 
-#include "core/ui/uimanager.h"
+#include <core/ui/uimanager.h>
+
+#include <graphics/uiitem/uiitem.h>
+#include <graphics/uiitem/uibutton.h>
+#include <graphics/uiitem/uilabel.h>
+#include <graphics/uiitem/uislider.h>
 
 #include "graphics/uiitem/uiitem.h"
 #include "graphics/uiitem/uibutton.h"
