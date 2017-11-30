@@ -37,10 +37,6 @@ namespace dank {
 			renderer->Submit(text, font, position, color);
 		}
 
-		inline void SubmitCircle(const vec3& position, float radius, float resolution, unsigned int color) {
-			renderer->SubmitCircle(position, radius, resolution, color);
-		}
-
 		inline void End() {
 			renderer->End();
 		}

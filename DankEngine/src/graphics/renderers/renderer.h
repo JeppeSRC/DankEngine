@@ -61,7 +61,6 @@ namespace dank {
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture);
 		void Submit(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color);
 		void Submit(const String& text, Font* font, const vec2& position, unsigned int color);
-		void SubmitCircle(const vec3& position, float radius, float resolution, unsigned int color);
 
 		//UI
 		void SubmitTopLeft(const vec3& position, const vec2& size, Texture2D* texture, unsigned int color);

@@ -1,15 +1,16 @@
 #pragma once
 
+#include <vector>
+
 #include "audio.h"
-#include "utils/list.h"
 
 namespace dank {
 
 	class AudioPlaylist {
 	private:
-		List<Audio*> sounds;
+		std::vector<Audio*> sounds;
 		
-		unsigned int currentSound;
+		unsigned int currentSound = 0;
 
 		bool playing = false;
 		bool autodelete = false;
@@ -17,14 +18,14 @@ namespace dank {
 		AudioPlaylist(bool autodelete): autodelete(autodelete) { }
 		~AudioPlaylist() {
 			if (autodelete)
-				for (size_t i = 0; i < sounds.GetSize(); i++)
+				for (size_t i = 0; i < sounds.size(); i++)
 					delete sounds[i];
 		}
 
 
 		void Update() {
 			if (sounds[currentSound]->FinishedPlaying() && playing) {
-				if (++currentSound > sounds.GetSize() - 1) 
+				if (++currentSound > sounds.size() - 1)
 					currentSound = 0;
 				sounds[currentSound]->Play();
 			}
@@ -50,7 +51,7 @@ namespace dank {
 
 		inline void Next() {
 			Stop();
-			if (++currentSound > sounds.GetSize() - 1)
+			if (++currentSound > sounds.size() - 1)
 				currentSound = 0;
 			sounds[currentSound]->Play();
 		}
@@ -58,12 +59,12 @@ namespace dank {
 		inline void Previous() {
 			Stop();
 			if (--currentSound < 0)
-				currentSound = sounds.GetSize() - 1;
+				currentSound = sounds.size() - 1;
 			sounds[currentSound]->Play();
 		}
 
 		inline void Push(Audio* audio) {
-			sounds.Push_back(audio);
+			sounds.push_back(audio);
 		}
 	};
 

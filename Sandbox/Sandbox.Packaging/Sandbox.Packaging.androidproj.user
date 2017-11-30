@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
-    <AndroidDeviceID>emulator-####;shitDevice</AndroidDeviceID>
+    <AndroidDeviceID>emulator-####;x86</AndroidDeviceID>
   </PropertyGroup>
   <PropertyGroup>
     <ShowAllFiles>true</ShowAllFiles>
@@ -10,6 +10,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <DebuggerFlavor>AndroidDebugger</DebuggerFlavor>
     <AndroidDeviceID>3503c061;serranoveltexx</AndroidDeviceID>
-    <AndroidDeviceID>emulator-####;ArmDevice</AndroidDeviceID>
+    <AndroidDeviceID>3503c061;serranoveltexx</AndroidDeviceID>
   </PropertyGroup>
 </Project>

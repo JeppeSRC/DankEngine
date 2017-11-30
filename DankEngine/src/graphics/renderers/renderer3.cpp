@@ -5,8 +5,8 @@ namespace dank {
 Renderer3::Renderer3(unsigned int num_sprites) : Renderer(num_sprites, RendererType::RENDERER_GLES3) {
 	vao = new VertexArray(sizeof(Vertex));
 
-	vao->Bind();
 	vbo->Bind();
+	vao->Bind();
 	vao->AddAttribute(0, 3, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, position));
 	vao->AddAttribute(1, 2, GL_FLOAT, false, (unsigned int)MOFFSET(Vertex, texCoord));
 	vao->AddAttribute(2, 4, GL_UNSIGNED_BYTE, true, (unsigned int)MOFFSET(Vertex, color));
