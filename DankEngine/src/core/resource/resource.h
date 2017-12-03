@@ -24,6 +24,8 @@ enum class ResourceCreateState {
 	COLD,
 	HOT
 };
+
+enum class TextureFormat;
  
 class Resource {
 protected:
@@ -100,14 +102,14 @@ protected:
 	ResourceTexture(const ResourceTexture* other);
 	ResourceTexture(ResourceTextureType type, unsigned int resourceID);
 	ResourceTexture(const char* filename, ResourceTextureType type, unsigned int resourceID);
-	ResourceTexture(unsigned int width, unsigned int height, unsigned int pixelSize, const void* const data, ResourceTextureType type, unsigned int resourceID);
+	ResourceTexture(unsigned int width, unsigned int height, TextureFormat format, const void* const data, ResourceTextureType type, unsigned int resourceID);
 public:
 
 	const char* GetFilename() const;
 
 	unsigned int GetWidth() const;
 	unsigned int GetHeight() const;
-	unsigned int GetPixelSize() const;
+	TextureFormat GetFormat() const;
 	const void* GetPixelData() const;
 
 	inline ResourceTextureType GetTextureType() const { return textureType; }

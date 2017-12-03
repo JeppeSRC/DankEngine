@@ -1,4 +1,5 @@
 #include "resource.h"
+#include <graphics/texture/texture.h>
 
 namespace dank {
 
@@ -18,17 +19,32 @@ ResourceTexture::ResourceTexture(const char* filename, ResourceTextureType type,
 	resourceData = (unsigned long long)res;
 }
 
-ResourceTexture::ResourceTexture(unsigned int width, unsigned int height, unsigned int pixelSize, const void* const data, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::TEXTURE, ResourceStorageType::BINARY, resourceID), textureType(type) {
-	resourceDataSize = width * height * pixelSize + 12;
+ResourceTexture::ResourceTexture(unsigned int width, unsigned int height, TextureFormat format, const void* const data, ResourceTextureType type, unsigned int resourceID) : Resource(nullptr, 0, ResourceType::TEXTURE, ResourceStorageType::BINARY, resourceID), textureType(type) {
+	void* res = nullptr;
 
-	void* res = denew unsigned char[resourceDataSize];
-	unsigned int* tmp = (unsigned int*)res;
+	if (data) {
+		resourceDataSize = width * height * Texture::GetFormatSize(format) + 12;
 
-	tmp[0] = width;
-	tmp[1] = height;
-	tmp[2] = pixelSize;
+		void* res = denew unsigned char[resourceDataSize];
+		unsigned int* tmp = (unsigned int*)res;
 
-	memcpy(&tmp[3], data, resourceDataSize - 12);
+		tmp[0] = width;
+		tmp[1] = height;
+		tmp[2] = (unsigned int)format;
+
+		memcpy(&tmp[3], data, resourceDataSize - 12);
+	}
+	else {
+		resourceDataSize = 16;
+
+		void* res = denew unsigned char[resourceDataSize];
+		unsigned int* tmp = (unsigned int*)res;
+
+		tmp[0] = width;
+		tmp[1] = height;
+		tmp[2] = (unsigned int)format;
+		tmp[3] = 0;
+	}
 
 
 	resourceData = (unsigned long long)res;
@@ -43,15 +59,15 @@ unsigned int ResourceTexture::GetWidth() const {
 }
 
 unsigned int ResourceTexture::GetHeight() const {
-	return *(unsigned int*)resourceData + 4;
+	return *(unsigned int*)(resourceData + 4);
 }
 
-unsigned int ResourceTexture::GetPixelSize() const {
-	return *(unsigned int*)resourceData + 8;
+TextureFormat ResourceTexture::GetFormat() const {
+	return (TextureFormat)(*(unsigned int*)(resourceData + 8));
 }
 
 const void* ResourceTexture::GetPixelData() const {
-	return (const void*)((const unsigned int*)resourceData + 3);
+	return (const void*)((const unsigned int*)(resourceData + 12));
 }
 
 }
