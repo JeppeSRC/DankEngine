@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <core/nativeapp.h>
 #include <utils/string.h>
 #include <core/resource/resource.h>
@@ -8,6 +7,8 @@
 namespace dank {
 
 enum class TextureFormat {
+	NONE, 
+
 	R8,
 	R32F,
 	RG8,
@@ -27,6 +28,7 @@ enum class TextureFormat {
 class Texture : public ResourceTexture {
 public:
 	static unsigned int GetFormatSize(TextureFormat format);
+	static const char* GetFormatString(TextureFormat format);
 protected:
 	unsigned int textureID;
 	unsigned int width;

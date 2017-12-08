@@ -25,6 +25,29 @@ unsigned int Texture::GetFormatSize(TextureFormat format) {
 	return 0;
 }
 
+const char* Texture::GetFormatString(TextureFormat format) {
+	switch (format) {
+	case TextureFormat::R8:
+		return "R8";
+	case TextureFormat::R32F:
+		return "R32F";
+	case TextureFormat::RG8:
+		return "RG8";
+	case TextureFormat::RG32F:
+		return "RG32F";
+	case TextureFormat::RGB8:
+		return "RGB8";
+	case TextureFormat::RGB32F:
+		return "RGB32F";
+	case TextureFormat::RGBA8:
+		return "RGBA8";
+	case TextureFormat::RGBA32F:
+		return "RGBA32F";
+	}
+
+	return "NONE";
+}
+
 Texture::Texture() : ResourceTexture(ResourceTextureType::RESOURCE_TEXTURE_UNKNOWN, 0) ,textureID(0), width(0), height(0), deleteTexture(true) {
 	GL(glGenTextures(1, &textureID));
 	GL(glBindTexture(GL_TEXTURE_2D, textureID));

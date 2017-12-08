@@ -59,6 +59,7 @@
     <ClCompile Include="src\core\ui\uimanager.cpp" />
     <ClCompile Include="src\graphics\uiitem\uilabel.cpp" />
     <ClCompile Include="src\graphics\uiitem\uislider.cpp" />
+    <ClCompile Include="src\graphics\texture\framebuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\application.h" />
@@ -109,6 +110,7 @@
     <ClInclude Include="src\core\ui\uimanager.h" />
     <ClInclude Include="src\graphics\uiitem\uilabel.h" />
     <ClInclude Include="src\graphics\uiitem\uislider.h" />
+    <ClInclude Include="src\graphics\texture\framebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\graphics\shaders\renderer2.fs" />
