@@ -18,14 +18,7 @@ namespace dank {
 		Audio(String path);
 		~Audio();
 
-		inline void Play() { 
-			SL((*playerPlay)->SetPlayState(playerPlay, SL_PLAYSTATE_PLAYING)); 
-
-			if (playerPlay == nullptr) {
-				LOGD("You're gay");
-			}
-
-		}
+		inline void Play() { SL((*playerPlay)->SetPlayState(playerPlay, SL_PLAYSTATE_PLAYING)); }
 		inline void Pause() { SL((*playerPlay)->SetPlayState(playerPlay, SL_PLAYSTATE_PAUSED)); }
 		inline void Stop() { SL((*playerPlay)->SetPlayState(playerPlay, SL_PLAYSTATE_STOPPED)); }
 
