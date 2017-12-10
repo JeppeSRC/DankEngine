@@ -417,7 +417,7 @@ vec4 mat4::operator*(const vec4& v) const {
 
 	LoadRows(col);
 
-	float32x4_t res = vmulq_f32(vec[0], col[0]);
+	float32x4_t res = vmulq_f32(vec, col[0]);
 
 	for (int i = 1; i < 4; i++) {
 #ifdef __aarch64__
