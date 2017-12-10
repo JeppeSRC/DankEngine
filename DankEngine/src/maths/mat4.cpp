@@ -339,21 +339,18 @@ mat4 mat4::operator*(const mat4& r) const {
 }
 
 vec4 mat4::operator*(const vec4& v) const {
-	__m128 vec[4];
+	__m128 vec;
 	__m128 col[4];
 
-	vec[0] = _mm_set_ps(v.x, v.x, v.x, v.x);
-	vec[1] = _mm_set_ps(v.y, v.y, v.y, v.y);
-	vec[2] = _mm_set_ps(v.z, v.z, v.z, v.z);
-	vec[3] = _mm_set_ps(v.w, v.w, v.w, v.w);
+	vec = _mm_set_ps(v.w, v.z, v.y, v.x);
 
-	LoadColumns(col);
+	LoadRows(col);
 
-	__m128 res = _mm_mul_ps(vec[0], col[0]);
+	__m128 res = _mm_mul_ps(vec, col[0]);
 
 	for (int i = 1; i < 4; i++) {
 		//res = _mm_fmadd_ps(vec[i], col[i], res);
-		res = _mm_add_ps(_mm_mul_ps(vec[i], col[i]), res);
+		res = _mm_add_ps(_mm_mul_ps(vec, col[i]), res);
 	}
 	
 	vec4 m(0, 0, 0, 0);
@@ -364,21 +361,19 @@ vec4 mat4::operator*(const vec4& v) const {
 }
 
 vec3 mat4::operator*(const vec3& v) const {
-	__m128 vec[4];
+	__m128 vec;
 	__m128 col[4];
 
-	vec[0] = _mm_set_ps(v.x, v.x, v.x, v.x);
-	vec[1] = _mm_set_ps(v.y, v.y, v.y, v.y);
-	vec[2] = _mm_set_ps(v.z, v.z, v.z, v.z);
-	vec[3] = _mm_set_ps(1, 1, 1, 1);
+	vec = _mm_set_ps(1, v.z, v.y, v.x);
 
-	LoadColumns(col);
 
-	__m128 res = _mm_mul_ps(vec[0], col[0]);
+	LoadRows(col);
 
-	for (int i = 1; i < 2; i++) {
+	__m128 res = _mm_mul_ps(vec, col[0]);
+
+	for (int i = 1; i < 3; i++) {
 		//res = _mm_fmadd_ps(vec[i], col[i], res);
-		res = _mm_add_ps(_mm_mul_ps(vec[i], col[i]), res);
+		res = _mm_add_ps(_mm_mul_ps(vec, col[i]), res);
 	}
 
 	vec3 m(0, 0, 0);
@@ -413,44 +408,22 @@ mat4 mat4::operator*(const mat4& r) const {
 }
 
 vec4 mat4::operator*(const vec4& v) const {
-
-	float32x4_t vec[4];
+	float32x4_t vec;
 	float32x4_t col[4];
 
-	float tmp[4]{ v.x, v.x, v.x, v.x };
+	float tmp[4]{ v.w, v.z, v.y, v.x };
 
-	vec[0] = vld1q_f32(tmp);
+	vec = vld1q_f32(tmp);
 
-	tmp[0] = v.y;
-	tmp[1] = v.y;
-	tmp[2] = v.y;
-	tmp[3] = v.y;
-
-	vec[1] = vld1q_f32(tmp);
-
-	tmp[0] = v.z;
-	tmp[1] = v.z;
-	tmp[2] = v.z;
-	tmp[3] = v.z;
-
-	vec[2] = vld1q_f32(tmp);
-
-	tmp[0] = v.w;
-	tmp[1] = v.w;
-	tmp[2] = v.w;
-	tmp[3] = v.w;
-
-	vec[3] = vld1q_f32(tmp);
-
-	LoadColumns(col);
+	LoadRows(col);
 
 	float32x4_t res = vmulq_f32(vec[0], col[0]);
 
 	for (int i = 1; i < 4; i++) {
-#ifdef DONT_USE //__aarch64__
-		res = vfmaq_f32(res, vec[i], col[i]);
+#ifdef __aarch64__
+		res = vfmaq_f32(res, vec, col[i]);
 #else
-		res = vaddq_f32(vmulq_f32(vec[i], col[i]), res);
+		res = vaddq_f32(vmulq_f32(vec, col[i]), res);
 #endif
 	}
 
@@ -461,43 +434,22 @@ vec4 mat4::operator*(const vec4& v) const {
 
 vec3 mat4::operator*(const vec3& v) const {
 
-	float32x4_t vec[4];
+	float32x4_t vec;
 	float32x4_t col[4];
 
-	float tmp[4]{ v.x, v.x, v.x, v.x };
+	float tmp[4]{ v.x, v.y, v.z, 1 };
 
-	vec[0] = vld1q_f32(tmp);
+	vec = vld1q_f32(tmp);
 
-	tmp[0] = v.y;
-	tmp[1] = v.y;
-	tmp[2] = v.y;
-	tmp[3] = v.y;
+	LoadRows(col);
 
-	vec[1] = vld1q_f32(tmp);
-
-	tmp[0] = v.z;
-	tmp[1] = v.z;
-	tmp[2] = v.z;
-	tmp[3] = v.z;
-
-	vec[2] = vld1q_f32(tmp);
-
-	tmp[0] = 1.0f;
-	tmp[1] = 1.0f;
-	tmp[2] = 1.0f;
-	tmp[3] = 1.0f;
-
-	vec[3] = vld1q_f32(tmp);
-
-	LoadColumns(col);
-
-	float32x4_t res = vmulq_f32(vec[0], col[0]);
+	float32x4_t res = vmulq_f32(vec, col[0]);
 
 	for (int i = 1; i < 4; i++) {
 #ifdef __aarch64__
-		res = vfmaq_f32(res, vec[i], col[i]);
+		res = vfmaq_f32(res, vec, col[i]);
 #else
-		res = vaddq_f32(vmulq_f32(vec[i], col[i]), res);
+		res = vaddq_f32(vmulq_f32(vec, col[i]), res);
 #endif
 	}
 
