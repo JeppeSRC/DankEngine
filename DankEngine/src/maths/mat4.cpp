@@ -411,7 +411,7 @@ vec4 mat4::operator*(const vec4& v) const {
 	float32x4_t vec;
 	float32x4_t col[4];
 
-	float tmp[4]{ v.w, v.z, v.y, v.x };
+	float tmp[4]{ v.x, v.y, v.z, v.w };
 
 	vec = vld1q_f32(tmp);
 
