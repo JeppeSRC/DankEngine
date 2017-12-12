@@ -4,6 +4,10 @@
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
 
+#include <EGL/egl.h>
+#include <EGL/eglext.h>
+#include <EGL/eglplatform.h>
+
 #include <GLES/gl.h>
 #include <GLES/glext.h>
 #include <GLES/glplatform.h>
@@ -21,12 +25,17 @@ namespace dank {
 #define ASSERT_MSG(x, msg) if (x) { LOGF("Assertion Failed: \"%s\" in \"%s:%u\" %s", #x, __FILE__, __LINE__, msg); int* abcdefghijklmnopqrstuvwxyz123456789 = nullptr; *abcdefghijklmnopqrstuvwxyz123456789 = 1;}
 #define GL(func) func; GLCallLog(#func, __FILE__, __LINE__)
 #define SL(func) SLCallLog(#func, func, __FILE__, __LINE__)
+#define EGL(func) func; EGLCallLog(#func, __FILE__, __LINE__)
+#define _EGL()  EGLCallLog("", __FILE__, __LINE__)
+
 #else
 #define ASSERT(x)
 #define ASSERT_MSG(x, msg...)
 #define DBG(code)
 #define GL(func) func
 #define SL(func) func
+#define EGL(func) func
+#define _EGL() 
 #endif
 
 #define LOGDEF(fmt...) __android_log_print(ANDROID_LOG_DEFAULT,   "DankEngine", fmt)
@@ -44,6 +53,13 @@ namespace dank {
 		while (error = glGetError()) {
 			LOGF("[GL] Error %u calling %s in %s:%u", error, func, file, line);
 		}
+	}
+
+	inline void EGLCallLog(const char* const func, const char* const file, int line) {
+		unsigned int error = eglGetError();
+		query
+		if(error != EGL_SUCCESS)
+			LOGF("[EGL] Error %u calling %s in %s:%u", error, func, file, line);
 	}
 
 	inline void SLCallLog(const char* const func, SLresult result, const char* const file, int line) {

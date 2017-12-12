@@ -26,7 +26,7 @@
 #include <graphics/uiitem/uiitem.h>
 #include <graphics/uiitem/uibutton.h>
 #include <graphics/uiitem/uilabel.h>
-#include <graphics/uiitem/uislider.h>
+#include "graphics/uiitem/uislider.h"
 
 #include "graphics/uiitem/uiitem.h"
 #include "graphics/uiitem/uibutton.h"

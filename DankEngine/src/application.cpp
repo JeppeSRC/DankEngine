@@ -116,7 +116,7 @@ namespace dank {
 		glDisable(GL_DEPTH_TEST);
 		glDisable(GL_CULL_FACE);
 
-		eglSwapInterval(app->display, 0);
+		EGL(eglSwapInterval(app->display, 0));
 
 		app->xUnitsPerPixel = Application::Get()->GetGameWidth() / (float)app->surface_width;
 		app->yUnitsPerPixel = Application::Get()->GetGameHeight() / (float)app->surface_height;
@@ -124,7 +124,6 @@ namespace dank {
 		InputManager::Init();
 
 		AudioManager::Init();
-
 
 		Application::Get()->Init();
 		unsigned long long lastTime = mikrotime();

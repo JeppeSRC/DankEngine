@@ -99,11 +99,11 @@ namespace dank {
 		};
 
 		if (app->display && app->context) {
-			eglChooseConfig(app->display, attrib, &config, 1, &num_configs);
+			EGL(eglChooseConfig(app->display, attrib, &config, 1, &num_configs));
 
-			app->surface = eglCreateWindowSurface(app->display, config, app->window, nullptr);
-
+			app->surface = EGL(eglCreateWindowSurface(app->display, config, app->window, nullptr));
 			if (eglMakeCurrent(app->display, app->surface, app->surface, app->context) == 0) {
+				EGL((void)app->surface);
 				LOGF("[NativeApp] Failed to make context current!");
 				_exit(3);
 			}
@@ -112,9 +112,10 @@ namespace dank {
 		}
 
 
-		app->display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+		app->display = EGL(eglGetDisplay(EGL_DEFAULT_DISPLAY));
 
 		if (eglInitialize(app->display, 0, 0) == 0) {
+			EGL();
 			LOGE("[NativeApp] Failed to initialize egl display");
 		}
 
@@ -138,15 +139,15 @@ namespace dank {
 			EGL_NONE
 		};
 
-		app->surface = eglCreateWindowSurface(app->display, config, app->window, nullptr);
-		app->context = eglCreateContext(app->display, config, nullptr, context_attrib);
+		app->surface = EGL(eglCreateWindowSurface(app->display, config, app->window, nullptr));
+		app->context = EGL(eglCreateContext(app->display, config, nullptr, context_attrib));
 
 		if (!app->context) {
 			LOGW("[NativeApp] Failed to create OpenGL ES 3.x context! Falling back to 2.x.");
 
 			context_attrib[1] = 2;
 
-			app->context = eglCreateContext(app->display, config, nullptr, context_attrib);
+			app->context = EGL(eglCreateContext(app->display, config, nullptr, context_attrib));
 
 			if (!app->context) {
 				LOGE("[NativeApp] Failed to create OpenGL ES 2.x context! Exiting....");
@@ -218,29 +219,26 @@ namespace dank {
 			NativeApp::glGenVertexArraysOES = (PFNGLGENVERTEXARRAYSOESPROC)eglGetProcAddress("glGenVertexArrays");
 			NativeApp::glBindVertexArrayOES = (PFNGLBINDVERTEXARRAYOESPROC)eglGetProcAddress("glBindVertexArray");
 			NativeApp::glDeleteVertexArraysOES = (PFNGLDELETEVERTEXARRAYSOESPROC)eglGetProcAddress("glDeleteVertexArrays");
-
-			unsigned int id;
-			NativeApp::glGenVertexArraysOES(1, &id);
-			LOGD("ID: %i", id);
 		}
+		EGL();
 	}
 
 	void DestroyDisplay(bool fuck_everything) {
 		NativeApp* app = NativeApp::app;
 		if (app->window) {
-			eglMakeCurrent(app->display, 0, 0, 0);
+			EGL(eglMakeCurrent(app->display, 0, 0, 0));
 			if (app->context && fuck_everything) {
-				eglDestroyContext(app->display, app->context);
+				EGL(eglDestroyContext(app->display, app->context));
 				app->context = nullptr;
 			}
 
 			if (app->surface) {
-				eglDestroySurface(app->display, app->surface);
+				EGL(eglDestroySurface(app->display, app->surface));
 				app->surface = nullptr;
 			}
 
 			if (fuck_everything) {
-				eglTerminate(app->display);
+				EGL(eglTerminate(app->display));
 				app->display = nullptr;
 			}
 		}
