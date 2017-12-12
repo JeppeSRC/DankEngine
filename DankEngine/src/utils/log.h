@@ -57,7 +57,6 @@ namespace dank {
 
 	inline void EGLCallLog(const char* const func, const char* const file, int line) {
 		unsigned int error = eglGetError();
-		query
 		if(error != EGL_SUCCESS)
 			LOGF("[EGL] Error %u calling %s in %s:%u", error, func, file, line);
 	}
